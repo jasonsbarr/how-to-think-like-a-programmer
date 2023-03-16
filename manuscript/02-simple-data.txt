@@ -100,6 +100,35 @@ Other primitive types include booleans, symbols, and `undefined`. There's anothe
 
 ### Numeric Types
 
+As I mentioned above, JavaScript has 2 primitive numeric types: number and bigint.
+
+As you've seen, you can do mathematical operations on numeric values, but you can't mix the 2 types together in the same mathematical operation.
+
+In addition to mathematical operations, numeric values can be compared:
+
+```js
+5n > 3n //-> true
+5n < 3n //-> false
+5 === 5 //-> true, note that there are 3 equals signs
+5 !== 3 //-> true
+```
+
+These operations evaluate to booleans, which we'll see here shortly.
+
+Note that with comparison operations you actually **can** mix numbers and bigints:
+
+```js
+10n > 5 //-> true
+```
+
+That's because when you do a comparison, both the value and the type are part of the comparison.
+
+You probably noticed earlier that I used operators with multiple equals signs, `===` and `!==`. These mean "is equal to" and "is not equal to." They measure strict equality, which means they check to see if the operands have both the same value *and* the same type.
+
+The single equals sign has a different meaning that we'll cover shortly.
+
+There are also comparison operators with fewer equals signs, `==` and `!=`. They only check the values, which can be coerced to different types in certain situations. I'll explain what that means more later in the chapter. For now, just know that in nearly every case you're going to want to use strict equality.
+
 ### The String Type
 
 ### Booleans
