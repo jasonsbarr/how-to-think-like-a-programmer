@@ -1,0 +1,6 @@
+{class: part}
+# Basic Programming
+
+Your coding journey proper begins in this section!
+
+# Working with Simple Data: Types, Expressions, and Statements
