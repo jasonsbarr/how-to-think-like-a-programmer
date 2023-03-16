@@ -27,6 +27,8 @@ Your coding journey proper begins in this section!
 
 ### Anything Can Be a String!
 
+## Conditional (or Ternary) Expressions
+
 ## Statements
 
 ### Expression Statements
