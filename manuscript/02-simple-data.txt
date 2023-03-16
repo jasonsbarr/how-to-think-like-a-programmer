@@ -133,6 +133,36 @@ There are also comparison operators with fewer equals signs, `==` and `!=`. They
 
 ### The String Type
 
+The string type holds textual data. Some languages have separate types for individual characters and strings, but JavaScript only has the string type. A single character in JavaScript is just a string with a single character in it.
+
+As shown earlier, you can "add" strings. More properly, you can concatenate them using the `+` operator.
+
+```js
+"Hello" + "World" //-> HelloWorld
+```
+
+You can also compare strings:
+
+```js
+"hello" === "hello" //-> true
+```
+
+You can also do greater than and less than comparisons on strings. This comparison checks one character at a time to see which character's numeric value is greater or less than the other. All characters have numeric values under the hood, but you seldom need to worry about that.
+
+```js
+"a" < "b" //-> true
+"hello" > "world" //-> false
+"ABC" < "XYZ" //-> true
+```
+
+There is one gotcha with comparing strings. Due to how the characters' numeric values are represented, lowercase characters are always greater than uppercase characters.
+
+```js
+"B" > "a" //-> false
+```
+
+Uppercase characters begin at 65, whereas lowercase ones start at 97, so the above comparison looks like `66 > 97` when you take their numeric values into account. That's obviously not true.
+
 ### Booleans
 
 ### Symbols
@@ -140,8 +170,6 @@ There are also comparison operators with fewer equals signs, `==` and `!=`. They
 ### Null and Undefined
 
 ## Type Coercion
-
-### Anything Can Be a String!
 
 ## Conditional (or Ternary) Expressions
 
