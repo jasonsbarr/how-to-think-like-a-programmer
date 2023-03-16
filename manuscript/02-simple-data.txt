@@ -104,6 +104,20 @@ As I mentioned above, JavaScript has 2 primitive numeric types: number and bigin
 
 As you've seen, you can do mathematical operations on numeric values, but you can't mix the 2 types together in the same mathematical operation.
 
+Mathematical operations include addition, subtraction, multiplication, and division, just like you'd expect. There are also 2 additional mathematical operators: remainder and exponentiation.
+
+`%` is the remainder operator. It evaluates to the remainder left when dividing 2 numbers, and always evaluates to an integer.
+
+```js
+10 % 3 //-> 1
+```
+
+The `**` operator handles exponentiation. It raises the 1st number to the power of the 2nd number.
+
+```js
+3 ** 4 //-> 81
+```
+
 In addition to mathematical operations, numeric values can be compared:
 
 ```js
@@ -171,6 +185,27 @@ It doesn't seem like having only 2 possible values would be all that useful, but
 
 You surely noticed above that the comparison operations each evaluated to `true` or `false`. Those operations always evaluate to boolean values.
 
+There are also boolean operators: `&&`, `||`, and `!`.
+
+`!` is a unary operator, which means it only takes one operand. This unary operation evaluates to the opposite of whatever its operand is.
+
+```js
+!true //-> false
+!false //-> true
+!10 //-> false - I will explain this later in the chapter
+```
+
+`&&` and `||` are the "and" and "or" operators, respectively.
+
+```js
+true && true //-> true
+true && false //-> false
+true || false //-> true
+false || false //-> false
+```
+
+These two operators do what's called short circuit evaluation. That means if the first operand satisfies a certain condition, the second operand is never evaluated. This enables some useful tricks I will demonstrate throughout the rest of the book.
+
 Weirdly enough, you can also add booleans:
 
 ```js
@@ -236,11 +271,24 @@ JavaScript has "truthy" and "falsy" values. That means in a context where you wo
 
 The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything else is truthy.
 
-Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0.
+Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0, and forget to handle the case where 0 is falsy.
 
 ## Conditional (or Ternary) Expressions
 
+The conditional expression allows you to test a value and choose which of 2 expressions you want to evaluate based on whether the test is truthy or falsy. It is the only operator that takes 3 operands, so sometimes you'll see it called the ternary operator.
+
+The conditional operator uses `?` and `:` between its operands.
+
+If the first operand is truthy, the expression after `?` is evaluated. If it's falsy, the expression after `:` is evaluated. In either case, the other expression is left unevaluated.
+
+```js
+true ? "hello" : "goodbye" //-> "hello"
+x > 5 ? "it is greater than five" : "it is not greater than five" //-> depends on the value of x
+```
+
 ## Statements
+
+All the logic we've seen so far has taken the form of expressions. JavaScript also has statements. Statements are bits of logic that are executed, but do not evaluate to a value. A JavaScript program is essentially a list of statements that are executed according to the order dictated by the combination of the program's data and logic.
 
 ### Expression Statements
 
