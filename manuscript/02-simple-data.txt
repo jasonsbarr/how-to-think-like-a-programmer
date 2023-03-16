@@ -5,13 +5,92 @@ Your coding journey proper begins in this section! We'll start with the basic bu
 
 # Working with Simple Data: Types, Expressions, and Statements
 
+In this chapter you'll begin learning about data and the logic used to manipulate and process data in your programs.
+
+What is data?
+
+It seems like a simple question, but the answer can be surprisingly difficult to pin down.
+
+For this book, we'll define data as information that can be divided into categories according to the operations you can make with it, and process with your program logic.
+
 ## Atomic Expressions
+
+The simplest data is just a number, bit of text, or another value by itself.
+
+```js
+42
+"hello"
+true
+null
+```
+
+A data value like this is a complete JavaScript expression in itself.
+
+What's an expression?
+
+An expression is an operation you can perform in your program that evaluates to a value.
+
+These simple expressions that consist of a single piece of data each are *atomic*, meaning they are complete and valid in and of themselves.
+
+They're not very useful by themselves, though. Let's look at some of the operations you can perform on them.
 
 ## Binary Expressions
 
-## Types
+We'll start with simple binary expressions. They're called "binary" because they have 2 operands.
 
-### What Is a Type?
+A binary expression has the form of operand, operator, operand. In JavaScript you can do all the simple mathematical expressions you'd expect with numbers:
+
+```js
+3 + 2 //-> 5
+2 * 3 //-> 6
+2 ** 4 // ** is the exponent operator, so this evaluates to 16
+```
+
+You can also "add" strings of text together:
+
+```js
+"Hello" + "World" //-> "HelloWorld" - note there is no space. Spaces have to be added explicitly.
+```
+
+Mathematical operations have the precedence you would expect following the order of operations:
+
+```js
+2 + 5 * 2 //-> 12
+```
+
+You can use parentheses to force a different order of operations:
+
+```js
+(2 + 5) * 2 //-> 14
+```
+
+If you're wondering about the `//` above, that starts a *comment*. A comment is just that: a comment programmers use to convey information to other programmers. Comments are not processed by the JavaScript interpreter.
+
+You can start single-line comments with the double slash, `//`. You can also write multiline comments that start with `/*` and end with `*/`. Programmers often use comments as a way to inform other programmers about how they should expect a bit of logic (function) to work and what kinds of data it uses.
+
+JavaScript used to only have 1 numeric type, number, which can represent either integers or decimal numbers. Recently they've added bigints to the standard. Values of type number are limited in how large they can get on either side of 0. Bigints are integer numbers that can grow indefinitely large in either direction. Bigints are integer numbers with an `n` at the end.
+
+```js
+1000000000000000000000000000000000000000000000000000000000000000000000000000000000 //-> evaluates to Infinity
+1000000000000000000000000000000000000000000000000000000000000000000000000000000000n //-> evaluates to this integer
+```
+
+You can't use numbers and bigints together in the same operation. If you try, it will cause an error.
+
+```js
+10.5 + 10n // ERROR
+```
+
+If you want to use a number value and a bigint value together, you have to convert one to the other.
+
+```js
+let x = 10.5 + Number(10n) // 20.5
+typeof x //-> "number"
+```
+
+I've introduced a few new things in the code block above. I'll explain them later in this chapter. For now, just recognize that those expressions will evaluate to the values I've put in the comments.
+
+## Types
 
 ### Numeric Types
 
@@ -38,8 +117,6 @@ Your coding journey proper begins in this section! We'll start with the basic bu
 ### Block Statements
 
 ## Function Declarations and Expressions
-
-## Calling Functions
 
 ## Member Expressions and Methods
 
