@@ -31,9 +31,9 @@ Your coding journey proper begins in this section!
 
 ### Expression Statements
 
-### Block Statements
-
 ### Variable Declarations
+
+### Block Statements
 
 ## Function Declarations and Expressions
 
