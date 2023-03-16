@@ -273,6 +273,20 @@ The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything el
 
 Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0, and forget to handle the case where 0 is falsy.
 
+You can use the `typeof` unary operator to get the type of a value as a string, which can be useful:
+
+```js
+typeof "hello" //-> "string"
+```
+
+Unfortunately, sometimes `typeof` gives a result you might not expect like this:
+
+```js
+typeof null //-> "object"
+```
+
+`typeof` also does not distinguish between different object types. As far as it's concerned, a value is either a primitive (in which case it has a name) or an object (in which case it is "object"). We'll cover objects in detail in chapter 4.
+
 ## Conditional (or Ternary) Expressions
 
 The conditional expression allows you to test a value and choose which of 2 expressions you want to evaluate based on whether the test is truthy or falsy. It is the only operator that takes 3 operands, so sometimes you'll see it called the ternary operator.
@@ -290,9 +304,67 @@ x > 5 ? "it is greater than five" : "it is not greater than five" //-> depends o
 
 All the logic we've seen so far has taken the form of expressions. JavaScript also has statements. Statements are bits of logic that are executed, but do not evaluate to a value. A JavaScript program is essentially a list of statements that are executed according to the order dictated by the combination of the program's data and logic.
 
+A statement nearly always ends with a semicolon. JavaScript will often let you omit the semicolon, but the rules are tricky and it's easy to accidentally leaves one out in a way that changes the meaning of your program. When you're just getting started, you should always use semicolons where you're supposed to use them.
+
 ### Expression Statements
 
-### Variable Declarations
+The simplest statement is the expression statement. An expression statement is the statement containing a "top level" expression where the statement consists entirely of a single expression. All the expressions we've used as examples so far have also been expression statements.
+
+### Variables and Variable Declarations
+
+Variables are names that represent certain bits of data. Sometimes you'll see people refer to a variable as a kind of "box" that holds data. I prefer to think of it as a name that points to data. However you decide to think of it, just know that a name represents some data.
+
+A variable exists in a certain scope. The scope of a variable is the space within your program code in which the variable is valid.
+
+Code in an inner scope has access to the variables in its containing scopes, but code in an outer scope cannot access variables in an inner scope.
+
+JavaScript has 3 kinds of scope: global scope, function scope, and block scope. Variables in the global scope are accessible throughout the entire program. We'll cover function and block scopes when we get to block statements and functions later in this chapter.
+
+A variable declaration has 3 parts: the declaration keyword, the variable name, and an initializer expression. Sometimes the initializer expression is optional during the declaration.
+
+Declare variables using either the `let` or `const` keyword:
+
+```js
+let x = 10;
+let y; //-> declares y, but does not initialize it
+const z = "hi there";
+
+y = false; //-> this is an expression statement containing an assignment expression
+
+const a; //-> ERROR
+```
+
+Why does `const a;` cause an error? It's because `const` declares a variable with a **constant binding**, which means the name cannot be reassigned to another value.
+
+Since the name cannot be reassigned you can't give it a value later, which means it has to have an initializer in the declaration.
+
+With `let` you declare a variable binding that can be changed later in the program. This is often (though not always) a bad idea, because it's good for your program to be able to know exactly what value a variable may have. There are some cases where it's necessary, though.
+
+You can declare a variable with `let` and not initialize it, but you can't use it before it is assigned a value.
+
+```js
+let x;
+x + 3; //-> ERROR
+x = 10; // the program never gets here because of the error
+```
+
+You can declare multiple variables at once:
+
+```js
+let a = 1, b = 2, c = "what?";
+```
+
+Finally, for a variable binding JavaScript will not prevent you from assigning a value with a completely different type to the same variable.
+
+```js
+let greeting = "hello";
+greeting = 5;
+greeting; //-> 5
+```
+
+I can't think of a single time in my entire career when doing this has been a good idea.
+
+Sometimes you'll see the keyword `var` used to declare a variable, especially in code written before 2015 when `let` and `const` were added to the language. All you need to know is that it's the old way of declaring variables and it behaves mostly like `let`. You should always use either `let` or `const` in modern JavaScript programs (preferably `const` in most situations).
 
 ### Block Statements
 
