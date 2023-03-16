@@ -338,7 +338,22 @@ Why does `const a;` cause an error? It's because `const` declares a variable wit
 
 Since the name cannot be reassigned you can't give it a value later, which means it has to have an initializer in the declaration.
 
-With `let` you declare a variable binding that can be changed later in the program. This is often (though not always) a bad idea, because it's good for your program to be able to know exactly what value a variable may have. There are some cases where it's necessary, though.
+With `let` you declare a variable binding that can be changed later in the program. This is often (though not always) a bad idea, because it's good for your program to be able to know exactly what value a variable may have. The ability to read your code and know exactly what possible values a name can refer to is called "referential transparency." There are some cases where it's necessary to change a variable's value, though.
+
+If you do have to change a variable's value, use an assignment expression:
+
+```js
+let x;
+x = 10;
+```
+
+There are also augmented assignment expressions where you perform an operation on the variable and then assign the result of that operation to the variable. Here are some examples:
+
+```js
+x += 3; // assigns the value of x + 3 to x
+x -= 2;
+x *= 10;
+```
 
 You can declare a variable with `let` and not initialize it, but you can't use it before it is assigned a value.
 
@@ -365,6 +380,8 @@ greeting; //-> 5
 I can't think of a single time in my entire career when doing this has been a good idea.
 
 Sometimes you'll see the keyword `var` used to declare a variable, especially in code written before 2015 when `let` and `const` were added to the language. All you need to know is that it's the old way of declaring variables and it behaves mostly like `let`. You should always use either `let` or `const` in modern JavaScript programs (preferably `const` in most situations).
+
+Try to use descriptive variable names that indicate to someone reading the code what the value is used for. Sometimes this can be more difficult than you might think!
 
 ### Block Statements
 
