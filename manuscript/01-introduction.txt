@@ -45,7 +45,7 @@ These project chapters don't just walk you through the code for the project. The
 
 JavaScript was originally designed for simple scripts you could use in web pages to provide interactivity and animation.
 
-Brandon Eich, then a developer for Netscape, created the first version of the language in just 10 days back in 1995.
+Brendon Eich, then a developer for Netscape, created the first version of the language in just 10 days back in 1995.
 
 It was an amazing accomplishment, but as you'll see in this book it's also resulted in some strange quirks and behavior other languages don't have.
 

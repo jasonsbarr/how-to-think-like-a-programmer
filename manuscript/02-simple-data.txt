@@ -181,7 +181,33 @@ Don't do that, though. It's silly.
 
 ### Symbols
 
+Symbols are a relatively new primitive type that was added to the language recently. Symbols are not equal to any other value. You create them using the `Symbol` constructor function:
+
+```js
+Symbol("hi")
+```
+
+A symbol created this way is always unique. You can create 2 symbols from the same string and they will still not be equal:
+
+```js
+Symbol("hi") === Symbol("hi") //-> false
+```
+
+You can also use the `for` method (which is a function) to create symbols that are equal to other symbols created in the same way using the same string:
+
+```js
+Symbol.for("hi") === Symbol.for("hi") //-> true
+```
+
+You probably won't use symbols too often, but they're useful because you can use them to add keys to objects that are guaranteed to be unique. Objects are a compound data type, and we'll cover them in chapter 4.
+
 ### Null and Undefined
+
+`null` and `undefined` are similar to one another. Both represent the absence of any value, but in different ways.
+
+`undefined` represents a value that has not been defined. It is also returned by functions that do not have a return value, as you learned in the previous chapter.
+
+`null` is used to intentionally set a value to be empty. Confusingly, `null` in JavaScript is of type "object." The reason is because `null` is supposed to be a value used in places where there **could** be an object value. Personally, I think this was a mistake and they should have just used 1 empty type, but that's how the language was defined in the beginning so now we're stuck with it.
 
 ## Type Coercion
 
