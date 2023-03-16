@@ -84,13 +84,19 @@ You can't use numbers and bigints together in the same operation. If you try, it
 If you want to use a number value and a bigint value together, you have to convert one to the other.
 
 ```js
-let x = 10.5 + Number(10n) // 20.5
+let x = 10.5 + Number(10n) //-> 20.5
 typeof x //-> "number"
 ```
 
 I've introduced a few new things in the code block above. I'll explain them later in this chapter. For now, just recognize that those expressions will evaluate to the values I've put in the comments.
 
 ## Types
+
+I mentioned types briefly above, but now let's talk about them in more detail.
+
+Types are categories for data that are separated according to the kinds of operations you can perform on the data. With numeric types, you do numeric operations. With the string type, you do string operations. These are called *primitive types* because they're complete values that cannot be broken down any further. "Hello" is always "Hello" no matter what you try to do to it.
+
+Other primitive types include booleans, symbols, and `undefined`. There's another value called `null` that behaves like a primitive type in many ways.
 
 ### Numeric Types
 
