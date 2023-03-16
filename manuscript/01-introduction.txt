@@ -2,3 +2,131 @@
 # Introduction
 
 You are about to embark on an amazing journey. Learning to program is a highly-sought after skill in today's technology-driven world. By learning to program, you can dramatically increase your income in a short period of time while you get to work on interesting and challenging projects. Not only that, but programming can even be lots of fun! There's nothing quite like encountering a problem, working through a solution, and building it in code.
+
+# About This Book
+
+This book is a bit different from most "learn to code" books and courses. Too many programming books for beginners teach you the syntax and basics in a programming language, but that's where it ends.
+
+This book does more.
+
+Yes, you'll learn the syntax of JavaScript and how to write programs both in the browser and on the server, but you'll get much more than that.
+
+The goal of this book is to go beyond learning the language and teach you how to *think like a programmer*.
+
+I know, you're shocked, right? Not like that's the title of the book or anything.
+
+Thinking like a programmer means adopting the mental practices a programmer uses to build effective solutions to the problems they face in code.
+
+It means having the ability to break a problem down into its smallest pieces, understanding what needs to happen to solve the problem, and then (and *only* then) recognizing how to write the code.
+
+Problem solving in code is often a back-and-forth process.
+
+You solve a little bit of the problem, then test your solution.
+
+Then you solve another piece of the problem, and test again.
+
+Lather, rinse, and repeat until you have a bulletproof solution that comprehensively solves the entire problem.
+
+You won't just understand how to program after working through this book (and I do **highly** suggest you work through the exercises and projects).
+
+You'll understand how the computer works at a deeper level than most beginning (and even intermediate) programmers, and you'll know not just how to write a program, but also how to analyze and improve it so it's more efficient and effective.
+
+Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
+
+There are exercises throughout and at the end of each chapter, and many chapters take you through a small project that demonstrates what you're learning so you can see it in action.
+
+After every 4th chapter, there's a more substantial project.
+
+These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
+
+## About JavaScript
+
+JavaScript was originally designed for simple scripts you could use in web pages to provide interactivity and animation.
+
+Brandon Eich, then a developer for Netscape, created the first version of the language in just 10 days back in 1995.
+
+It was an amazing accomplishment, but as you'll see in this book it's also resulted in some strange quirks and behavior other languages don't have.
+
+Some of them are good, but some of them can be extremely frustrating. I'll give you a heads up when there's something you need to know that fits that description.
+
+JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience, don't worry about it! I'll explain the difference and everything you need to know when we get there.
+
+One last thing about JavaScript: you may see the term "ECMAScript" on occasion. That's because shortly after JavaScript was released people quickly realized there needed to be a standard for it, to keep differences in browsers from making things too difficult for programmers. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the *official* specification for what is and is not valid JavaScript.
+
+The [Wikipedia article about JavaScript](https://en.wikipedia.org/wiki/JavaScript) covers the history of the language in more detail, if you're curious.
+
+## Installing Node.js
+
+The easiest way to install Node is simply to go to the [Node.js website](https://nodejs.org/) and download the installer from there. You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
+
+If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book.
+
+If you're on a Linux PC or Mac, there's a tool called NVM that will let you manage and use different versions of Node.
+
+I use NVM on both my work and personal computers so I can test my code against multiple versions to make sure my applications will work properly with different versions. You can learn more about NVM at [their GitHub repo](https://github.com/nvm-sh/nvm).
+
+## JavaScript in The Browser
+
+You don't need to do anything to use JavaScript in the browser; unless you've deliberately disabled JavaScript, it will just work.
+
+You'll be able to use all the language features your browser supports right out of the box.
+
+I test all my browser code in Chrome, Firefox, Safari, and Edge to make sure there's a consistent user experience across browsers. I also test on tablet and mobile devices, both Android and iOS.
+
+JavaScript is usually loaded in a web page either from a `script` element or an external file. Most of the time you'll want to use an external file so you can share code between multiple web pages.
+
+To load an external JavaScript file, you just need to include it in a `script` element:
+
+```html
+<script src="path/to/file.js">
+```
+
+That's all you need to do!
+
+## Installing Packages with NPM
+
+One of the nice things about using a popular programming language is there are tons of things you might need to do in a program that someone else has already done. For most of these things, you can find at least one code library to use instead of reinventing the wheel yourself. These libraries are also known as packages.
+
+Node.js comes with a package manager called NPM, which supposedly does **not** mean "Node Package Manager," even though it totally does.
+
+The NPM package registry has over 1 million packages published that you can install and use in any project you want. We'll use a few in this book so you can get the hang of how the JavaScript ecosystem works.
+
+To install a package from NPM, just type this into your terminal (or command prompt if you're on Windows): `npm install [package name]`.
+
+You can also install packages globally, which you may want to do if there's a utility you want to use from the command line or in many projects. To do that, simply add the `-g` flag to your install command: `npm install -g [package name]`.
+
+## Your First Program
+
+Ok, with all that said, it's finally time to write your first JavaScript program!
+
+Open your terminal (or command prompt), type `node`, and hit enter.
+
+This will load the Node REPL and give you a prompt where you can enter code.
+
+REPL stands for "Read Eval Print Loop," and it's exactly what it sounds like: it reads the code you type in, evaluates it, prints the result of the computation, and then goes back to the beginning to do it all over again until you close out the REPL.
+
+You can also write this program in your browser's console. In most browsers you can open the console with CTRL (or CMD on a Mac)  + Shift + j, and you'll be given a prompt where you can enter code into the console. For the most part, the console works in the same way as the Node REPL.
+
+Ready for your first program? Here it is, so type it into your REPL (or console):
+
+```js
+console.log("Hello, world!");
+```
+
+And hit ENTER.
+
+From left to right, you've entered an object's name, a method on that object, an argument to the method, and the semicolon is a statement terminator. That means you should use a semicolon to end most statements in JavaScript.
+
+Confused by those terms? I'll explain what all those words mean in the next chapter!
+
+You'll see 2 things in your output:
+
+First, the string "Hello, world!". "String" is what programmers say when they mean text, because text is a string (or sequence) of characters.
+
+Second, you'll see the `undefined`.
+
+Printing "Hello, world!" is obvious, because that's what you told it to print, but what's the deal with `undefined`?
+
+`undefined` is a special value in JavaScript that represents a value that has not been defined. All functions and methods in JavaScript must evaluate to a value. That's called "returning" from the function. Since `console.log` just prints the argument(s) you give it, there is no return value. The method returns `undefined` to signal that there is no concrete value returned by the function.
+
+Now that you've written your first program, let's dive in!
