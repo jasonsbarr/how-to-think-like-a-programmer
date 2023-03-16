@@ -57,6 +57,8 @@ One last thing about JavaScript: you may see the term "ECMAScript" on occasion. 
 
 The [Wikipedia article about JavaScript](https://en.wikipedia.org/wiki/JavaScript) covers the history of the language in more detail, if you're curious.
 
+Note that every new update to JavaScript needs to be backwards-compatible with previous versions of the language, so once something gets into the language we're stuck with it forever.
+
 ## Installing Node.js
 
 The easiest way to install Node is simply to go to the [Node.js website](https://nodejs.org/) and download the installer from there. You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.

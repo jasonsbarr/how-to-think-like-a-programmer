@@ -267,6 +267,8 @@ The strict equality operators compare values **and** types, and so will work the
 
 Type coercion is another one of those features that was added to the language in the beginning that many programmers wish we could get rid of. It's a common source of bugs (mistakes) in code, and they can be pretty hard to track down and fix sometimes.
 
+### Truthy and Falsy Values
+
 JavaScript has "truthy" and "falsy" values. That means in a context where you would expect a boolean the falsy values are coerced to `false`. Truthy values are coerced to `true`.
 
 The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything else is truthy.
@@ -377,9 +379,9 @@ greeting = 5;
 greeting; //-> 5
 ```
 
-I can't think of a single time in my entire career when doing this has been a good idea.
+I can't think of a single time in my entire career when doing this has been a good idea, but JavaScript will let you do it.
 
-Sometimes you'll see the keyword `var` used to declare a variable, especially in code written before 2015 when `let` and `const` were added to the language. All you need to know is that it's the old way of declaring variables and it behaves mostly like `let`. You should always use either `let` or `const` in modern JavaScript programs (preferably `const` in most situations).
+Sometimes you'll see the keyword `var` used to declare a variable, mostly in code written before 2015. That's when `let` and `const` were added to the language. All you need to know is that it's the old way of declaring variables and it behaves mostly like `let`. You should always use either `let` or `const` in modern JavaScript programs (preferably `const` in most situations).
 
 Try to use descriptive variable names that indicate to someone reading the code what the value is used for. Sometimes this can be more difficult than you might think!
 
