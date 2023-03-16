@@ -165,6 +165,20 @@ Uppercase characters begin at 65, whereas lowercase ones start at 97, so the abo
 
 ### Booleans
 
+Booleans are an extremely simple type. There are only 2 values: `true` and `false`.
+
+It doesn't seem like having only 2 possible values would be all that useful, but it turns out that booleans unlock whole new worlds of programming possibilities.
+
+You surely noticed above that the comparison operations each evaluated to `true` or `false`. Those operations always evaluate to boolean values.
+
+Weirdly enough, you can also add booleans:
+
+```js
+true + true //-> 2
+```
+
+Don't do that, though. It's silly.
+
 ### Symbols
 
 ### Null and Undefined
