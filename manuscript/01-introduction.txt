@@ -31,6 +31,8 @@ You won't just understand how to program after working through this book (and I 
 
 You'll understand how the computer works at a deeper level than most beginning (and even intermediate) programmers, and you'll know not just how to write a program, but also how to analyze and improve it so it's more efficient and effective.
 
+Also, if you work through this whole book you'll cover most of what you would learn in an introductory computer science course at a top university, including how to work through some pretty advanced programming problems.
+
 Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
 
 There are exercises throughout and at the end of each chapter, and many chapters take you through a small project that demonstrates what you're learning so you can see it in action.
