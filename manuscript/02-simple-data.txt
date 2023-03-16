@@ -109,6 +109,8 @@ In addition to mathematical operations, numeric values can be compared:
 ```js
 5n > 3n //-> true
 5n < 3n //-> false
+5n <= 6n //-> true
+17 >= 3.2 //-> true
 5 === 5 //-> true, note that there are 3 equals signs
 5 !== 3 //-> true
 ```
