@@ -211,6 +211,33 @@ You probably won't use symbols too often, but they're useful because you can use
 
 ## Type Coercion
 
+I briefly mentioned type coercion above. Now I'll present it with a little more detail.
+
+Type coercion is when the JavaScript interpreter changes the type of a value to fit with the operation being performed on it.
+
+It's easier to show examples than to explain it:
+
+```js
+5 + "5" //-> "55"
+true + 1 //-> 2
+"" == false //-> true
+0 == false //-> true
+null == undefined //-> true
+0 == "" //-> true
+```
+
+This is why I said before that you should almost always prefer using the strict equality operators `===` and `!==`. The regular equality operators `==` and `!=` will coerce types to try to make the operation work.
+
+The strict equality operators compare values **and** types, and so will work the way you probably expect it to work.
+
+Type coercion is another one of those features that was added to the language in the beginning that many programmers wish we could get rid of. It's a common source of bugs (mistakes) in code, and they can be pretty hard to track down and fix sometimes.
+
+JavaScript has "truthy" and "falsy" values. That means in a context where you would expect a boolean the falsy values are coerced to `false`. Truthy values are coerced to `true`.
+
+The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything else is truthy.
+
+Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0.
+
 ## Conditional (or Ternary) Expressions
 
 ## Statements
