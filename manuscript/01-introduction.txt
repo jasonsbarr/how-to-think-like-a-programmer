@@ -123,7 +123,11 @@ You'll see 2 things in your output:
 
 First, the string "Hello, world!". "String" is what programmers say when they mean text, because text is a string (or sequence) of characters.
 
-Second, you'll see the `undefined`.
+Second, you'll see `undefined`.
+
+!["Hello, world!" in Node.js](node-hello-world.png)
+
+!["Hello, world!" in the browser console](console-hello-world.png)
 
 Printing "Hello, world!" is obvious, because that's what you told it to print, but what's the deal with `undefined`?
 
