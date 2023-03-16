@@ -4,3 +4,45 @@
 Your coding journey proper begins in this section!
 
 # Working with Simple Data: Types, Expressions, and Statements
+
+## Atomic Expressions
+
+## Binary Expressions
+
+## Types
+
+### What Is a Type?
+
+### Numeric Types
+
+### The String Type
+
+### Booleans
+
+### Symbols
+
+### Null and Undefined
+
+## Type Coercion
+
+### Anything Can Be a String!
+
+## Statements
+
+### Expression Statements
+
+### Block Statements
+
+### Variable Declarations
+
+## Function Declarations and Expressions
+
+## Calling Functions
+
+## Member Expressions and Methods
+
+### The `Math` Object
+
+## Recap
+
+## Exercises
