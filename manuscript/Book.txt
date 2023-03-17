@@ -2,7 +2,7 @@
 02-simple-data.txt
 03-branching-looping.txt
 04-compound-data.txt
-05-project-number-guessing-game
+05-project-game.txt
 06-simple-algorithms.txt
 07-json-files.txt
 08-strings-regexp.txt
@@ -23,6 +23,6 @@
 23-trees.txt
 24-graphs.txt
 25-solving-problems.txt
-26-project-programming-language.txt
+26-project-full-stack.txt
 27-final-project.txt
 28-conclusion.txt

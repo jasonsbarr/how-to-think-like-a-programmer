@@ -19,7 +19,17 @@ Thinking like a programmer means adopting the mental practices a programmer uses
 
 It means having the ability to break a problem down into its smallest pieces, understanding what needs to happen to solve the problem, and then (and *only* then) recognizing how to write the code.
 
-Problem solving in code is often a back-and-forth process.
+It means understanding the *exact steps* your program needs to take to compute the result you're looking for.
+
+The series of steps your program needs to take in order to compute is called an *algorithm*. There are several different kinds of algorithms, and you'll see many of them in this book.
+
+As we work through this book, we'll progressively develop mental models of computation to help you understand how JavaScript works at a deep level. We'll create rules that govern how programs will run. Essentially, we'll construct a model for a JavaScript interpreter. An interpreter is another program, outside the JavaScript programs you'll write, that executes the programs written in some programming language (in this case, JavaScript). Then, at the end of the book, you'll write an interpreter for your very own programming language as a final project. The goal is to help you completely understand how a programming language works from top to bottom, so you can reason accurately about your own programs.
+
+## Software Engineering
+
+Thinking like a programmer means thinking like an engineer. You are *engineering* solutions in code to the problems you face.
+
+Software engineering is often a back-and-forth process.
 
 You solve a little bit of the problem, then test your solution.
 
@@ -27,7 +37,7 @@ Then you solve another piece of the problem, and test again.
 
 Lather, rinse, and repeat until you have a bulletproof solution that comprehensively solves the entire problem.
 
-You won't just understand how to program after working through this book (and I do **highly** suggest you work through the exercises and projects).
+You won't just understand how to write programs after working through this book (and I do **highly** suggest you work through the exercises and projects).
 
 You'll understand how the computer works at a deeper level than most beginning (and even intermediate) programmers, and you'll know not just how to write a program, but also how to analyze and improve it so it's more efficient and effective.
 
@@ -37,7 +47,7 @@ Each chapter covers an important topic you need to know to become a proficient J
 
 There are exercises throughout and at the end of each chapter, and many chapters take you through a small project that demonstrates what you're learning so you can see it in action.
 
-After every 4th chapter, there's a more substantial project.
+After every 4th chapter, there's a more substantial project. At the end, there is a final project.
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
 
@@ -67,6 +77,73 @@ Keep at it, and one day you'll get better than me.
 
 I hope you do!
 
+## Programs and Programming Languages
+
+We've talked a lot about writing and reasoning about programs, but what is a program? Moreover, what is a programming language?
+
+A program is simply a combination of data and logic that computes a result.
+
+To compute means to calculate. It's usually associated with numbers, although modern computers can map numbers onto text, images, and many other kinds of data. It's all numbers at the most basic level, though.
+
+Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into machine language the CPU can understand (also known as compiling), which consists only of binary numbers (0s and 1s). Everything we do with computers comes from these binary numbers and how the CPU handles them.
+
+From these binary numbers come instructions that tell the CPU which code to execute, when to execute it, and how to produce the result of the program.
+
+Since the CPU doesn't process the programming language code directly, we have to build interpreters that can do that. Interpreters are themselves programs that are written in a programming language, and each level of execution runs in its own interpreter until it gets all the way down to the level of the CPU.
+
+You can think of the CPU as a hardware interpreter that executes binary code.
+
+There are dozens, maybe even hundreds of programming languages out there. All of them follow the same basic process.
+
+Some are very low level, like assembly languages. Assembly languages operate directly at the level of instructions a CPU can perform. When you write code in assembly, you literally tell the CPU how to move data at the bits and bytes level.
+
+Others, like C, are higher level, but still require you to work with memory and primitive computer processes.
+
+Then there are still higher level languages, like JavaScript, where the details of memory management and CPU operations are hidden away and all you have to do is write the high level logic of the program to get the result you're looking for.
+
+### The Fundamental Characteristics of A Programming Language
+
+Every programming language has 4 elements:
+
+1. A set of primitive constructs
+2. Syntax
+3. Static semantics
+4. Semantics
+
+The primitive constructs are things like basic data types and built-in functions. They are defined in the interpreter itself.
+
+Syntax is simply the symbols used to write programs in a language, and the rules that define well-formed statements in it.
+
+For example, in JavaScript 5 is a number. `+` is an operator. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
+
+Static semantics defines which well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will produce an error and halt the program.
+
+Static semantics also encompasses things like the type system of a language, and any other characteristics of the language that can be statically verified&mdash;that is, verified before the code is compiled or executed. Some languages even make it possible to verify certain aspects of a program's logic ahead of time.
+
+There are languages that do a great deal of pre-execution static semantic checking, like Java and Haskell. For better or worse, JavaScript does very little in that regard.
+
+Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly.
+
+Semantic errors are the worst kind of error in a program because they can be so difficult to find. You don't even know they exist until you run the program with input that produces the wrong value.
+
+The interpreter can't catch semantic errors ahead of time, so you have to actually run the program to discover them.
+
+### Abstraction and Combination
+
+Programming languages don't just give you primitives to work with; they also give you means of *abstraction* and *combination*.
+
+Abstraction means hiding the details so the person using a thing doesn't need to know exactly how it works.
+
+It's like driving a car. You don't need to know all the details of how the accelerator pedal connects to the various mechanisms that make the car go faster. You just need to know how to push the pedal down to get to the speed at which you want to drive. The actual process of how the car goes faster is abstracted away.
+
+In a programming language, abstractions are bits of logic that allow you to treat them like primitives. They are often combinations of language primitives, as well as other abstractions defined by programmers.
+
+Combination is exactly what it sounds like: you take primitives from the language and combine them together to create new functionality to augment what the language gives you.
+
+You can combine primitives as well as other abstractions and combinations you (or other programmers) have defined.
+
+Every program is made up of abstractions and combinations in some form.
+
 ## About JavaScript
 
 JavaScript was originally designed for simple scripts you could use in web pages to provide interactivity and animation.
@@ -77,7 +154,7 @@ It was an amazing accomplishment, but as you'll see in this book it's also resul
 
 Some of them are good, but some of them can be extremely frustrating. I'll give you a heads up when there's something you need to know that fits that description.
 
-JavaScript engines are more generally called interpreters. That means the code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run.
+JavaScript most often runs in interpreters. That means the code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run later.
 
 JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience, don't worry about it! I'll explain the difference and everything you need to know when we get there.
 
@@ -86,6 +163,10 @@ One last thing about JavaScript: you may see the term "ECMAScript" on occasion. 
 The [Wikipedia article about JavaScript](https://en.wikipedia.org/wiki/JavaScript) covers the history of the language in more detail, if you're curious.
 
 Note that every new update to JavaScript needs to be backwards-compatible with previous versions of the language, so once something gets into the language we're stuck with it forever.
+
+I have chosen JavaScript as the language to use in this book because it is probably the most commonly-used programming language in the world right now, and it's likely that most if not all of the programming jobs you'll ever have will require you to use it in some way.
+
+Plus it's a relatively easy language to learn, which makes it suitable for beginners.
 
 ## Installing Node.js
 
