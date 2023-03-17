@@ -91,7 +91,7 @@ Computers only process numbers in their CPU (Central Processing Unit). They both
 
 From these binary numbers come instructions that tell the CPU which code to execute, when to execute it, and how to produce the result of the program.
 
-Since the CPU doesn't process the programming language code directly, we have to build interpreters that can do that. Interpreters are themselves programs that are written in a programming language, and each level of execution runs in its own interpreter until it gets all the way down to the level of the CPU.
+Since the CPU doesn't process the programming language code directly, we have to build interpreters that can do that. Interpreters are themselves written in programming languages, and each level of execution runs in its own interpreter until it gets all the way down to the level of the CPU.
 
 You can think of the CPU as a hardware interpreter that executes binary code.
 
