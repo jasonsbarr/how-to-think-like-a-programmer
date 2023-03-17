@@ -5,7 +5,7 @@ You are about to embark on an amazing journey. Learning to program is a highly-s
 
 # About This Book
 
-This book is a bit different from most "learn to code" books and courses. Too many programming books for beginners teach you the syntax and basics in a programming language, but that's where it ends.
+This book is a bit different from most "learn to code" books and courses. Too many programming books for beginners teach you the syntax and basics of a programming language, but that's where it ends.
 
 This book does more.
 
@@ -13,17 +13,19 @@ Yes, you'll learn the syntax of JavaScript and how to write programs both in the
 
 The goal of this book is to go beyond learning the language and teach you how to *think like a programmer*.
 
-I know, you're shocked, right? Not like that's the title of the book or anything.
-
 Thinking like a programmer means adopting the mental practices a programmer uses to build effective solutions in code to the real world problems they face.
 
 It means having the ability to break a problem down into its smallest pieces, understanding what needs to happen to solve the problem, and then (and *only* then) recognizing how to write the code.
 
 It means understanding the *exact steps* your program needs to take to compute the result you're looking for.
 
-The series of steps your program needs to take in order to compute is called an *algorithm*. There are several different kinds of algorithms, and you'll see many of them in this book.
+The series of steps your program needs to take in order to compute is called an *algorithm*. There are several different kinds of algorithms, and you'll see many of them in this book. You'll also learn how to create your own algorithms and analyze them to see how they might be improved.
 
-As we work through this book, we'll progressively develop mental models of computation to help you understand how JavaScript works at a deep level. We'll create rules that govern how programs will run. Essentially, we'll construct a model for a JavaScript interpreter. An interpreter is another program, outside the JavaScript programs you'll write, that executes the programs written in some programming language (in this case, JavaScript). Then, at the end of the book, you'll write an interpreter for your very own programming language as a final project. The goal is to help you completely understand how a programming language works from top to bottom, so you can reason accurately about your own programs.
+As we work through this book, we'll progressively develop mental models of computation to help you understand how JavaScript works at a deep level. We'll create rules that govern how programs will run. Essentially, we'll construct a model for a JavaScript interpreter.
+
+An interpreter is another program, outside the JavaScript programs you'll write, that executes the programs written in some programming language (in this case, JavaScript).
+
+Then, at the end of the book, you'll write an interpreter for your very own programming language as a final project. Then you'll explore different versions of the interpreter that use different evaluation models. The goal is to help you completely understand how a programming language works from top to bottom, so you can reason more accurately about your own programs.
 
 ## Software Engineering
 
@@ -35,19 +37,19 @@ You solve a little bit of the problem, then test your solution.
 
 Then you solve another piece of the problem, and test again.
 
-Lather, rinse, and repeat until you have a bulletproof solution that comprehensively solves the entire problem.
+Lather, rinse, and repeat until you have a bulletproof program that comprehensively solves the entire problem.
 
 You won't just understand how to write programs after working through this book (and I do **highly** suggest you work through the exercises and projects).
 
-You'll understand how the computer works at a deeper level than most beginning (and even intermediate) programmers, and you'll know not just how to write a program, but also how to analyze and improve it so it's more efficient and effective.
+You'll understand how the computer works more deeply than most beginning (and even intermediate) programmers, and you won't just know how to write a program. You'll also know how to analyze it and, whenever possible, how to make it more efficient.
 
-Also, if you work through this whole book you'll cover most of what you would learn in an introductory computer science course at a top university, including how to work through some pretty advanced programming problems.
+Also, if you work through this whole book you'll cover about as much as you would learn from an introductory computer science course at a top university. You'll work through some pretty advanced programming problems!
 
 Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
 
-There are exercises throughout and at the end of each chapter, and many chapters take you through a small project that demonstrates what you're learning so you can see it in action.
+There are exercises throughout and at the end of each chapter.
 
-After every 4th chapter, there's a more substantial project. At the end, there is a final project.
+After every 4th chapter, there's a substantial project. There's also the final project at the end.
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
 
@@ -85,7 +87,7 @@ A program is simply a combination of data and logic that computes a result.
 
 To compute means to calculate. It's usually associated with numbers, although modern computers can map numbers onto text, images, and many other kinds of data. It's all numbers at the most basic level, though.
 
-Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into machine language the CPU can understand (also known as compiling), which consists only of binary numbers (0s and 1s). Everything we do with computers comes from these binary numbers and how the CPU handles them.
+Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into machine language the CPU can understand, which consists only of binary numbers (0s and 1s). Breaking code down into binary machine language is known as compiling. Everything we do with computers comes from these binary numbers and how the CPU handles them.
 
 From these binary numbers come instructions that tell the CPU which code to execute, when to execute it, and how to produce the result of the program.
 
@@ -93,17 +95,17 @@ Since the CPU doesn't process the programming language code directly, we have to
 
 You can think of the CPU as a hardware interpreter that executes binary code.
 
-There are dozens, maybe even hundreds of programming languages out there. All of them follow the same basic process.
+There are dozens, maybe even hundreds of programming languages out there. All of them follow the same basic process. The programs written in a programming language either execute directly in the interpreter itself or are compiled down to machine code so the CPU can execute them.
 
-Some are very low level, like assembly languages. Assembly languages operate directly at the level of instructions a CPU can perform. When you write code in assembly, you literally tell the CPU how to move data at the bits and bytes level.
+Some languages are very low level, like assembly languages. Assembly languages operate directly at the level of instructions a CPU can perform. When you write code in assembly, you literally tell the CPU how to move data at the bits and bytes level.
 
 Others, like C, are higher level, but still require you to work with memory and primitive computer processes.
 
-Then there are still higher level languages, like JavaScript, where the details of memory management and CPU operations are hidden away and all you have to do is write the high level logic of the program to get the result you're looking for.
+Then there are still higher level languages, like JavaScript, where the details of memory management and CPU operations are hidden away and all you have to do is write the high level logic of the program to get the result you're looking for. The computer handles all the details for you.
 
-### The Fundamental Characteristics of A Programming Language
+### The Fundamental Elements of A Programming Language
 
-Every programming language has 4 elements:
+Every programming language has 4 fundamental elements:
 
 1. A set of primitive constructs
 2. Syntax
@@ -114,11 +116,11 @@ The primitive constructs are things like basic data types and built-in functions
 
 Syntax is simply the symbols used to write programs in a language, and the rules that define well-formed statements in it.
 
-For example, in JavaScript 5 is a number. `+` is an operator. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
+For example, in JavaScript 5 is a number. `+` is an operator, which is like a built-in function that can be applied to its operands. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
 
 Producing an error that halts the program is known as "throwing an error." With some languages it's called "raising an error."
 
-Static semantics defines which well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will produce an error and halt the program.
+Static semantics defines which syntactically well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static-semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will throw an error.
 
 Static semantics also encompasses things like the type system of a language, and any other characteristics of the language that can be statically verified&mdash;that is, verified before the code is compiled or executed. Some languages even make it possible to verify certain aspects of a program's logic ahead of time.
 
@@ -126,9 +128,11 @@ There are languages that do a great deal of pre-execution static semantic checki
 
 Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly.
 
-Semantic errors are the worst kind of error in a program because they can be so difficult to find. You don't even know they exist until you run the program with input that produces the wrong value.
+Semantic errors are the worst kind of error in a program because they can be very difficult to find. You don't even know they exist until you run the program with input that produces the wrong value.
 
 The interpreter can't catch semantic errors ahead of time, so you have to actually run the program to discover them.
+
+Writing tests to catch potential logic errors is a good practice, and we will write tests for many of our programs in this book.
 
 ### Abstraction and Combination
 
@@ -148,17 +152,17 @@ Every program is made up of abstractions and combinations in some form.
 
 ## About JavaScript
 
-JavaScript was originally designed for simple scripts you could use in web pages to provide interactivity and animation.
+JavaScript was originally designed for simple scripts you could use in web pages to provide interactivity and animation. Eventually it came to be used as a fully-fledged programming language for the creation of large and complex applications.
 
 Brendon Eich, then a developer for Netscape, created the first version of the language in just 10 days back in 1995.
 
-It was an amazing accomplishment, but as you'll see in this book it's also resulted in some strange quirks and behavior other languages don't have.
+It was an amazing accomplishment, but as you'll see in this book it's also resulted in some strange quirks and behaviors other languages don't have.
 
 Some of them are good, but some of them can be extremely frustrating. I'll give you a heads up when there's something you need to know that fits that description.
 
 JavaScript most often runs in interpreters. That means the code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run later.
 
-JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience, don't worry about it! I'll explain the difference and everything you need to know when we get there.
+JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience and have no idea what anything I've just said means, don't worry about it! I'll explain everything you need to know when we get there.
 
 One last thing about JavaScript: you may see the term "ECMAScript" on occasion. That's because shortly after JavaScript was released people quickly realized there needed to be a standard for it, to keep differences in browsers from making things too difficult for programmers. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the *official* specification for what is and is not valid JavaScript.
 
@@ -174,9 +178,13 @@ Plus it's a relatively easy language to learn, which makes it suitable for begin
 
 To run JavaScript code on your computer outside of a browser, you need Node.js.
 
-The easiest way to install Node is simply to go to the [Node.js website](https://nodejs.org/) and download the installer from there. You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
+The easiest way to install Node is simply to go to the [Node.js website](https://nodejs.org/) and download the installer from there.
 
-If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book.
+You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
+
+If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book. While I will use modern JavaScript syntax and commonly-accepted best practices, I won't use cutting-edge features that either aren't (yet) fully part of the standard or that have been released after February of 2023.
+
+Simply run the installer you've chosen and respond to any prompts it gives you.
 
 If you're on a Linux PC or Mac, there's a tool called NVM that will let you manage and use different versions of Node.
 
@@ -195,10 +203,18 @@ JavaScript is usually loaded in a web page either from a `script` element or an 
 To load an external JavaScript file, you just need to include it in a `script` element:
 
 ```html
-<script src="path/to/file.js">
+<script src="path/to/file.js"></script> <!-- note the empty element and closing tag -->
 ```
 
-That's all you need to do!
+That's all you need to do! You may see examples elsewhere that include the attribute and value `type="text/javascript"` in the opening tag, but that hasn't been required for well over a decade.
+
+And if you don't know HTML and CSS, don't worry; I'll include all the code you need either in the book itself or the book repository.
+
+## The Book Repository
+
+You can download all the code used in this book, as well as project starters and tests for exercises, in the book's GitHub repository.
+
+<!-- TODO: course repository and downloading directions -->
 
 ## Installing Packages with NPM
 
@@ -220,7 +236,7 @@ Open your terminal (or command prompt), type `node`, and hit enter.
 
 This will load the Node REPL and give you a prompt where you can enter code.
 
-REPL stands for "Read Eval Print Loop," and it's exactly what it sounds like: it reads the code you type in, evaluates it, prints the result of the computation, and then goes back to the beginning to do it all over again until you close out the REPL.
+REPL stands for "Read Eval Print Loop," and it's exactly what it sounds like: it reads the code you type in, executes it, prints the result of the computation, and then goes back to the beginning to do it all over again until you close out the REPL.
 
 You can also write this program in your browser's console. In most browsers you can open the console with CTRL (or CMD on a Mac)  + Shift + j, and you'll be given a prompt where you can enter code into the console. For the most part, the console works in the same way as the Node REPL.
 
@@ -232,7 +248,7 @@ console.log("Hello, world!");
 
 And hit ENTER.
 
-From left to right, you've entered an object's name, a method on that object, an argument to the method, and the semicolon is a statement terminator. That means you should use a semicolon to end most statements in JavaScript.
+From left to right, you've entered an object's name, the member expression operator, a method on that object, an argument to the method, and the semicolon is a statement terminator. You should use a semicolon to end most statements in JavaScript.
 
 Confused by those terms? I'll explain what all those words mean in the next chapter!
 
@@ -248,6 +264,6 @@ Second, you'll see `undefined`.
 
 Printing "Hello, world!" is obvious, because that's what you told it to print, but what's the deal with `undefined`?
 
-`undefined` is a special value in JavaScript that represents a value that has not been defined. All functions and methods in JavaScript must evaluate to a value. That's called "returning" from the function. Since `console.log` just prints the argument(s) you give it, there is no return value. The method returns `undefined` to signal that there is no concrete value returned by the function.
+`undefined` is a special value in JavaScript that represents a value that has not been defined. All functions and methods in JavaScript must evaluate to a value. That's called "returning" from the function. Since `console.log` just prints the argument(s) you give it, there is no return value. The method returns `undefined` to signal that there is no specific value returned by the function.
 
 Now that you've written your first program, let's dive in!
