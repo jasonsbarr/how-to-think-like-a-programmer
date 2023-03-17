@@ -160,7 +160,7 @@ It was an amazing accomplishment, but as you'll see in this book it's also resul
 
 Some of them are good, but some of them can be extremely frustrating. I'll give you a heads up when there's something you need to know that fits that description.
 
-JavaScript most often runs in interpreters. That means the code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run later.
+JavaScript most often runs in interpreters. The code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run later.
 
 JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience and have no idea what anything I've just said means, don't worry about it! I'll explain everything you need to know when we get there.
 
