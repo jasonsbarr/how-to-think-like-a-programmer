@@ -1,7 +1,7 @@
 {class: part}
 # Introduction
 
-You are about to embark on an amazing journey. Learning to program is a highly-sought after skill in today's technology-driven world. By learning to program, you can dramatically increase your income in a short period of time while you get to work on interesting and challenging projects. Not only that, but programming can even be lots of fun! There's nothing quite like encountering a problem, working through a solution, and building it in code.
+You are about to embark on an amazing journey. Learning to program is a highly-sought after skill in today's technology-driven world. By learning to program, you can dramatically increase your income in a short period of time while you get to work on interesting and challenging projects. Not only that, but programming can even be lots of fun! There's nothing quite like encountering a problem, working through a solution, and building it in code. Most importantly, you'll learn thinking skills that can be applied to any problem domain, code-related or not.
 
 # About This Book
 
