@@ -177,7 +177,7 @@ Note that with comparison operations you actually **can** mix numbers and bigint
 10n > 5 //-> true
 ```
 
-That's because when you do a comparison, both the value and the type are part of the comparison.
+That's because when you do a comparison, the interpreter pretends for a second that they're the same type. This is called "type coercion," and I'll cover it in detail here in a minute.
 
 You probably noticed earlier that I used operators with multiple equals signs, `===` and `!==`. These mean "is equal to" and "is not equal to." They measure strict equality, which means they check to see if the operands have both the same value *and* the same type.
 
