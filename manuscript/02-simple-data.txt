@@ -92,7 +92,7 @@ JavaScript used to only have 1 numeric type, number, which can represent either 
 
 To be precise, the number type in JavaScript is a 64 bit IEEE floating point number. If that means nothing to you, it's ok &ndash; that's the last time we'll talk about that and it won't be on the test (there is no test, unless you have a professor who's awesome enough to use this book for a course).
 
-If the value is too far from 0, it evaluates to the special number values `Infinity` or `-Infinity`.
+If the value is too far from 0, it evaluates to the one of the special number values `Infinity` or `-Infinity`.
 
 Bigints are integer numbers that can grow indefinitely large in either direction. They are written as integers with an `n` at the end.
 
