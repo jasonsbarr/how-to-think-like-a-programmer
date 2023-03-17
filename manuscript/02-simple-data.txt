@@ -11,7 +11,7 @@ What is data?
 
 It seems like a simple question, but the answer can be surprisingly difficult to pin down.
 
-For this book, we'll define data as information that can be divided into categories according to the operations you can make with it, and process with your program logic.
+For this book, we'll define data as information that can be divided into categories according to the operations you can perform with it and process with your program logic.
 
 ## Atomic Expressions
 
@@ -44,6 +44,7 @@ A binary expression has the form of operand, operator, operand. In JavaScript yo
 3 + 2 //-> 5
 2 * 3 //-> 6
 2 ** 4 // ** is the exponent operator, so this evaluates to 16
+10 / 3 //-> 3.3333...
 ```
 
 You can also "add" strings of text together:
@@ -74,26 +75,33 @@ You can start single-line comments with the double slash, `//`. You can also wri
   multiline comment */
 ```
 
-Programmers often use comments as a way to inform other programmers about how they should expect a bit of logic (function) to work and what kinds of data it uses.
+Programmers often use comments as a way to inform other programmers about how they should expect a bit of logic (function) to work and what kinds of data it uses/returns.
 
 ```js
 /**
- * Returns the absolute value of a number
+ * Calculates the absolute value of a number
  * @param {number} num
  * @returns {number}
  */
-function absVal(num) {
+function absoluteValue(num) {
     // ...
+}
 ```
 
-JavaScript used to only have 1 numeric type, number, which can represent either integers or decimal numbers. Recently they've added bigints to the standard. Values of type number are limited in how large they can get on either side of 0. If the value is too large, they evaluate to the special number values `Infinity` or `-Infinity`. Bigints are integer numbers that can grow indefinitely large in either direction. They are written as integer numbers with an `n` at the end.
+JavaScript used to only have 1 numeric type, number, which can represent either integers or decimal numbers. Recently they've added bigints to the standard. A value of type number is limited in how large they can get on either side of 0.
+
+To be precise, the number type in JavaScript is a 64 bit IEEE floating point number. If that means nothing to you, it's ok &ndash; that's the last time we'll talk about that and it won't be on the test (there is no test, unless you have a professor who's awesome enough to use this book for a course).
+
+If the value is too far from 0, it evaluates to the special number values `Infinity` or `-Infinity`.
+
+Bigints are integer numbers that can grow indefinitely large in either direction. They are written as integers with an `n` at the end.
 
 ```js
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000 //-> evaluates to Infinity
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000n //-> evaluates to this integer
 ```
 
-You can't use numbers and bigints together in the same operation. If you try, it will cause an error.
+You can't use numbers and bigints together in the same mathematical operation. If you try, it will cause an error.
 
 ```js
 10.5 + 10n // ERROR
@@ -102,7 +110,7 @@ You can't use numbers and bigints together in the same operation. If you try, it
 If you want to use a number value and a bigint value together, you have to convert one to the other.
 
 ```js
-let x = 10.5 + Number(10n) //-> 20.5
+let x = 10.5 + Number(10n) //-> x === 20.5
 typeof x //-> "number"
 ```
 
@@ -114,7 +122,7 @@ I mentioned types briefly above, but now let's talk about them in more detail.
 
 Types are categories for data that are separated according to the kinds of operations you can perform on the data. With numeric types, you do numeric operations. With the string type, you do string operations. These are called *primitive types* because they're complete values that cannot be broken down any further. "Hello" is always "Hello" no matter what you try to do to it.
 
-Other primitive types include booleans, symbols, and `undefined`. There's another value called `null` that behaves like a primitive type in many ways.
+Other primitive types include booleans, symbols, and `undefined`. There's also another value called `null` that behaves like a primitive type in many ways.
 
 ### Numeric Types
 
@@ -124,7 +132,7 @@ As you've seen, you can do mathematical operations on numeric values, but you ca
 
 Mathematical operations include addition, subtraction, multiplication, and division, just like you'd expect. There are also 2 additional mathematical operators: remainder and exponentiation.
 
-`%` is the remainder operator. Sometimes you'll see it called "modulo." It evaluates to the remainder left when dividing 2 numbers, and always evaluates to an integer.
+`%` is the remainder operator. Sometimes you'll see it called "modulo" (although that isn't *technically* correct). It evaluates to the remainder left when dividing 2 numbers, and always evaluates to an integer.
 
 ```js
 10 % 3 //-> 1
@@ -135,6 +143,18 @@ The `**` operator handles exponentiation. It raises the 1st number to the power 
 ```js
 3 ** 4 //-> 81
 ```
+
+### Numeric Unary Operations
+
+You can also increment and decrement numbers using the `++` and `--` operators. If the operation is performed on a variable, it assigns the result of the operation to that variable.
+
+```js
+10++ //-> 11
+10-- //-> 9
+x++ // x is now equal to its previous value + 1
+```
+
+The increment and decrement operators can be used in either prefix (before the value) or postfix (after the value) position.
 
 #### Comparison
 
@@ -167,7 +187,7 @@ There are also comparison operators with fewer equals signs, `==` and `!=`. They
 
 #### Dividing By Zero
 
-Unfortunately, JavaScript will let you divide by zero without causing an error:
+Unfortunately, JavaScript will let you divide by zero without throwing an error:
 
 ```js
 10 / 0 //-> Infinity
@@ -181,7 +201,7 @@ There is also a special value of the number type `NaN`, which means "Not a Numbe
 Number("hello") //-> NaN
 ```
 
-`NaN` is viral, meaning any numeric operation with `NaN` as one of its operands will evaluate to `NaN`. It's also the only value in JavaScript that is not equal to any other value, **including itself**.
+`NaN` is viral, meaning any mathematical operation with `NaN` as one of its operands will evaluate to `NaN`. It's also the only value in JavaScript that is not equal to any other value, **including itself**.
 
 ```js
 NaN === NaN //-> false
@@ -203,7 +223,7 @@ Getting the remainder of any number and zero evaluates to `NaN`.
 
 The string type holds textual data. Some languages have separate types for individual characters and strings, but JavaScript only has the string type. A single character in JavaScript is just a string with a single character in it.
 
-As shown earlier, you can "add" strings. More properly, you can concatenate them using the `+` operator.
+As shown earlier, you can "add" strings. More correctly, you can concatenate them using the `+` operator.
 
 ```js
 "Hello" + "World" //-> HelloWorld
@@ -229,7 +249,7 @@ There is one gotcha with comparing strings. Due to how the characters' numeric v
 "B" > "a" //-> false
 ```
 
-Uppercase letters begin at 65, whereas lowercase ones start at 97, so the above comparison looks like `66 > 97` when you take their numeric values into account. That's obviously not true.
+Uppercase letters' numeric values begin at 65, whereas lowercase ones start at 97, so the above comparison looks like `66 > 97` when you take their numeric values into account. That's obviously not true.
 
 ### Booleans
 
@@ -265,11 +285,16 @@ These two operators do what's called short circuit evaluation. That means if the
 With `&&`, if the left hand value is false, the right side will not be evaluated. Otherwise, the expression evaluates to the value of the right hand expression.
 
 ```js
-10 > 50 && functionThatThrowsAnError() // it doesn't matter what's on the right, it will never be evaluated
+10 > 50 && functionThatThrowsAnError() //-> false - it doesn't matter what's on the right, it will never be evaluated
 100 > 10 && "hello" //-> "hello"
 ```
 
 With `||`, if the left hand value is true then the right side will not be evaluated. In this case, the expression evaluates to the value of the left hand expression. If the left side is false, the expression evaluates to the value of the right hand expression.
+
+```js
+false || 3 //-> 3
+true || "I will never be evaluated" //-> true
+```
 
 Weirdly enough, you can also add booleans:
 
@@ -301,7 +326,7 @@ Symbol.for("hi") === Symbol.for("hi") //-> true
 
 Every symbol created with `Symbol.for("hi")` is equal to every other symbol created the same way.
 
-You probably won't use symbols too often, but they're useful because you can use them to add keys to objects that are guaranteed to be unique. Objects are a compound data type, and we'll cover them in chapter 4.
+You probably won't use symbols too often, but they're useful sometimes because you can use them to add keys to objects that are guaranteed to be unique. Objects are a compound data type, and we'll cover them in chapter 4.
 
 ### Null and Undefined
 
@@ -350,7 +375,14 @@ The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything el
 
 Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0, and forget to handle the case where 0 is falsy.
 
-Short circuit evaluation with the `&&` and `||` operators works with truthy and falsy values. That enables some useful programming tricks I'll demonstrate later in the book, as well as some pitfalls I'll cover then as well.
+Short circuit evaluation with the `&&` and `||` operators works with truthy and falsy values. That enables some useful programming tricks I'll demonstrate later in the chapter.
+
+Since JavaScript has truthy and falsy values, you can use the unary `!` operator to cast any value to a boolean.
+
+```js
+!5 //-> false
+!!5 //-> true - note that you can cast any value to its equivalent boolean with !!<value>
+```
 
 ### The `typeof` operator
 
@@ -385,17 +417,35 @@ x > 5 ? "it is greater than five" : "it is not greater than five" //-> depends o
 
 All the logic we've seen so far has taken the form of expressions. JavaScript also has statements. Statements are bits of logic that are executed, but do not evaluate to a value. A JavaScript program is essentially a list of statements that are executed according to the order dictated by the combination of the program's data and logic.
 
-A statement nearly always ends with a semicolon. JavaScript will often let you omit the semicolon, but the rules are tricky and it's easy to accidentally leaves one out in a way that changes the meaning of your program. When you're just getting started, you should always use semicolons where you're supposed to use them.
+A statement nearly always ends with a semicolon. JavaScript will often let you omit the semicolon, but the rules are tricky and it's easy to accidentally leaves one out in a way that changes the meaning of your program.
+
+When you're just getting started, you should always use semicolons where you're supposed to use them.
 
 ### Expression Statements
 
-The simplest statement is the expression statement. An expression statement is the statement containing a "top level" expression where the statement consists entirely of a single expression.
+The simplest statement is the expression statement. An expression statement is the statement containing a "top level" expression where the statement consists entirely of a single expression (which can be a compound expression like `1 + 2 * 3`).
 
 All the expressions we've used as examples so far have also been expression statements.
 
 ### Variables
 
 Variables are names that represent certain bits of data. Sometimes you'll see people refer to a variable as a kind of "box" that holds data. I prefer to think of it as a name that points to data. However you decide to think of it, just know that a name represents some data.
+
+#### Assignment and Falsy Values
+
+If you're assigning a variable to a value that could be `null` or `undefined`, you can set a default value by using the `??` operator:
+
+```js
+let x = value1 ?? 0;
+```
+
+If the value could be falsy and you want to make sure you have a truthy value, use `||`:
+
+```js
+let x = value1 || 0;
+```
+
+Before we had the nullish coalescing operator, our only option for default values was to use `||`, which could cause problems if a falsy value other than `null` or `undefined` was acceptable.
 
 #### Variables and Scope
 
@@ -428,7 +478,7 @@ A variable is visible throughout its entire scope, no matter where in the scope 
 ```js
 let x = 10;
 {
-    x + 1; // ERROR, because x is defined in this scope, but it hasn't been initialized yet
+    x + 1; // ERROR, because x is defined in this scope, but it hasn't been declared yet
     let x = 5;
 }
 ```
@@ -442,6 +492,8 @@ Valid characters for variable names include $, _, and any Unicode letter or numb
 #### Variable Declarations
 
 A variable declaration has 3 parts: the declaration keyword, the variable name, and an initializer expression. Sometimes the initializer expression is optional.
+
+The initializer expression uses a single equals sign, but it's a mistake to think of it as meaning equality. It indicates that the variable name points to the value on the right. I tend to think of it as "gets," as in `x = 5` means "x gets 5."
 
 Declare variables using either the `let` or `const` keyword:
 
@@ -465,7 +517,7 @@ However, there are some cases where it's necessary to change a variable's value.
 
 #### Assignment Expressions
 
-If you do have to change a variable's value, use an assignment expression:
+If you do have to change a variable's value, use an assignment expression, which looks just like the initializer in a variable declaration:
 
 ```js
 let x;
@@ -492,7 +544,7 @@ x + 3; //-> ERROR
 x = 10;
 ```
 
-The space in the code between where such a variable is declared and where it is assigned a value is called the *Temporal Dead Zone*.
+The space in the code between where such a variable is declared and where it is assigned a value is called the *Temporal Dead Zone*. If you use a variable in its Temporal Dead Zone, it will throw an error.
 
 #### Declaring Multiple Variables
 
@@ -536,9 +588,9 @@ let scope = "global";
 }
 ```
 
-You can use a block statement anywhere, but they are most often used in function bodies and the bodies of `if` statements, loops, and `try`/`catch` blocks.
+You can use a block statement anywhere, but they are most often used in function bodies and the bodies of `if` statements, loops, and `try`/`catch` statements.
 
-A block statement usually does not require a semicolon after the closing brace.
+A block statement usually does not require a semicolon after the closing brace. The most likely exception is when using a function expression, in which case if the expression is the last part of the statement its in you'll need to put a semicolon after it.
 
 ## Functions and Call Expressions
 
@@ -565,7 +617,7 @@ This function ends with a `return` statement. A `return` statement contains the 
 
 ### Call Expressions
 
-You execute a function by giving the function itself (in this case, the function name) followed by parentheses with any arguments it may require inside:
+You execute a function by giving the function itself followed by parentheses with any arguments it may require inside. In this case it's the function name, but the function value can be any expression that evaluates to a function:
 
 ```js
 absoluteValue(-15); //-> 15
@@ -590,7 +642,7 @@ To rewrite the `absoluteValue` function above as a function expression:
 ```js
 const absoluteValue = function(num) {
     return (num < 0) ? -num : num;
-}
+}; // note the semicolon here, which terminates the variable declaration
 ```
 
 You can optionally use a named function expression, which adds a name between the `function` keyword and the opening parenthesis:
@@ -598,7 +650,7 @@ You can optionally use a named function expression, which adds a name between th
 ```js
 const absoluteValue = function _absoluteValue(num) {
     return (num < 0) ? -num : num;
-}
+};
 ```
 
 You **can** use the same name as the variable, but you don't have to.
@@ -625,29 +677,59 @@ If the body is just a single expression, you don't have to use a block statement
 
 Arrow functions and `function` functions are almost exactly equivalent. The differences between them don't matter for now, but we'll discuss them later in the book.
 
+### Functions and Scope
+
+A function creates its own scope for the body of the function. The main purpose of the scope is so the parameters of a function can be bound to arguments when the function is called, and the parameter names can be treated just like variables inside the function body. Statements inside a function scope can access variables in outer scopes, just like with block scopes.
+
+```js
+const x = 1;
+
+function increment(num) {
+    return num + x; // valid!
+}
+```
+
+Not only can statements inside a function body reference variables in outer scopes, the function also retains a reference to those variables throughout the lifetime of the function from when it's created to when it goes out of memory. This usually happens when the program either finishes or exits the scope in which the function was created.
+
+That means you can do things like this:
+
+```js
+let x = 0;
+
+function incrementX() {
+    x++;
+}
+```
+
+This function increments the value of `x` in the outer scope, even though the operation takes place in the inner scope. If `incrementX` is called anywhere in the program, in any scope where it's valid, the value of `x` in *this* scope will be increased by 1.
+
+This property of functions is called *closure*, and we'll explore it in greater depth later in the book because it's a very important part of JavaScript.
+
 ### Recursive Functions
 
 A recursive function is a function that calls itself. Recursive functions are used a lot in algorithms and certain kinds of programs, like interpreters.
 
 ```js
 function factorial(n) {
-    return (n === 1) ? 1 : factorial(n - 1);
+    return (n === 1) ? 1 : n * factorial(n - 1);
 }
+
+factorial(5); //-> 120
 ```
 
 Recursive functions should always have one or more base cases and one or more recursive cases. If you write a recursive function, you need to make sure the function will always eventually reach a base case so it doesn't continue forever.
 
 ## Member Expressions and Methods
 
-An object is a piece of compound data that has properties which themselves refer to values. Member expressions are expressions that access a property (or member) of an object. We'll cover objects in more depth in chapter 4, but I wanted to cover member expressions now so you can understand how to use some JavaScript primitives that wouldn't make sense otherwise.
+An object is a piece of compound data that has properties which are key/value pairs. Member expressions are expressions that access a property (or member) of an object. We'll cover objects in more depth in chapter 4, but I wanted to cover member expressions now so you can understand how to use some JavaScript primitive operations that wouldn't make sense otherwise.
 
-The most common form of member expression is `object.property` with both `object` and `property` as valid variable names.
+The most common form of member expression is `object.property` with both `object` and `property` both as valid variable names and the dot is the member access operator. Of course, `object` can be any expression that evaluates to an object.
 
-You can also write a member expression with bracket notation, which is `object[expression]` where `expression` must evaluate to the name of the object's property. If an object property's name is not a valid variable name, you have to use bracket notation.
+You can also write a member expression with bracket notation, which is `object[expression]` where `expression` must evaluate to the name of the object's property. If an object property's name is not a valid variable name, you have to use bracket notation. An object's property keys can be strings or symbols.
 
 A method is simply an object property that is a function. Functions are also objects in JavaScript, so you can use them anywhere you can use an object value.
 
-You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor, which is a built-in JavaScript function that creates objects that represent time and date values. Since functions are also objects, a constructor function can have its own properties and methods. The "now" method returns returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
+You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor. `Date` is a built-in JavaScript function that creates objects that represent time and date values. Functions are also objects, so a constructor function can have its own properties and methods. `Date.now()` returns returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
 
 ```js
 const timestamp = Date.now(); // 1679085365794 as of a few seconds before I wrote this
@@ -655,7 +737,11 @@ const timestamp = Date.now(); // 1679085365794 as of a few seconds before I wrot
 
 Trying to access a nonexistent object property evaluates to `undefined`.
 
-All built-in JavaScript types except `null` and `undefined` can be used like objects with properties and methods. If you try to access a property on `null` or `undefined`, it will throw an error.
+### Almost Any Type Can Be Used as An Object
+
+All built-in JavaScript types except `null` and `undefined` can be used like objects with properties and methods.
+
+The way JavaScript does this is by creating "wrapper" objects around non-object (i.e. primitive) type values and using the properties on that object. The wrapper object is then immediately discarded and only the primitive value remains.
 
 ```js
 const greeting = "hello";
@@ -663,7 +749,24 @@ greeting.length //-> 5
 greeting.toUpperCase(); //-> "HELLO"
 ```
 
-#### The `Math` Object
+### Optional Member Access
+
+If you try to access a property on `null` or `undefined`, it will throw an error. To avoid this problem, you can use the optional member access operator, which is `?.`. If you use it, then if the value in the object position is `null` or `undefined` the expression simply evaluates to `undefined`.
+
+```js
+const obj = null;
+obj?.property1 //-> undefined
+obj?.property1?.property2?.property3 //-> undefined
+obj.property1 // ERROR
+```
+
+Before we had the optional member access operator, we had to use a hacky solution involving `&&` if there was a chance the object could be `null` or `undefined`:
+
+```js
+obj && obj.property1 // null & undefined are falsy, so if obj is one of them the right side is never evaluated due to short circuit evaluation
+```
+
+### The `Math` Object
 
 The `Math` object is an object built into JavaScript that contains useful properties and methods for mathematical operations on numbers. Since it predates the use of bigints in JavaScript, you can only use it with the number type. Here are some of its properties and methods:
 
@@ -675,14 +778,18 @@ Math.max(5, 10); //-> 10
 Math.log2(10); //-> 3.321928094887362
 ```
 
+For complete documentation of the `Math` object's properties and methods, with examples, see [its Mozilla Developer Network entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
+
 ## Recap
 
 In this chapter we've had a whirlwind tour of JavaScript primitive functionalities, including types, expressions, and statements. We've covered a lot, but believe it or not we're just getting started.
 
-It may surprise you to learn that with just the information we've covered in this chapter you can now use JavaScript to compute anything that is computable by any programming language in the world. That's because the subset of JavaScript we've looked at so far is *Turing-complete*, which is just another way of saying it can compute anything that can be computed. It's named after the famous mathematician Alan Turing, who is considered by many to be the father of computer science. He created a hypothetical model of a computing machine decades before the first digital computer was built.
+It may surprise you to learn that with just the information we've covered in this chapter you can now use JavaScript to compute anything that is computable by any programming language ever invented. That's because the subset of JavaScript we've looked at so far is *Turing-complete*, which is just another way of saying it can compute anything that can be computed. It's named after the famous mathematician Alan Turing, who is considered by many to be the father of computer science. He created a hypothetical model of a computing machine decades before the first digital computer was built.
 
 To define a Turing-complete programming language you must have a set of primitive instructions, a means of branching (like conditional expressions) and a means of repetition (like recursion). Our current understanding of JavaScript includes all these things.
 
 In chapter 2 we'll look at control flow constructs that expand upon our ability to direct the flow of a program to execute different branches of code or repeat instructions, as well as how to handle errors that could arise in our programs. We'll also start to build the evaluation model for our hypothetical JavaScript interpreter.
 
 ## Exercises
+
+<!-- TODO: exercises -->
