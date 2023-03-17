@@ -69,7 +69,7 @@ The best way to get better at programming is to write more programs.
 
 But you can't just throw up some code and be done with it; you have to make the effort to write **good** programs.
 
-The better you get at writing programs, the more effective your practice will be at helping you learn this material at a deep level.
+The better you get at writing programs, the more effective your practice will be at helping you learn this material deeply.
 
 One of my main goals in this book is to help you not just learn a programming language, but to learn what **good** programs look like.
 
