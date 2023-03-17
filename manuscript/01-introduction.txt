@@ -116,6 +116,8 @@ Syntax is simply the symbols used to write programs in a language, and the rules
 
 For example, in JavaScript 5 is a number. `+` is an operator. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
 
+Producing an error that halts the program is known as "throwing an error." With some languages it's called "raising an error."
+
 Static semantics defines which well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will produce an error and halt the program.
 
 Static semantics also encompasses things like the type system of a language, and any other characteristics of the language that can be statically verified&mdash;that is, verified before the code is compiled or executed. Some languages even make it possible to verify certain aspects of a program's logic ahead of time.

@@ -2,7 +2,7 @@
 
 ## The Evaluation of A Function Call
 
-The act of executing a function with some number of arguments is called "calling" the function. Sometimes you'll also hear about "applying" a function to its arguments. Either is a valid way to talk about it. The expression that evaluates the function is known as a *call expression*.
+The act of executing a function with some number of arguments is called "calling" the function. Sometimes you'll also hear about "applying" a function to its arguments. Either is a valid way to talk about it.
 
 We can think of calling a function as a process of substitution.
 

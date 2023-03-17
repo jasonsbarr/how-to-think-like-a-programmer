@@ -397,6 +397,8 @@ All the expressions we've used as examples so far have also been expression stat
 
 Variables are names that represent certain bits of data. Sometimes you'll see people refer to a variable as a kind of "box" that holds data. I prefer to think of it as a name that points to data. However you decide to think of it, just know that a name represents some data.
 
+#### Variables and Scope
+
 A variable exists in a certain scope. The scope of a variable is the space within your program code in which the variable is valid.
 
 Code in an inner scope has access to the variables in its containing scopes, but code in an outer scope cannot access variables in an inner scope. In the following examples, the space between curly braces is the inner scope and the form `let [varname] = [value]` defines a variable:
@@ -432,6 +434,10 @@ let x = 10;
 ```
 
 JavaScript has 3 kinds of scope: global scope, function scope, and block scope. Variables in the global scope are accessible throughout the entire program. We'll cover function and block scopes when we get to block statements and functions later in this chapter.
+
+#### Valid Variable Names
+
+Valid characters for variable names include $, _, and any Unicode letter or number. However, variable names cannot begin with a number.
 
 #### Variable Declarations
 
@@ -557,6 +563,8 @@ function absoluteValue(num) {
 
 This function ends with a `return` statement. A `return` statement contains the expression the entire function evaluates to when it is called. If a return statement is not executed inside the function, the function call evaluates to `undefined`.
 
+### Call Expressions
+
 You execute a function by giving the function itself (in this case, the function name) followed by parentheses with any arguments it may require inside:
 
 ```js
@@ -564,6 +572,10 @@ absoluteValue(-15); //-> 15
 ```
 
 A function can take any number of arguments. JavaScript won't stop you from using either more or fewer arguments than the number of formal parameters defined for the function. Extra arguments are simply ignored, and if there are too few arguments the ones not accounted for are given the value `undefined`.
+
+The expression for evaluating a function is called a *call expression*.
+
+Trying to use `null` or `undefined` in a call expression as if it were a function will throw an error.
 
 ### Function Expression
 
@@ -584,7 +596,7 @@ const absoluteValue = function(num) {
 You can optionally use a named function expression, which adds a name between the `function` keyword and the opening parenthesis:
 
 ```js
-const absoluteValue = function absoluteValue(num) {
+const absoluteValue = function _absoluteValue(num) {
     return (num < 0) ? -num : num;
 }
 ```
@@ -627,8 +639,50 @@ Recursive functions should always have one or more base cases and one or more re
 
 ## Member Expressions and Methods
 
-### The `Math` Object
+An object is a piece of compound data that has properties which themselves refer to values. Member expressions are expressions that access a property (or member) of an object. We'll cover objects in more depth in chapter 4, but I wanted to cover member expressions now so you can understand how to use some JavaScript primitives that wouldn't make sense otherwise.
+
+The most common form of member expression is `object.property` with both `object` and `property` as valid variable names.
+
+You can also write a member expression with bracket notation, which is `object[expression]` where `expression` must evaluate to the name of the object's property. If an object property's name is not a valid variable name, you have to use bracket notation.
+
+A method is simply an object property that is a function. Functions are also objects in JavaScript, so you can use them anywhere you can use an object value.
+
+You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor, which is a built-in JavaScript function that creates objects that represent time and date values. Since functions are also objects, a constructor function can have its own properties and methods. The "now" method returns returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
+
+```js
+const timestamp = Date.now(); // 1679085365794 as of a few seconds before I wrote this
+```
+
+Trying to access a nonexistent object property evaluates to `undefined`.
+
+All built-in JavaScript types except `null` and `undefined` can be used like objects with properties and methods. If you try to access a property on `null` or `undefined`, it will throw an error.
+
+```js
+const greeting = "hello";
+greeting.length //-> 5
+greeting.toUpperCase(); //-> "HELLO"
+```
+
+#### The `Math` Object
+
+The `Math` object is an object built into JavaScript that contains useful properties and methods for mathematical operations on numbers. Since it predates the use of bigints in JavaScript, you can only use it with the number type. Here are some of its properties and methods:
+
+```js
+Math.PI; //-> 3.14159...
+Math.E; //-> 2.71828...
+Math.abs(-15); //-> 15
+Math.max(5, 10); //-> 10
+Math.log2(10); //-> 3.321928094887362
+```
 
 ## Recap
+
+In this chapter we've had a whirlwind tour of JavaScript primitive functionalities, including types, expressions, and statements. We've covered a lot, but believe it or not we're just getting started.
+
+It may surprise you to learn that with just the information we've covered in this chapter you can now use JavaScript to compute anything that is computable by any programming language in the world. That's because the subset of JavaScript we've looked at so far is *Turing-complete*, which is just another way of saying it can compute anything that can be computed. It's named after the famous mathematician Alan Turing, who is considered by many to be the father of computer science. He created a hypothetical model of a computing machine decades before the first digital computer was built.
+
+To define a Turing-complete programming language you must have a set of primitive instructions, a means of branching (like conditional expressions) and a means of repetition (like recursion). Our current understanding of JavaScript includes all these things.
+
+In chapter 2 we'll look at control flow constructs that expand upon our ability to direct the flow of a program to execute different branches of code or repeat instructions, as well as how to handle errors that could arise in our programs. We'll also start to build the evaluation model for our hypothetical JavaScript interpreter.
 
 ## Exercises
