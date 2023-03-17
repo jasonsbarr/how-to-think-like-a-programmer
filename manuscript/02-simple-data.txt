@@ -534,7 +534,7 @@ You can use a block statement anywhere, but they are most often used in function
 
 A block statement usually does not require a semicolon after the closing brace.
 
-## Functions
+## Functions and Call Expressions
 
 A function is an encapsulated bit of logic that operates within its own scope and can be used in different places.
 
@@ -555,11 +555,75 @@ function absoluteValue(num) {
 }
 ```
 
-This function ends with a `return` statement. A `return` statement contains the expression the entire function evaluates to when it is called. You call a function by giving the function itself (in this case, the function name) followed by parentheses with any arguments it may require inside:
+This function ends with a `return` statement. A `return` statement contains the expression the entire function evaluates to when it is called. If a return statement is not executed inside the function, the function call evaluates to `undefined`.
+
+You execute a function by giving the function itself (in this case, the function name) followed by parentheses with any arguments it may require inside:
 
 ```js
 absoluteValue(-15); //-> 15
 ```
+
+A function can take any number of arguments. JavaScript won't stop you from using either more or fewer arguments than the number of formal parameters defined for the function. Extra arguments are simply ignored, and if there are too few arguments the ones not accounted for are given the value `undefined`.
+
+### Function Expression
+
+There are two types of function expressions: the original `function` function expressions, and arrow function expressions.
+
+#### `function` Function Expressions
+
+A `function` function expression is written similarly to a function declaration, except that it is in *expression position*. That means any position where a statement cannot be used, but an expression can.
+
+To rewrite the `absoluteValue` function above as a function expression:
+
+```js
+const absoluteValue = function(num) {
+    return (num < 0) ? -num : num;
+}
+```
+
+You can optionally use a named function expression, which adds a name between the `function` keyword and the opening parenthesis:
+
+```js
+const absoluteValue = function absoluteValue(num) {
+    return (num < 0) ? -num : num;
+}
+```
+
+You **can** use the same name as the variable, but you don't have to.
+
+#### Arrow Function Expressions
+
+An arrow function expression is so named because it has a "fat arrow" in it. It has the form `(parameters) => body`.
+
+If there is only one parameter, the parentheses can be omitted:
+
+```js
+const absoluteValue = num => (num < 0) ? -num : num;
+```
+
+If there are multiple parameters the parentheses are required. You can also end an arrow function expression with a block statement. Function expressions are the only expressions that can include statements inside them.
+
+```js
+const max = (n1, n2) => {
+    return (n2 > n1) ? n2 : n1;
+};
+```
+
+If the body is just a single expression, you don't have to use a block statement as the arrow function body. If you have one or more statements, you have to use a block statement.
+
+Arrow functions and `function` functions are almost exactly equivalent. The differences between them don't matter for now, but we'll discuss them later in the book.
+
+### Recursive Functions
+
+A recursive function is a function that calls itself. Recursive functions are used a lot in algorithms and certain kinds of programs, like interpreters.
+
+```js
+function factorial(n) {
+    return (n === 1) ? 1 : factorial(n - 1);
+}
+```
+
+Recursive functions should always have one or more base cases and one or more recursive cases. If you write a recursive function, you need to make sure the function will always eventually reach a base case so it doesn't continue forever.
 
 ## Member Expressions and Methods
 
