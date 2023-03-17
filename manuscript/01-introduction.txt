@@ -45,7 +45,7 @@ These project chapters don't just walk you through the code for the project. The
 
 This is not a book for cramming. It is a book to be digested in pieces, likely no larger than 1 chapter at a time.
 
-I've tried to incorporate insights from recent research into how we learn into the structure of the book. Coming back to previous topics and repeating them in further depth. Interleaving aspects of different topics in the content and exercises. Plenty of opportunities to practice your skill development.
+I've tried to incorporate insights from recent research into how we learn into the structure of the book. Coming back to previous topics and repeating them in further depth. Interleaving aspects of different topics in the content and exercises. Giving plenty of opportunities to practice your skill development. Breaking the material down into "chunks" your brain can easily hold.
 
 You can help your brain learn the material more completely and more permanently if you set aside time each day to work on it.
 
