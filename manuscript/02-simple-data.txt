@@ -228,11 +228,13 @@ A symbol created this way is always unique. You can create 2 symbols from the sa
 Symbol("hi") === Symbol("hi") //-> false
 ```
 
-You can also use the `for` method (which is a function) to create symbols that are equal to other symbols created in the same way using the same string:
+You can also use the `for` method (which is a function):
 
 ```js
 Symbol.for("hi") === Symbol.for("hi") //-> true
 ```
+
+Every symbol created with `Symbol.for("hi")` is equal to every other symbol created the same way.
 
 You probably won't use symbols too often, but they're useful because you can use them to add keys to objects that are guaranteed to be unique. Objects are a compound data type, and we'll cover them in chapter 4.
 

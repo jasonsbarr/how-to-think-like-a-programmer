@@ -77,6 +77,8 @@ It was an amazing accomplishment, but as you'll see in this book it's also resul
 
 Some of them are good, but some of them can be extremely frustrating. I'll give you a heads up when there's something you need to know that fits that description.
 
+JavaScript engines are more generally called interpreters. That means the code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run.
+
 JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience, don't worry about it! I'll explain the difference and everything you need to know when we get there.
 
 One last thing about JavaScript: you may see the term "ECMAScript" on occasion. That's because shortly after JavaScript was released people quickly realized there needed to be a standard for it, to keep differences in browsers from making things too difficult for programmers. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the *official* specification for what is and is not valid JavaScript.
@@ -86,6 +88,8 @@ The [Wikipedia article about JavaScript](https://en.wikipedia.org/wiki/JavaScrip
 Note that every new update to JavaScript needs to be backwards-compatible with previous versions of the language, so once something gets into the language we're stuck with it forever.
 
 ## Installing Node.js
+
+To run JavaScript code on your computer outside of a browser, you need Node.js.
 
 The easiest way to install Node is simply to go to the [Node.js website](https://nodejs.org/) and download the installer from there. You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
 
