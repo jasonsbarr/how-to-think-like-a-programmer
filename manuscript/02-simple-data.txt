@@ -609,7 +609,7 @@ You can create functions in 2 ways:
 
 ### Function Declaration
 
-A function declaration is a statement. It begins with the `function` keyword, then the name of the function, a list of *formal parameters* in parentheses, and ends with a block statement. Formal parameters are variables used inside the function body that can be replaced by arguments given when the function is called. Here is a function declaration for a function to calculate the absolute value of a number:
+A function declaration is a statement. It begins with the `function` keyword, then the name of the function, a comma-separated list of *formal parameters* in parentheses, and ends with a block statement. Formal parameters are variables used inside the function body that can be replaced by arguments given when the function is called. Here is a function declaration for a function to calculate the absolute value of a number:
 
 ```js
 function absoluteValue(num) {
