@@ -373,7 +373,7 @@ I guarantee that at least once in your career you will think your program is add
 
 JavaScript has "truthy" and "falsy" values. That means in a context where you would expect a boolean the falsy values are coerced to `false`. Truthy values are coerced to `true`.
 
-The only falsy values are 0, "", `null`, `undefined`, and `false`. Everything else is truthy.
+The only falsy values are 0, "" (an empty string), `null`, `undefined`, and `false`. Everything else is truthy.
 
 Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0, and forget to handle the case where 0 is falsy.
 
