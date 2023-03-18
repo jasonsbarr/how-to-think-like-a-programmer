@@ -8,11 +8,13 @@ We can think of calling a function as a process of substitution.
 
 First, when we encounter the name of a function in a call expression, we substitute the code of the function's body for the name of the function itself, as if the code had been written again.
 
+If we have this code:
+
 ```js
 let value = absoluteValue(-(8 + 7));
 ```
 
-becomes
+this is substituted for the call expression:
 
 ```js
 {
