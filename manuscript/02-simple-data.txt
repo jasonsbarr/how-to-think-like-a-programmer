@@ -433,6 +433,8 @@ All the expressions we've used as examples so far have also been expression stat
 
 Variables are names that represent certain bits of data. Sometimes you'll see people refer to a variable as a kind of "box" that holds data. I prefer to think of it as a name that points to data. However you decide to think of it, just know that a name represents some data.
 
+In the following examples, the space between curly braces is the inner scope and the form `let [varname] = [value]` defines a variable.
+
 #### Assignment and Falsy Values
 
 If you're assigning a variable to a value that could be `null` or `undefined`, you can set a default value by using the `??` operator:
@@ -453,7 +455,7 @@ Before we had the nullish coalescing operator, our only option for default value
 
 A variable exists in a certain scope. The scope of a variable is the space within your program code in which the variable is valid.
 
-Code in an inner scope has access to the variables in its containing scopes, but code in an outer scope cannot access variables in an inner scope. In the following examples, the space between curly braces is the inner scope and the form `let [varname] = [value]` defines a variable:
+Code in an inner scope has access to the variables in its containing scopes, but code in an outer scope cannot access variables in an inner scope:
 
 ```js
 let x = 5;
