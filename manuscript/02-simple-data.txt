@@ -733,7 +733,7 @@ You can also write a member expression with bracket notation, which is `object[e
 
 A method is simply an object property that is a function. Functions are also objects in JavaScript, so you can use them anywhere you can use an object value.
 
-You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor. `Date` is a built-in JavaScript function that creates objects that represent time and date values. Functions are also objects, so a constructor function can have its own properties and methods. `Date.now()` returns returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
+You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor. `Date` is a built-in JavaScript function that creates objects that represent time and date values. Functions are also objects, so a constructor function can have its own properties and methods. `Date.now()` returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
 
 ```js
 const timestamp = Date.now(); // 1679085365794 as of a few seconds before I wrote this
