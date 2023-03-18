@@ -367,6 +367,8 @@ The strict equality operators compare values **and** types, and so will work the
 
 Type coercion is another one of those features that was added to the language in the beginning that many programmers wish we could get rid of. It's a common source of bugs (mistakes) in code, and they can be pretty hard to track down and fix sometimes.
 
+I guarantee that at least once in your career you will think your program is adding 2 numbers together when in fact it's trying to add a number and a string, so it coerces the number to a string and concatenates the 2 values.
+
 ### Truthy and Falsy Values
 
 JavaScript has "truthy" and "falsy" values. That means in a context where you would expect a boolean the falsy values are coerced to `false`. Truthy values are coerced to `true`.
