@@ -183,7 +183,7 @@ You probably noticed earlier that I used operators with multiple equals signs, `
 
 The single equals sign has a different meaning that we'll cover shortly.
 
-There are also comparison operators with fewer equals signs, `==` and `!=`. They only check the values, which can be coerced to different types in certain situations. I'll explain what that means later in the chapter. For now, just know that in nearly every case you're going to want to use strict equality.
+There are also comparison operators with fewer equals signs, `==` and `!=`. They only check the values, which can be coerced to different types in certain situations. You're going to want to use strict equality nearly every time you do an equals or not-equals check.
 
 #### Dividing By Zero
 
