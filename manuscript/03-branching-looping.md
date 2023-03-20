@@ -73,7 +73,11 @@ An `import` statement has 3 parts:
 2. The name or names being imported
 3. The module being imported from, as a string
 
-In the above case, the name being imported is `input`, which is between curly braces. That's because the Simple IO package uses named exports. If you wanted to import all the functions from Simple IO as a single object, you would do this:
+Note that the string of the module being imported can be the name of a module that's installed in the `node_modules/` directory in your project (this is where NPM installs modules by default), a relative or absolute path to a file to import, or a URL.
+
+In the above case, the name being imported is `input`, which is between curly braces. That's because the Simple IO package uses named exports.
+
+If you wanted to import all the functions from Simple IO as a single object, you would do this:
 
 ```js
 import * as IO from "@jasonsbarr/simple-io";
