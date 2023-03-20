@@ -1,6 +1,24 @@
 # Control Flow and Our Execution Model
 
-## The Evaluation of A Function Call
+## Conditional Statements
+
+### Constant Time Algorithms
+
+## Iteration
+
+## While Loops
+
+## For Loops
+
+## For...Of Loops
+
+## JavaScript Evaluation Model
+
+### The Two Steps of Execution
+
+### Hoisting
+
+### The Evaluation of A Function Call
 
 The act of executing a function with some number of arguments is called "calling" the function. Sometimes you'll also hear about "applying" a function to its arguments. Either is a valid way to talk about it.
 
@@ -8,7 +26,15 @@ We can think of calling a function as a process of substitution.
 
 First, when we encounter the name of a function in a call expression, we substitute the code of the function's body for the name of the function itself, as if the code had been written again.
 
-If we have this code:
+Let's say we have this function:
+
+```js
+function absoluteValue(num) {
+    return (num < 0) ? -num : num;
+}
+```
+
+If we have this variable declaration, which includes calling the `absoluteValue` function:
 
 ```js
 let value = absoluteValue(-(8 + 7));
@@ -56,3 +82,9 @@ Then we continue executing the code from top to bottom with the return value in 
 ```js
 let value = 15;
 ```
+
+### Execution Contexts and Environments
+
+## Recap
+
+## Exercises
