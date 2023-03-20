@@ -202,7 +202,7 @@ Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover l
 
 ## JavaScript Evaluation Model
 
-### The Call Stack
+### Execution Contexts and The Call Stack
 
 ### The Evaluation of A Function Call
 
