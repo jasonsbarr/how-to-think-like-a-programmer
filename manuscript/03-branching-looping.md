@@ -1,4 +1,10 @@
-# Control Flow and Our Execution Model
+# Control Flow
+
+## Getting User Input
+
+### Using ES2015 `import` Statements
+
+### Using The Input Function
 
 ## Conditional Statements
 
