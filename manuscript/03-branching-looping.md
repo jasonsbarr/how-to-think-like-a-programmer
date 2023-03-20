@@ -65,6 +65,12 @@ import { input } from "@jasonsbarr/simple-io";
 
 This will allow you to use the `input` function.
 
+If you don't like the name `input` for the function, you can change it like this:
+
+```js
+import { input as inp } from "@jasonsbarr/simple-io";
+```
+
 ### Breaking Down an `import` Statement
 
 An `import` statement has 3 parts:
@@ -83,7 +89,7 @@ If you wanted to import all the functions from Simple IO as a single object, you
 import * as IO from "@jasonsbarr/simple-io";
 ```
 
-This would give you access to all the functions from the package as methods on the `IO` object.
+This would give you access to all the functions from the package as methods on the `IO` object. You don't have to call the object `IO`; you can give it any name you like.
 
 ### Named Exports
 
