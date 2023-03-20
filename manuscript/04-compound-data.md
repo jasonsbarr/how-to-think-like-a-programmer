@@ -8,6 +8,8 @@
 
 ### The `this` Keyword
 
+### Iterating over Objects
+
 ### Creating Objects with Functions
 
 ### The Spread Operator
