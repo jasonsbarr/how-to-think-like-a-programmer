@@ -178,6 +178,24 @@ Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover l
 
 ### The Input Function
 
+We've imported our `input` function as a named export from an ES2015 module:
+
+```js
+import { input } from "@jasonsbarr/simple-io";
+```
+
+To use the function, simply call it with a textual prompt as an argument. When you run the program, it will show the prompt to the user and wait for input.
+
+The function receives its input from the command line as a string, which means you'll have to cast it to any other type you need.
+
+Here's a sample program to try it out:
+
+```js
+const name = input("What is your name? ");
+const quest = input("What is your quest? ");
+const velocity = Number(input("What is the velocity of an unladen swallow? (just the number, please) "));
+```
+
 ## Conditional Statements
 
 ### Constant Time Algorithms
