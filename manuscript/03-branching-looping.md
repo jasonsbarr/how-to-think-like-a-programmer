@@ -192,9 +192,24 @@ Here's a sample program to try it out:
 
 ```js
 const name = input("What is your name? ");
+console.log("I am " + name);
+
 const quest = input("What is your quest? ");
-const velocity = Number(input("What is the velocity of an unladen swallow? (just the number, please) "));
+console.log(quest);
+
+const velocity = input("What is the airspeed velocity of an unladen swallow? ");
+console.log(Number(velocity));
 ```
+
+The output might look something like this:
+
+```bash
+> What is your name? I am Arthur, King of the Britons
+> What is your quest? I seek the Holy Grail!
+> What is the airspeed velocity of an unladen swallow? NaN
+```
+
+The answer to the 3rd question is, of course, `NaN` because JavaScript can't convert "Is that an African or a European swallow?" to a number!
 
 ## Conditional Statements
 
