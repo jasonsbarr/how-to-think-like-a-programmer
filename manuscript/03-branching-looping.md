@@ -65,12 +65,6 @@ import { input } from "@jasonsbarr/simple-io";
 
 This will allow you to use the `input` function.
 
-If you don't like the name `input` for the function, you can change it like this:
-
-```js
-import { input as inp } from "@jasonsbarr/simple-io";
-```
-
 ### Breaking Down an `import` Statement
 
 An `import` statement has 3 parts:
@@ -82,6 +76,18 @@ An `import` statement has 3 parts:
 Note that the string of the module being imported can be the name of a module that's installed in the `node_modules/` directory in your project (this is where NPM installs modules by default), a relative or absolute path to a file to import, or a URL.
 
 In the above case, the name being imported is `input`, which is between curly braces. That's because the Simple IO package uses named exports.
+
+If you don't like the name `input` for the function, you can change it like this:
+
+```js
+import { input as inp } from "@jasonsbarr/simple-io";
+```
+
+If you wanted to import multiple functions from the library, you just separate them with commas:
+
+```js
+import { input, readFile, writeFile } from "@jasonsbarr/simple-io";
+```
 
 If you wanted to import all the functions from Simple IO as a single object, you would do this:
 
@@ -151,6 +157,18 @@ you would get all the named exports as properties on the `React` object, **plus*
 Understanding when to import named vs. default exports can be tricky, and you'll have to rely on a package's documentation to know when to use which one. I don't personally like default exports very much, so I don't use them. Not everyone shares my opinion though, so you'll have to be familiar with both.
 
 In this book we will only `export` with named exports.
+
+### Importing in The Browser
+
+If you want to use ES2015 modules in the browser, you have to give your `script` element a `type` of "module":
+
+```html
+<script src="js/module.js" type="module">
+```
+
+Note that the browser will **not** resolve modules to the `node_modules/` directory, so you'll need to provide specific paths to any files you want to `import` in files your browser loads.
+
+Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover later in the book.
 
 ### The Input Function
 
