@@ -202,6 +202,8 @@ Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover l
 
 ## JavaScript Evaluation Model
 
+### The Call Stack
+
 ### The Evaluation of A Function Call
 
 The act of executing a function with some number of arguments is called "calling" the function. Sometimes you'll also hear about "applying" a function to its arguments. Either is a valid way to talk about it.
@@ -232,17 +234,7 @@ this is substituted for the call expression:
 }
 ```
 
-Next, we replace every instance of a function parameter inside the body with the expression given as an argument in the position where that formal parameter occurred.
-
-So now we have:
-
-```js
-{
-    return (-(8 + 7) < 0) ? -(-(8 + 7)) : -(8 + 7);
-}
-```
-
-Then we evaluate each argument expression one at a time, from left to right as they are given between the parentheses of the call expression.
+Next, we evaluate each argument expression one at a time, from left to right as they are given between the parentheses of the call expression:
 
 ```js
 // absoluteValue(-(8 + 7)) was given, so now we have
@@ -266,6 +258,8 @@ Then we continue executing the code from top to bottom with the return value in 
 ```js
 let value = 15;
 ```
+
+### Uncaught Errors and Unwinding The Stack
 
 ## Recap
 

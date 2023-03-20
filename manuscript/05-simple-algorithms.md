@@ -28,10 +28,6 @@
 
 ### Memoized Solution
 
-## Evaluation Model: Execution Contexts and The Call Stack
-
-### Uncaught Errors and Unwinding The Stack
-
 ## Recap
 
 ## Exercises
