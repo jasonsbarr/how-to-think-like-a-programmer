@@ -36,6 +36,8 @@
 
 ### Using a Rest Parameter
 
+## Functions with Default Parameters
+
 ## JavaScript Evaluation Model
 
 ### Function Calls and `this`
