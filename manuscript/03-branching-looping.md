@@ -267,10 +267,6 @@ Then we continue executing the code from top to bottom with the return value in 
 let value = 15;
 ```
 
-### Execution Contexts, Environments, and the Call Stack
-
-### Uncaught Errors and Unwinding The Stack
-
 ## Recap
 
 ## Exercises
