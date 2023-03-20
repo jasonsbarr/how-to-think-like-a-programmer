@@ -20,6 +20,14 @@
 
 ## The Big O of Binary Search
 
+## Calculating Fibonacci Numbers
+
+### The Naive Solution
+
+### Big O of The Naive Solution
+
+### Memoized Solution
+
 ## Recap
 
 ## Exercises
