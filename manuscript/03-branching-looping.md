@@ -55,6 +55,8 @@ Setting the `type` property to "module" will let Node.js know you intend for the
 
 If you don't want to set a property in `package.json`, possibly because you want to have both ES2015 and CommonJS modules as part of the same project, you can change the `.js` file extension to `.mjs` to indicate that file should be an ES2015 module. Likewise, you can change the `.js` extension to `.cjs` to let Node know that file should be handled as a CommonJS module.
 
+If you're using ES2015 modules in Node.js, you can `import` a CommonJS module and it will work; however, if you're using CommonJS you **cannot** `require` an ES2015 module. For this reason, I always use ES2015 modules in my Node.js projects.
+
 ### Importing from An ES2015 Module
 
 To import from an ES2015 module, use an `import` statement. In this case, we're importing the `input` function:
@@ -139,6 +141,8 @@ The syntax for importing a default export is similar to the syntax for importing
 ```js
 import React from "react";
 ```
+
+You can use any name you want when importing.
 
 You can also use both default and named exports at the same time:
 
