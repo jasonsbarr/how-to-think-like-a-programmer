@@ -163,8 +163,10 @@ In this book we will only `export` with named exports.
 If you want to use ES2015 modules in the browser, you have to give your `script` element a `type` of "module":
 
 ```html
-<script src="js/module.js" type="module">
+<script src="module.js" type="module">
 ```
+
+Now you can use `import` statements in `module.js`.
 
 Note that the browser will **not** resolve modules to the `node_modules/` directory, so you'll need to provide specific paths to any files you want to `import` in files your browser loads.
 
