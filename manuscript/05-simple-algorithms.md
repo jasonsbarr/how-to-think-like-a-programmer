@@ -1,1 +1,25 @@
 # Some Simple Algorithms
+
+## Declarative vs. Imperative Knowledge
+
+## Definition of Algorithm
+
+## Calculating a Square Root
+
+## Linear Search of an Array
+
+## Finding the Longest Alphabetical Substring
+
+## Accumulators and Pointers
+
+## Basics of Binary Search
+
+## Binary Search of an Array
+
+## Finding The Square Root with Binary Search
+
+## The Big O of Binary Search
+
+## Recap
+
+## Exercises

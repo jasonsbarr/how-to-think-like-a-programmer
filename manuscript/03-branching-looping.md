@@ -6,11 +6,15 @@
 
 ## Iteration
 
-## While Loops
+### While Loops
 
-## For Loops
+### For Loops
 
-## For...Of Loops
+### For...Of Loops
+
+### Linear Time Algorithms
+
+### Quadratic Time Algorithms
 
 ## JavaScript Evaluation Model
 
