@@ -71,7 +71,7 @@ An `import` statement has 3 parts:
 
 1. The `import` keyword
 2. The name or names being imported
-3. The module being imported from
+3. The module being imported from, as a string
 
 In the above case, the name being imported is `input`, which is between curly braces. That's because the Simple IO package uses named exports. If you wanted to import all the functions from Simple IO as a single object, you would do this:
 
