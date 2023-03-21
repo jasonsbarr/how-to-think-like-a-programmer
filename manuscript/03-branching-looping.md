@@ -285,7 +285,19 @@ if (x > 10) {
 }
 ```
 
-You can use as many `else if` statements as you need.
+You can use as many `else if` statements as you need. This, however, is probably overkill:
+
+```js
+if (x === 0) {
+    console.log("it is zero");
+} else if (x === 1) {
+    console.log("it is one");
+} else if (x === 2) {
+    console.log("it is two");
+} // and so on...
+```
+
+If you're checking for a specific value, a `switch` statement might be a better fit. We'll look at those later in the chapter.
 
 ### Checking for Numeric Input
 
