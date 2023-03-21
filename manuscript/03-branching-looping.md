@@ -655,9 +655,11 @@ We could write an entire book about text encoding, but I'll just say the way sof
 
 Unicode maps text to numbers according to various different encoding schemes, the most common of which is UTF-8. When text is encoded as UTF-8, all "characters," which means a Unicode scalar value that represents some bit of text in some alphabet, are mapped to a sequence of 1, 2, 3, or 4 bytes (8 bits each).
 
+A bit is the smallest size value you can represent in a computer, which in binary code is just a 1 or 0. A byte is 8 bits. You've probably seen your computer's RAM or storage space given in terms of megabytes or gigabytes, which are 1 million or 1 billion bytes, respectively.
+
 JavaScript doesn't use UTF-8. For all practical purposes, we can say JavaScript uses UTF-16.
 
-In UTF-16, Unicode scalars are represented by either 1 or 2 16-bit (2 bytes each) sequences. It's actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
+In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each) sequences. It's actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
 
 It's important to note that a Unicode scalar may not correspond exactly to what we think of as a "character" in text. It's a character for the computer's purposes, but some user-perceived characters may actually be made up of multiple Unicode scalars.
 
@@ -669,15 +671,15 @@ If you write in English or another language that uses an alphabet derived from L
 
 Unicode scalars map to numeric values called *code points*, and you can find the code point value of a character using the `String.prototype.codePointAt` method. You can see more methods on strings themselves and the String constructor at [the MDN String page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
-## Linear Time Algorithms
+#### Strings and For...Of Loops
 
-## Quadratic Time Algorithms
+To iterate over a string with a for...of loop, use the `for` keyword followed by parentheses containing an initializer, the `of` keyword, and the iterable object (in this case a string), then the body of the loop (which I recommend you put in a block statement with curly braces for the same reasons as above):
 
-## Errors and Error Handling
-
-### Throwing Errors
-
-### Using `try`/`catch`/`finally`
+```js
+for (let char of "Hello, world!") {
+    console.log(char);
+}
+```
 
 ## JavaScript Evaluation Model
 
@@ -737,8 +739,6 @@ Then we continue executing the code from top to bottom with the return value in 
 ```js
 let value = 15;
 ```
-
-### Uncaught Errors and Unwinding The Stack
 
 ## Recap
 
