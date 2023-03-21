@@ -314,7 +314,11 @@ if (Number.isNaN(age)) {
 }
 ```
 
-As you can see, we still have an issue here: if the user again enters invalid input, we have no way to prompt them a second time for a valid number!
+Here, we use the `Number.isNaN` method to check if the result of casting their input to a number is `NaN`.
+
+You can see documentation for the `Number.isNaN` method at [the MDN Number page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), as well as all the other methods and properties you can use with number types and the Number constructor.
+
+As you can see, though, we still have an issue here: if the user again enters invalid input, we have no obvious way to prompt them a second time for a valid number!
 
 We'll see how to deal with that later in the chapter.
 
@@ -362,9 +366,194 @@ Note that the interpreter will not require you to use a block statement with cur
 
 ## Constant Time Algorithms
 
+Let's take a break from new syntax for a minute and talk about algorithms.
+
+You'll remember from the introduction to this book than an algorithm is the specific set of steps used to compute a result from input.
+
+Algorithms can be categorized in a number of ways. In this book we'll mostly talk about *time complexity*, which is a fancy way of saying how long it takes for an algorithm to run.
+
+We could also talk about *space complexity*, which means the amount of memory it takes to run an algorithm. When one increases the other often does as well, but not always.
+
+There are a lot of different ways we could measure this.
+
+We could simply time how long it takes to run a computation:
+
+```js
+const start = Date.now();
+someLongRunningComputation(lotsOfInput);
+const end = Date.now();
+
+console.log("That took " + end - start + " milliseconds to run.");
+```
+
+That tells us how long it took to run the computation, but unfortunately it doesn't tell us very much about the algorithm itself. For the above case, if you want to run it more efficiently all you have to do is run it on a machine with a faster processor.
+
+When talking about time complexity, programmers tend to discuss algorithms in terms of the number of steps it takes to perform a computation relative to the amount of input given to the function that performs it.
+
+The key here is to understand that we want to measure the efficiency of the algorithm itself, not the actual elapsed time it takes to make the computation. A more efficient algorithm will run faster on a given machine than a less efficient one, regardless of how powerful the computer itself that's running the computation is.
+
+Before we introduced conditional statements to our arsenal we could only write very boring programs. Nothing more than a sequence of single instructions. A program simply took as long to run as there were steps to execute. This is known as a *constant time algorithm*. If a computation takes *k* steps to perform, then its running time is constant because the input to the function doesn't matter. Regardless of whether the input is huge or tiny, the computation still takes the same number of steps.
+
+With the addition of conditional statements, things get a little more interesting. Now the number of steps performed depends on which branch of a conditional is taken.
+
+However, our algorithms are still constant time even taking this into account. That's because the upper bound of the algorithm's running time is still defined by the number of steps it executes, and not by the input to the program.
+
+We need to add the ability to repeat code in order to create algorithms that are other than constant time. We've already seen one way to introduce repetition into our code, with recursion. Now we'll look at another way to do it, one you'll probably see much more often in actual code.
+
 ## Iteration
 
+You learned above how to use a conditional statement to make sure a user's input was a valid number; however, the problem remained that if they entered invalid input more than once we didn't know how to enforce the rule multiple times.
+
+One thing we could try is to simply keep nesting conditionals and hope they eventually enter the correct input before we run out of `if` statements:
+
+```js
+let age = Number(input("How old are you? "));
+
+if (Number.isNaN(age)) {
+    age = Number(input("How old are you? "));
+
+    if (Number.isNaN(age)) {
+        age = Number(input("How old are you? "));
+
+        if (Number.isNaN(age)) {
+            age = Number(input("How old are you? "));
+
+            // and so on...
+        }
+    }
+}
+```
+
+"Okay," I hear you thinking. "That kinda works, but it's ridiculous." And you're absolutely right. Doing it this way violates one of the most important guidelines for programmers: DRY, or "Don't Repeat Yourself." If you find yourself copying and pasting code, or writing the same exact (or very similar) code again and again, you're probably missing out on an opportunity to abstract away some bit of functionality into its own function that could be used in multiple places.
+
+Plus there's no way to be sure you'll have enough `if` checks for them to finally get it right! Even if you nest 1,000 conditional statements with the exact same prompt, they could always try the wrong input 1,001 times and then you're back to square one.
+
+If you're thinking to yourself, "Didn't we already introduce a way to repeat code when we looked at recursive functions in the last chapter?" then you're absolutely right and kudos to you. Recursion is definitely one way we could tackle this problem:
+
+```js
+function getNumber(userInput) {
+    const value = Number(userInput);
+
+    if (Number.isNaN(value)) {
+        return getNumber(input("How old are you? "));
+    }
+
+    return value;
+}
+
+const age = getNumber(input("How old are you? "));
+console.log("You are " + age + " years old!");
+```
+
+There's absolutely nothing wrong with this solution, and good for you if you thought of it yourself. Note that we don't need an `else` clause above because the `return` statement in the `if` block ensures that the rest of the function won't be executed.
+
+There's another way to handle the problem though. That's by using *iteration*.
+
+Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again, which I'll talk about in more detail later in the chapter. It's rarely an issue in practice, but there are occasional cases where it makes a difference.
+
+Plus for beginning programmers iteration often seems more intuitive than recursion because thinking recursively can be more complex than thinking in terms of iteration.
+
+Iteration means putting your code into a loop that runs repeatedly until a condition is met. There are two kinds of loops in JavaScript: `while` loops and `for` loops.
+
 ### While Loops
+
+While loops are more general than for loops, because you simply loop while a condition is met. You're responsible for handling everything that happens in order to make sure the condition actually ceases to be true at some point. If the condition never becomes false, then your code will loop forever. This is called an infinite loop.
+
+To write a while loop, simply use the keyword `while` followed by an expression in parentheses that evaluates to a truthy or falsy value, then another statement. I recommend using a block statement for the same reason as with `if` statements above: if you want to add additional statements to your loop body, the interpreter won't know to include them as part of the loop without the curly braces.
+
+```js
+while (condition) {
+    statementOne;
+    statementTwo;
+    statementThree;
+}
+```
+
+As long as `condition` is truthy, the loop will continue to execute.
+
+One way to set up a loop is to use a counter and break out of the loop once the counter hits a certain value:
+
+```js
+// counts up from 0 to 9
+let i = 0;
+while (i < 10) {
+    console.log(i);
+    i++;
+}
+```
+
+Note that the above loop will stop running once `i` is equal to 10, which means when `i` is 10 the loop body will not execute. That's why it stops counting at 9. If you want it to also print 10, you'll need to use `(i <= 10)` as your condition.
+
+Any truthy value will cause the loop to run again, which makes while loops very flexible. If you have hierarchical values, you can easily traverse the hierarchy:
+
+```js
+// getParent returns a value or null
+let parent = getParent(child);
+
+while (parent) {
+    doSomething(parent);
+    parent = getParent(parent);
+}
+```
+
+Since `null` is falsy, when `getParent` reaches the end of the hierarchy and returns null the loop will stop executing.
+
+You can simply set the condition to `true` and it will run forever:
+
+```js
+while (true) {
+    statementOne;
+    statementTwo;
+    statementThree;
+}
+```
+
+Obviously you don't want to do this without a way to break out of the loop, which is where `break` statements come in.
+
+#### `break` and `continue` Statements
+
+If you want to stop a loop regardless of whether its condition has become falsy, use a `break` statement:
+
+```js
+let i = 1;
+while (true) {
+    if (i % 2 === 0) { // checks if number is true
+        break;
+    }
+
+    console.log(i++);
+}
+```
+
+Note that since the `++` is in postfix position (after `i`) the number will be printed first and **then** incremented. If the operator was in prefix position (before `i`), the number would be incremented first and then printed.
+
+If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement:
+
+```js
+/**
+ * Add the even numbers in a range (non-inclusive of end)
+ * @param {number} start
+ * @param {number} end
+ * @returns {number}
+ */
+function addEvens(start, end) {
+    let i = start;
+    let sum = 0;
+    while (i < end) {
+        if (i % 0 !== 2) {
+            continue;
+        }
+
+        sum += i;
+    }
+
+    return sum;
+}
+
+console.log(addEvens(11)); //-> prints 30
+```
+
+Note that if you have a loop nested inside another loop the `break` or `continue` statement will only affect the loop it's executed in. So if you're breaking out of the innermost loop, it will continue on with the remaining code for any outer loops that contain the inner loop.
 
 ### For Loops
 
