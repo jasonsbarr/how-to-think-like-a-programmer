@@ -560,7 +560,78 @@ console.log(addEvens(11)); //-> prints 30
 
 Note that if you have a loop nested inside another loop the `break` or `continue` statement will only affect the loop it's executed in. So if you're breaking out of the innermost loop, it will continue on with the remaining code for any outer loops that contain the inner loop.
 
+The pattern of using a counter to determine when to break out of a loop is so common that JavaScript has a special loop just for that: the `for` loop.
+
 ### For Loops
+
+A for loop uses a counter to determine how many times the loop body executes.
+
+If you use a counter with a while loop, you have to remember two things:
+
+1. Initialize the counter
+2. Change the counter's value inside the loop
+
+Forgetting the 2nd is especially bad because if you leave that step out you'll end up with an infinite loop.
+
+The for loop makes this pattern much easier.
+
+You start with the `for` keyword, then in parenthesis you have 3 clauses: an initializer, a condition, and an incrementor (or decrementor). Then you follow the parentheses with the loop body (I recommend using a block statement with curly braces for the same reasons as above).
+
+```js
+// logs the numbers 0 through 9
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+```
+
+You can initialize multiple variables in the initializer:
+
+```js
+// sums up the numbers 1 through 10
+for (let i = 1, sum = 0; i <= 10; i++) {
+    sum += i;
+}
+```
+
+You can increment by more than 1:
+
+```js
+// logs even numbers from 0 to 18
+for (let i = 0; sum < 20; i += 2) {
+    console.log(i);
+}
+```
+
+Or you can count down instead of up:
+
+```js
+// logs numbers from 10 to 1 counting down
+for (let i = 10; i > 0; i--) {
+    console.log(i);
+}
+```
+
+You can also use `break` and `continue` statements inside a for loop:
+
+```js
+/**
+ * Sums even numbers between start and end
+ * @param {number} start
+ * @param {number} end
+ * @returns {number}
+ */
+function addEvens(start, end) {
+    for (let i = start, sum = 0; i < end; i++) {
+        if (i % 0 !== 0) {
+            continue;
+        }
+
+        sum += i;
+    }
+
+    return sum;
+}
+```
 
 ### For...Of Loops
 
