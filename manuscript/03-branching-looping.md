@@ -178,13 +178,21 @@ Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover l
 
 ### Imports Must Be Top-Level Statements
 
-One last thing to note about ES2015 `import` statements: they must be at the top level of a module. That means they can't be inside another statement, like the `if` statements we'll look at in this chapter. You can't put them inside of a block like this:
+One more thing to note about ES2015 `import` statements: they must be at the top level of a module. That means they can't be inside another statement, like the `if` statements we'll look at in this chapter. You can't put them inside of a block like this:
 
 ```js
 {
     import { thisWillFail } from "nope";
 }
 ```
+
+### Importing a Module Executes All Code in The Module
+
+Finally, it's important to remember that when you import a module all the code in that module will be executed. This includes both the declaration of any functions or variables exported from the module as well as any other code not contained in a definition.
+
+The JavaScript interpreter keeps track of which modules have been executed, so you can import the same module into multiple different files (each of which is also a module) without executing the code multiple times. This is important because if the module contained code that did something like writing to a database you can be sure the code will only execute once, so there won't be multiple writes to the database.
+
+A file that is not an ES2015 module is treated as a script by the JavaScript interpreter, and its code executes in the global execution context. I'll explain execution contexts at the end of this chapter.
 
 ### The Input Function
 
@@ -460,7 +468,7 @@ There's absolutely nothing wrong with this solution, and good for you if you tho
 
 There's another way to handle the problem though. That's by using *iteration*.
 
-Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again, which I'll talk about in more detail later in the chapter. It's rarely an issue in practice, but there are occasional cases where it makes a difference.
+Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again. It's rarely an issue in practice, but there are occasional cases where it makes a difference (mostly when processing large amounts of data or performing a massive number of repetitions).
 
 Plus for beginning programmers iteration often seems more intuitive than recursion because thinking recursively can be more complex than thinking in terms of iteration.
 
@@ -561,7 +569,7 @@ function addEvens(start, end) {
     return sum;
 }
 
-console.log(addEvens(11)); //-> prints 30
+console.log(addEvens(1, 11)); //-> prints 30
 ```
 
 Note that if you have a loop nested inside another loop the `break` or `continue` statement will only affect the loop it's executed in. So if you're breaking out of the innermost loop, it will continue on with the remaining code for any outer loops that contain the inner loop.
@@ -637,6 +645,8 @@ function addEvens(start, end) {
 
     return sum;
 }
+
+console.log(addEvens(1, 11)); //-> prints 30
 ```
 
 ### For...Of Loops
@@ -740,7 +750,97 @@ Then we continue executing the code from top to bottom with the return value in 
 let value = 15;
 ```
 
-### Execution Contexts, Environments, and The Call Stack
+### Execution Contexts and Environments
+
+Now that you understand how a single function is evaluated in terms of its arguments, let's zoom out a little to look at the bigger picture.
+
+As you know, each function creates its own scope when it is defined. The function's parameters and internal variables are defined in this internal scope.
+
+The internal scope is part of the *execution context* of the function. There are 3 types of execution context: global, module, and local.
+
+The global execution context is exactly what it sounds like: the execution context that contains the execution of all code in the program, whether it's in a script, module, or function.
+
+The module execution context is the execution context for all the code in a given ES2015 module. Remember, an ES2015 module is made up of the code in any file that uses one or more `import` or `export` statements.
+
+The function execution context is the same, but for an individual function.
+
+An execution context is an object created behind the scenes by the JavaScript interpreter that keeps track of everything needed to execute the code currently being executed. There are 3 main things that happen when an execution context is constructed:
+
+1. Creation of the context's variable object (namespace)
+2. Constructing the scope chain (environments)
+3. Setting the value of `this`
+
+JavaScript code is executed in 2 passes made by the interpreter: the compilation pass and the execution pass.
+
+The execution context is constructed during the compilation pass.
+
+All you need to know right now about step 1 is that it's exactly what it sounds like: the interpreter creates a namespace object that contains the names of all the variables defined in the code unit being executed. This includes the names of function declarations. I'll go into more detail about this later in the book, but this is enough information for now.
+
+I'll explain what step 3 means in the next chapter, because it's important for understanding how objects work, but it's not especially crucial to know right now.
+
+The important step for us right now is step 2: constructing the scope chain.
+
+Every time a function is created, whether it's a function declaration or a function expression, a new scope is created for the function.
+
+This scope includes all the function's parameters, variables, and any functions declared inside the function itself.
+
+As I briefly mentioned in the last chapter, the scope of a function also includes references to any variables defined in the function's outer (or containing) scope. This allows you to use any external variables in a containing scope within the function itself and even update external variables from the function itself.
+
+If you nest functions inside of functions, each successive internal function's scope has a reference to its outer function's scope.
+
+Maintaining a reference to a function's outer scope variables is called *closure*. You may see particular functions that use their outer reference referred to themselves as closures, because the function "encloses over" the variables in its outer scope(s).
+
+This allows you to do something like this:
+
+```js
+/**
+ * @callback adder
+ * @param {number} num2
+ * @returns {number}
+ */
+
+/**
+ * Constructs a function that adds any value to num
+ * when passed in its construction
+ * @param {number} num
+ * @returns {adder}
+ */
+function makeAdder(num) {
+    return (num2) => num + num2;
+}
+// constructs a function that adds 5 to its argument
+const add5 = makeAdder(5);
+
+add5(10); //-> 15
+```
+
+The `add5` function maintains a reference to the argument value given for the `num` parameter in the function that constructs it, so any number passed to `add5` will have 5 added to it.
+
+You can nest any number of functions and the scope chain will be constructed from the innermost to outermost function, with each scope having a reference to all variables defined in any outer scope.
+
+### The Call Stack
+
+When you call a function, the JavaScript interpreter takes the execution context for that function along with the arguments provided in the function call and uses them to create a *call stack frame*.
+
+You saw above how calling a function causes its argument expressions to be evaluated one at a time, from left to right. In order to do the step of substituting the argument values for the parameter names in the function body, the interpreter makes a copy of the function's local environment that's part of its execution context. Then it replaces the parameter names with the argument values in the new copy of the environment. This new object is a call stack frame, which is then placed on top of the call stack.
+
+The call stack is a stack data structure the interpreter maintains internally that keeps track of which function is currently being executed and what functions have yet to be executed.
+
+A stack is a data structure modeled after a stack of items where you place new items on top of the stack of items, then when you need to use an item you take it off the top of the stack. You'll see how to create your own stacks in chapter 20.
+
+The global stack frame, which is constructed from the global execution context, is always at the bottom of the stack.
+
+When the interpreter comes to a function call, it constructs the call stack frame for this execution of the function and places it on top of the stack, a.k.a. on top of the global stack frame. Then it traverses the body of the function to see if any additional function calls are present in the execution of this function.
+
+If it finds an additional function call, it constructs a stack frame for that function call and places it on top of the call stack. So now we have the global stack frame at the bottom, the containing function's stack frame next, and the internal function's stack frame on top.
+
+This process continues until there are no additional function calls nested within the other function calls.
+
+Then the interpreter executes the function whose stack frame is on top, removes and discards that stack frame, and continues executing functions and removing frames until every function call has been executed. The process of removing and discarding a stack frame is called *popping* off the stack.
+
+Eventually the interpreter gets back to the global stack frame, and then it continues executing code in the global execution context. When it encounters another function call, it begins the process again.
+
+<!-- TODO: get examples from PythonTutor.com or another visualizer and create diagrams illustrating the execution context -->
 
 ## Recap
 
