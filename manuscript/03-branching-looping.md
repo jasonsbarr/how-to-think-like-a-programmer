@@ -213,11 +213,9 @@ console.log(Number(velocity));
 
 The output might look something like this:
 
-```bash
 > What is your name? I am Arthur, King of the Britons
 > What is your quest? I seek the Holy Grail!
 > What is the airspeed velocity of an unladen swallow? NaN
-```
 
 The answer to the 3rd question is, of course, `NaN` because JavaScript can't convert "Is that an African or a European swallow?" to a number.
 
@@ -309,6 +307,46 @@ As you can see, we still have an issue here: if the user again enters invalid in
 We'll see how to deal with this later in the chapter.
 
 ## Switch Statements
+
+A `switch` statement is similar to a conditional statement, except that instead of checking a different condition for each clause you check a single value and switch based on the value itself.
+
+Each possible value gets a `case` clause, with an optional `default` clause to handle all values not specified by cases. I strongly recommend that you always use a `default` case, even (perhaps especially) when you don't think you need one.
+
+Here's what that can look like:
+
+```js
+const name = input("Which direction would you like to go? ");
+
+switch (name.toUpperCase()) {
+    case "N":
+        console.log("You're going north!");
+        break;
+    case "S":
+        console.log("You're going south!");
+        break;
+    case "E":
+        console.log("You're going east!");
+        break;
+    case "W":
+        console.log("You're going west!");
+        break;
+    default:
+        console.log("That is not a valid direction");
+        break;
+}
+```
+
+Note the use of a `break` statement in every case. If you don't include either the `break` statement or a `return` statement in your case, the interpreter will fall through and execute the next case, which usually isn't what you want. If you omitted the `break` statements above and the user entered "N," this would be your output:
+
+> You're going north!
+> You're going south!
+> You're going east!
+> You're going west!
+> That is not a valid direction
+
+Obviously that's not the output you were expecting.
+
+Note that the interpreter will not require you to use a block statement with curly braces for cases that include multiple statements, though if you have enough of them in a case you'll probably want to use braces so the code is easier to read. I use braces if I have 3 or more statements in a case clause.
 
 ## Constant Time Algorithms
 
