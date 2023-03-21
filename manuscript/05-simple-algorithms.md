@@ -28,6 +28,8 @@
 
 ### Memoized Solution
 
+## Designing Functions
+
 ## Recap
 
 ## Exercises
