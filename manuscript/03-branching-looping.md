@@ -176,6 +176,16 @@ Note that the browser will **not** resolve modules to the `node_modules/` direct
 
 Alternatively, you can use a bundler like Webpack or Parcel, which we'll cover later in the book.
 
+### Imports Must Be Top-Level Statements
+
+One last thing to note about ES2015 `import` statements: they must be at the top level of a module. That means they can't be inside another statement, like the `if` statements we'll look at in this chapter. You can't put them inside of a block like this:
+
+```js
+{
+    import { thisWillFail } from "nope";
+}
+```
+
 ### The Input Function
 
 We've imported our `input` function as a named export from an ES2015 module:
@@ -209,7 +219,9 @@ The output might look something like this:
 > What is the airspeed velocity of an unladen swallow? NaN
 ```
 
-The answer to the 3rd question is, of course, `NaN` because JavaScript can't convert "Is that an African or a European swallow?" to a number!
+The answer to the 3rd question is, of course, `NaN` because JavaScript can't convert "Is that an African or a European swallow?" to a number.
+
+It would be nice if we had a way to check and make sure the answer to the 3rd question is a valid number. That's where conditional statements come in!
 
 ## Conditional Statements
 
