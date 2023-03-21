@@ -225,7 +225,73 @@ It would be nice if we had a way to check and make sure the answer to the 3rd qu
 
 ## Conditional Statements
 
-### Constant Time Algorithms
+You've already seen the conditional expression, so you're probably wondering how conditional statements are different.
+
+The most basic difference is simply that the former is an expression, which means it evaluates to a specific value. The latter is a statement, so it is executed.
+
+Another difference is that each branch of a conditional expression can only be a single expression, whereas each branch of a conditional statement can be a block statement that contains multiple statements.
+
+Finally, with conditional statements the alternate (`else`) branch is optional, whereas with a conditional expression you must have both branches.
+
+You create a conditional statement with the `if` keyword, followed by an expression that evaluates to a truthy or falsy value, followed by a statement.
+
+```js
+if (x > 10) {
+    console.log("It is greater than 10");
+    return true;
+}
+```
+
+You can add an optional alternative branch:
+
+```js
+if (x > 10) {
+    console.log("It is greater than 10");
+    return true;
+} else {
+    console.log("It is not greater than 10");
+    return false;
+}
+```
+
+Note that if the body of either the `if` or `else` branch is a single statement, you can omit the curly braces and just write the single statement. I recommend always using the curly braces though, so that way if you want to add additional statements later you don't get confused. I've seen that happen a lot! If you don't have the curly braces and then try to add additional statements, the interpreter will look at it like this:
+
+```js
+// this is what you have:
+if (someCondition)
+    statementOne;
+    statementTwo;
+    statementThree;
+
+// this is what the interpreter sees:
+if (someCondition) {
+    statementOne;
+}
+statementTwo;
+statementThree;
+```
+
+So the 2nd and 3rd statements will be executed every time regardless of whether the condition is met, which probably isn't what you want. Remember that white space (e.g. spaces and tabs) means nothing to the interpreter. Unlike in Python, indenting your code nicely only helps other developers who look at your code later (which includes you 6 months from now). It doesn't actually tell the interpreter anything about your intent.
+
+#### Chaining Conditionals
+
+You can also chain multiple conditional statements together with `else if`.
+
+```js
+if (x > 10) {
+    console.log("it is greater than 10");
+} else if (x < 10) {
+    console.log("It is less than 10");
+} else {
+    console.log("It must be exactly 10");
+}
+```
+
+You can use as many `else if` statements as you need.
+
+## Switch Statements
+
+## Constant Time Algorithms
 
 ## Iteration
 
@@ -235,9 +301,9 @@ It would be nice if we had a way to check and make sure the answer to the 3rd qu
 
 ### For...Of Loops
 
-### Linear Time Algorithms
+## Linear Time Algorithms
 
-### Quadratic Time Algorithms
+## Quadratic Time Algorithms
 
 ## Errors and Error Handling
 
