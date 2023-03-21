@@ -398,6 +398,12 @@ With the addition of conditional statements, things get a little more interestin
 
 However, our algorithms are still constant time even taking this into account. That's because the upper bound of the algorithm's running time is still defined by the number of steps it executes, and not by the input to the program.
 
+To describe time complexity we use *Big O notation*. O is short for "order of approximation," and it characterizes a function according to its growth rate based on input.
+
+Since a constant time function doesn't change based on input, we say a constant time function is O(1).
+
+It doesn't matter how many steps are in the function; we still approximate the time complexity as 1.
+
 We need to add the ability to repeat code in order to create algorithms that are other than constant time. We've already seen one way to introduce repetition into our code, with recursion. Now we'll look at another way to do it, one you'll probably see much more often in actual code.
 
 ## Iteration
