@@ -112,6 +112,11 @@ In your own code, if you want to use named exports just put the variable names y
 You can also do what we did for the functions in the exercises from the previous chapters, and use the `export` keyword when defining the variable or function:
 
 ```js
+/**
+ * Get input from a user
+ * @param {string} prompt
+ * @returns {string}
+ */
 export function input(prompt) {
     // ...
 }
