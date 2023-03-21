@@ -683,7 +683,7 @@ for (let char of "Hello, world!") {
 
 ## JavaScript Evaluation Model
 
-### Execution Contexts and The Call Stack
+Now that we've covered the important topics of conditional statements and iteration, let's start constructing our mental model of a JavaScript interpreter and how to evaluate JavaScript code. We'll start with executing functions.
 
 ### The Evaluation of A Function Call
 
@@ -739,6 +739,8 @@ Then we continue executing the code from top to bottom with the return value in 
 ```js
 let value = 15;
 ```
+
+### Execution Contexts, Environments, and The Call Stack
 
 ## Recap
 
