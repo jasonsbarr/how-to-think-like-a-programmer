@@ -77,6 +77,8 @@ You can start single-line comments with the double slash, `//`. You can also wri
 
 Programmers often use comments as a way to inform other programmers about how they should expect a bit of logic (function) to work and what kinds of data it uses/returns.
 
+You can also add spaces or tabs in your code to make it easier for other programmers to read. Don't mix spaces and tabs, though. It won't make any difference to the interpreter, because the interpreter simply ignores white space, but it will confuse the hell out of other programmers (including possibly yourself 6 months from now when you come back and reread your code while maintaining it).
+
 ```js
 /**
  * Calculates the absolute value of a number
