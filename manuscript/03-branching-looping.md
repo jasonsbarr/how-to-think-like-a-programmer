@@ -820,7 +820,7 @@ You can nest any number of functions and the scope chain will be constructed fro
 
 ### The Call Stack
 
-When you call a function, the JavaScript interpreter takes the execution context for that function along with the arguments provided in the function call and uses them to create a *call stack frame*.
+When you call a function, the JavaScript interpreter takes the execution context for that function along with the arguments provided in the function call and uses them to create a *call stack frame*. This happens during the interpreter's execution pass.
 
 You saw above how calling a function causes its argument expressions to be evaluated one at a time, from left to right. In order to do the step of substituting the argument values for the parameter names in the function body, the interpreter makes a copy of the function's local environment that's part of its execution context. Then it replaces the parameter names with the argument values in the new copy of the environment. This new object is a call stack frame, which is then placed on top of the call stack.
 
@@ -836,7 +836,7 @@ If it finds an additional function call, it constructs a stack frame for that fu
 
 This process continues until there are no additional function calls nested within the other function calls.
 
-Then the interpreter executes the function whose stack frame is on top, removes and discards that stack frame, and continues executing functions and removing frames until every function call has been executed. The process of removing and discarding a stack frame is called *popping* off the stack.
+Then the interpreter executes the function whose stack frame is on top and returns its value, removes and discards that stack frame, and continues executing functions, returning their values, and removing frames until every function call has been executed. The process of removing and discarding a stack frame is called *popping* off the stack.
 
 Eventually the interpreter gets back to the global stack frame, and then it continues executing code in the global execution context. When it encounters another function call, it begins the process again.
 
