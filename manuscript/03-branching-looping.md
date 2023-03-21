@@ -253,7 +253,7 @@ if (x > 10) {
 }
 ```
 
-You can add an optional alternative branch:
+You can add an optional alternative branch with the `else` keyword:
 
 ```js
 if (x > 10) {
