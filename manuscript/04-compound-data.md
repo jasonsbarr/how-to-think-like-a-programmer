@@ -76,7 +76,7 @@ while (inputName !== "") {
 yellNames(names);
 ```
 
-Now, you might look at the above code and be confused: shouldn't the algorithm's running time be O(n * 2)? After all, there are 2 iterations for each name. One when the name is being entered, and one when it is being printed. And what about the fact that each iteration has 1 operation? Maybe it should be something like O(n(n + 1) * n(n + 1)).
+Now, you might look at the above code and be confused: shouldn't the algorithm's running time be O(n * 2)? After all, there are 2 iterations for each name. One when the name is being entered, and one when it is being printed.
 
 That's a good observation, and in real terms doubling the number of iterations could absolutely affect how long it takes an algorithm to run in real time.
 
