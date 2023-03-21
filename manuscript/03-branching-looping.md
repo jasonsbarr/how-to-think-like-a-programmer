@@ -82,7 +82,7 @@ In the above case, the name being imported is `input`, which is between curly br
 If you don't like the name `input` for the function, you can change it like this:
 
 ```js
-import { input as inp } from "@jasonsbarr/simple-io";
+import { input as gimme } from "@jasonsbarr/simple-io";
 ```
 
 If you wanted to import multiple functions from the library, you just separate them with commas:
