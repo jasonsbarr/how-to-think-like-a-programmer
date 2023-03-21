@@ -320,7 +320,7 @@ We'll see how to deal with that later in the chapter.
 
 ## Switch Statements
 
-A `switch` statement is similar to a conditional statement, except that instead of checking a different condition for each clause you check a single value and switch based on the value itself.
+A `switch` statement is similar to a conditional statement, except that instead of checking a different condition for each clause you check a single value and execute a case based on the value itself.
 
 Each possible value gets a `case` clause, with an optional `default` clause to handle all values not specified by cases. I strongly recommend that you always use a `default` case, even (perhaps especially) when you don't think you need one.
 
