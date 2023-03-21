@@ -301,7 +301,7 @@ If you're checking for a specific value, a `switch` statement might be a better 
 
 ### Checking for Numeric Input
 
-Now, if you want to get a number from your user with the `input` function, you can use a conditional statement.
+Remember our problem from earlier? If you want to make sure get a number from your user with the `input` function, now you can use a conditional statement.
 
 ```js
 import { input } from "@jasonsbarr/simple-io";
@@ -316,7 +316,7 @@ if (Number.isNaN(age)) {
 
 As you can see, we still have an issue here: if the user again enters invalid input, we have no way to prompt them a second time for a valid number!
 
-We'll see how to deal with this later in the chapter.
+We'll see how to deal with that later in the chapter.
 
 ## Switch Statements
 
