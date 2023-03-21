@@ -614,6 +614,11 @@ You can create functions in 2 ways:
 A function declaration is a statement. It begins with the `function` keyword, then the name of the function, a comma-separated list of *formal parameters* in parentheses, and ends with a block statement. Formal parameters are variables used inside the function body that can be replaced by arguments given when the function is called. Here is a function declaration for a function to calculate the absolute value of a number:
 
 ```js
+/**
+ * Gets the absolute value of a number
+ * @param {number} num
+ * @returns {number}
+ */
 function absoluteValue(num) {
     return (num < 0) ? -num : num;
 }
@@ -646,6 +651,11 @@ A `function` function expression is written similarly to a function declaration,
 To rewrite the `absoluteValue` function above as a function expression:
 
 ```js
+/**
+ * Gets the absolute value of a number
+ * @param {number} num
+ * @returns {number}
+ */
 const absoluteValue = function(num) {
     return (num < 0) ? -num : num;
 }; // note the semicolon here, which terminates the variable declaration
@@ -654,6 +664,11 @@ const absoluteValue = function(num) {
 You can optionally use a named function expression, which adds a name between the `function` keyword and the opening parenthesis:
 
 ```js
+/**
+ * Gets the absolute value of a number
+ * @param {number} num
+ * @returns {number}
+ */
 const absoluteValue = function _absoluteValue(num) {
     return (num < 0) ? -num : num;
 };
@@ -668,12 +683,23 @@ An arrow function expression is so named because it has a "fat arrow" in it. It 
 If there is only one parameter, the parentheses can be omitted:
 
 ```js
+/**
+ * Gets the absolute value of a number
+ * @param {number} num
+ * @returns {number}
+ */
 const absoluteValue = num => (num < 0) ? -num : num;
 ```
 
 If there are multiple parameters the parentheses are required. You can also end an arrow function expression with a block statement. Function expressions are the only expressions that can include statements inside them.
 
 ```js
+/**
+ * Gets the larger of 2 numbers
+ * @param {number} n1
+ * @param {number} n2
+ * @returns {number}
+ */
 const max = (n1, n2) => {
     return (n2 > n1) ? n2 : n1;
 };
@@ -690,6 +716,11 @@ A function creates its own scope for the body of the function. The main purpose 
 ```js
 const x = 1;
 
+/**
+ * Increments x by a number
+ * @param {number} num
+ * @returns {number}
+ */
 function increment(num) {
     return num + x; // valid!
 }
@@ -702,6 +733,9 @@ That means you can do things like this:
 ```js
 let x = 0;
 
+/**
+ * Increments x by 1
+ */
 function incrementX() {
     x++;
 }
@@ -716,6 +750,11 @@ This property of functions is called *closure*, and we'll explore it in greater 
 A recursive function is a function that calls itself. Recursive functions are used a lot in algorithms and certain kinds of programs, like interpreters.
 
 ```js
+/**
+ * Gets the factorial of n
+ * @param {number} n
+ * @returns {number}
+ */
 function factorial(n) {
     return (n === 1) ? 1 : n * factorial(n - 1);
 }

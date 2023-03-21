@@ -431,6 +431,11 @@ Plus there's no way to be sure you'll have enough `if` checks for them to finall
 If you're thinking to yourself, "Didn't we already introduce a way to repeat code when we looked at recursive functions in the last chapter?" then you're absolutely right and kudos to you. Recursion is definitely one way we could tackle this problem:
 
 ```js
+/**
+ * Gets a number from user input
+ * @param {string} userInput
+ * @returns {number}
+ */
 function getNumber(userInput) {
     const value = Number(userInput);
 
