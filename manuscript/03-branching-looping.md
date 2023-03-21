@@ -641,6 +641,34 @@ function addEvens(start, end) {
 
 ### For...Of Loops
 
+There's a variation of the for loop that was added to JavaScript in 2015, commonly known as the `for...of` loop.
+
+You can use a for...of loop with any iterable object, and it will simply iterate over the object's values.
+
+The only iterable we've encountered thus far is the string type, and a for...of loop iterates over each Unicode scalar value in the string.
+
+#### Wait, What?
+
+Strings seem like a simple type, right? After all, it's just text. But it turns out that encoding text in binary code is incredibly complex and fraught with all kinds of difficulties. For example, think of how many different alphabets there are in all the world's languages. We have to be able to represent all of them in a way that makes sense to the computer. Since the beginning of the computer age, programmers have come up with numerous ways to represent text... most of them incompatible with each other.
+
+We could write an entire book about text encoding, but I'll just say the way software makers have agreed to encode text is via the Unicode standard.
+
+Unicode maps text to numbers according to various different encoding schemes, the most common of which is UTF-8. When text is encoded as UTF-8, all "characters," which means a Unicode scalar value that represents some bit of text in some alphabet, are mapped to a sequence of 1, 2, 3, or 4 bytes (8 bits each).
+
+JavaScript doesn't use UTF-8. For all practical purposes, we can say JavaScript uses UTF-16.
+
+In UTF-16, Unicode scalars are represented by either 1 or 2 16-bit (2 bytes each) sequences. It's actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
+
+It's important to note that a Unicode scalar may not correspond exactly to what we think of as a "character" in text. It's a character for the computer's purposes, but some user-perceived characters may actually be made up of multiple Unicode scalars.
+
+One example of this is emoji. When you see the 😀 emoji you see a single character, but it's actually made up of 2 Unicode scalars.
+
+That means if you iterate over that emoji with a for...of loop there will actually be 2 iterations of the loop.
+
+If you write in English or another language that uses an alphabet derived from Latin then the vast majority of characters you use will be made up of a single Unicode scalar, but it's important to be aware of the fact that things can get more complicated with more complex characters.
+
+Unicode scalars map to numeric values called *code points*, and you can find the code point value of a character using the `String.prototype.codePointAt` method. You can see more methods on strings themselves and the String constructor at [the MDN String page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+
 ## Linear Time Algorithms
 
 ## Quadratic Time Algorithms
