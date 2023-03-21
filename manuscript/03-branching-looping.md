@@ -289,6 +289,25 @@ if (x > 10) {
 
 You can use as many `else if` statements as you need.
 
+### Checking for Numeric Input
+
+Now, if you want to get a number from your user with the `input` function, you can use a conditional statement.
+
+```js
+import { input } from "@jasonsbarr/simple-io";
+
+let age = Number(input("How old are you? "));
+
+if (Number.isNaN(age)) {
+    console.log("You must enter a valid number!");
+    age = Number(input("How old are you? "));
+}
+```
+
+As you can see, we still have an issue here: if the user again enters invalid input, we have no way to prompt them a second time for a valid number!
+
+We'll see how to deal with this later in the chapter.
+
 ## Switch Statements
 
 ## Constant Time Algorithms
