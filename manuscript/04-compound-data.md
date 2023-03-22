@@ -1,4 +1,4 @@
-# Working with Compound Data: Arrays and Objects
+# Working with Compound Data Types
 
 ## Objects
 
