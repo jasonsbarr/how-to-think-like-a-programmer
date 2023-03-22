@@ -36,6 +36,8 @@
 
 ### Documenting Your Functions
 
+### Creating Your Functions
+
 ### Testing Your Functions
 
 ### Composing Many Functions into a Solution
