@@ -1,3 +1,5 @@
+## Arrays, Maps, and Sets
+
 ## Arrays
 
 ### The Need for Arbitrary-Length Data
@@ -23,6 +25,10 @@
 ### Using a Rest Parameter
 
 ## Functions with Default Parameters
+
+## Maps
+
+## Sets
 
 ## Linear Time Algorithms
 
@@ -69,3 +75,7 @@ That's a good observation, and in real terms doubling the number of iterations c
 However, in terms of Big O, it's still just O(n) because there is only one set of inputs. The running time of the code is a function of how large the input is, regardless of whether that input is processed 1, 2, or 1,000 times. The number of steps it takes to process the input in each iteration isn't important.
 
 Big O notation is an **approximation** of the running time, not a calculation of every little thing that affects how long it actually takes for the computation to run.
+
+## Recap
+
+## Exercises
