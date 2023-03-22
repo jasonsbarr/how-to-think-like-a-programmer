@@ -113,7 +113,8 @@ Note that the `person` object is still mutated **even though it was declared wit
 ```js
 const person = { name: "Jason" };
 Object.freeze(person);
-person.age = 42 // ERROR
+person.age = 42; // the interpreter will ignore this
+person; //-> { name: "Jason" }
 ```
 
 ### Simple Data Objects, a.k.a. POJOs
@@ -598,6 +599,10 @@ class Programmer extends Person {
         return superGreeting + " I am a programmer!";
     }
 }
+
+// construct an instance
+const jason = new Programmer("Jason", 42, ["JavaScript", "Python", "F#", "Rust"]);
+jason.constructor.name; //-> "Programmer"
 ```
 
 `extends` tells the interpreter you want to set up prototypal inheritance between the Programmer and Person classes, and `super` means you're accessing either the constructor (when called as if it were a function) or a property (when used as if it were an object) on the class you're inheriting from.
@@ -714,7 +719,85 @@ That way we don't have to mutate the original object to update it.
 
 ### Destructuring Objects
 
+You can also destructure objects, which means taking them apart using their property names. Destructuring only works for string keys that are valid variable names.
+
+You can destructure in variable declaration and assignment:
+
+```js
+const jason = { name: "Jason", age: 42 };
+const { name, age } = jason;
+console.log(name, age); //-> prints "Jason" 42
+```
+
+You can rename a variable if you don't want to use the object's property name:
+
+```js
+const obj = { longPropertyNameIDontLike: "What's in a name?" };
+const { longPropertyNameIDontLike: shorterName } = obj;
+console.log(shorterName); //-> prints "What's in a name?"
+```
+
+You can also destructure nested objects:
+
+```js
+const dad = { name: "Risk", age: 62 };
+const mom = { name: "Annette", age: 61 };
+const jason = { name: "Jason", age: 42, dad, mom };
+
+const { dad: { age }, mom: { name } } = jason;
+console.log(age, name); //-> prints 62 "Annette"
+```
+
+You can destructure any arbitrary number of nested objects, but you should probably avoid going more than 1 or 2 levels deep because it's confusing to read.
+
 ## Dates
+
+The built-in `Date` constructor creates special objects that represent points in time. Date objects represent the number of milliseconds since 12:00 AM UTC on January 1, 1970.
+
+Dates can represent any date and time between approximately 272,000 years ago and 273,000 years in the future. This book is being written in 2023, so if you're reading it in the year 275760 I'm sure your computer scientists have already figured out a way to make it work past September 13 of this year, which is the last day that can be represented according to the current ECMAScript standard.
+
+One thing to note is that month indexes start at 0, not 1 (remember, programmers count from 0).
+
+There are a few ways to create dates:
+
+```js
+// use the date constructor
+const d1 = new Date(2023); // 1/1/2023 at 12:00 AM UTC
+const d2 = new Date(2023, 3); // 4/1/2023 at 12:00 AM UTC
+const d3 = new Date(2023, 3, 22); // 4/22/2023 at 12:00 AM UTC
+const d4 = new Date(2023, 3, 22, 17); // 4/22/2023 at 5:00 PM UTC
+const d5 = new Date(2023, 3, 22, 17, 23); // 4/22/2023 at 5:23 PM UTC
+// you can also add seconds and milliseconds
+// as additional parameters
+
+// using the date constructor with a timestamp
+const d6 = new Date(Date.now());
+
+// using the date constructor with a valid date string
+const d7 = new Date("December 17, 1995 03:24:00");
+const d8 = new Date("1995-12-17T03:24:00");
+
+// create a timestamp (number type, not Date)
+const now = Date.now(); // milliseconds since 1/1/1970 12:00 AM UTC
+```
+
+Here are some Date instance methods:
+
+```js
+const now = Date(2023, 2, 22, 17, 32);
+
+now.getHours(); //-> 17
+now.getMinutes(); //-> 32
+now.getSeconds(); //-> 0
+now.getMonth(); //-> 2
+now.getFullYear(); //-> 2023
+```
+
+Confusingly, there is also a `Date.prototype.getYear` method that you should never use because it only returns the last 2 digits of the year and is basically worthless.
+
+There are also equivalent setter methods like `Date.prototype.setHours` that let you set the relevant properties.
+
+For complete documentation of all the Date object's properties and methods, see [the MDN Date page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 
 ## JavaScript Evaluation Model
 
