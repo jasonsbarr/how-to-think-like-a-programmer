@@ -759,7 +759,7 @@ let value = 15;
 
 ### Execution Contexts and Environments
 
-Now that you understand how a single function is evaluated in terms of its arguments, let's zoom out a little to look at the bigger picture.
+Now that you understand how a single function call is evaluated in terms of its arguments, let's zoom out a little to look at the bigger picture.
 
 As you know, each function creates its own scope when it is defined. The function's parameters and internal variables are defined in this internal scope.
 
