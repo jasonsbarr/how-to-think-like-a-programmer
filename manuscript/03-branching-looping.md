@@ -808,7 +808,7 @@ This allows you to do something like this:
 
 /**
  * Constructs a function that adds any value to num
- * when passed in its construction
+ * when num is passed in its construction
  * @param {number} num
  * @returns {adder}
  */
