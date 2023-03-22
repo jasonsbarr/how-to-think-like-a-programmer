@@ -795,7 +795,7 @@ As I briefly mentioned in the last chapter, the scope of a function also include
 
 If you nest functions inside of functions, each successive internal function's scope has a reference to its outer function's scope.
 
-Maintaining a reference to a function's outer scope variables is called *closure*. You may see particular functions that use their outer reference referred to themselves as closures, because the function "encloses over" the variables in its outer scope(s).
+Maintaining a reference to a function's outer scope variables is called *closure*. You may see particular functions that use their outer reference referred to themselves as closures, because the function "closes over" the variables in its outer scope(s).
 
 This allows you to do something like this:
 
