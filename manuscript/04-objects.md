@@ -1,4 +1,4 @@
-# Working with Compound Data Types
+# Working with Objects
 
 You know enough JavaScript now to do some pretty complex stuff. It's time to grow your knowledge of data types in JavaScript to match the skills you've learned so far. In this chapter we're going to cover objects, which are compound data types made up of amalgamations of other data, including both primitive types and other compound types like Arrays.
 

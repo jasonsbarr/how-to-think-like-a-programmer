@@ -1,4 +1,8 @@
-## Arrays, Maps, and Sets
+# Built-In Collection Types: Maps, Sets, and Arrays
+
+## Maps
+
+## Sets
 
 ## Arrays
 
@@ -14,10 +18,6 @@
 
 ### Array Destructuring
 
-## Maps
-
-## Sets
-
 ## Variadic Functions
 
 ### The `arguments` Object
@@ -25,10 +25,6 @@
 ### Using a Rest Parameter
 
 ## Functions with Default Parameters
-
-## Maps
-
-## Sets
 
 ## Linear Time Algorithms
 
