@@ -16,7 +16,6 @@
 15-server-side-programming.md
 16-project-rest-api.md
 17-programming-browser.md
-18-objects-prototypes-classes.md
 19-iterators-generators.md
 20-lists-stacks-queues.md
 21-project-browser.md
