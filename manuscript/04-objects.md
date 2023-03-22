@@ -1,14 +1,14 @@
 # Working with Compound Data Types
 
-You know enough JavaScript now to do some pretty complex stuff. It's time to grow your knowledge of data types in JavaScript to match the skills you've learned so far. In this chapter we're going to cover *compound data types*, which are data types made up of amalgamations of other data, including both primitive types and other compound types.
+You know enough JavaScript now to do some pretty complex stuff. It's time to grow your knowledge of data types in JavaScript to match the skills you've learned so far. In this chapter we're going to cover objects, which are compound data types made up of amalgamations of other data, including both primitive types and other compound types like Arrays.
 
-One thing to note as we go through this chapter: the `typeof` operator isn't going to be terribly useful here because all the types we're about to explore will evaluate to "object" if you use `typeof` on them.
+One thing to note as we go through this chapter and the next one: the `typeof` operator isn't going to be terribly useful here because all the types we're about to explore will evaluate to "object" if you use `typeof` on them.
 
 That's because according to the JavaScript type system we have 2 different kinds of types: primitive types and objects.
 
 You'll also remember that the special value `null` has type `object` as well, because it represents an empty value that **could** be an object. One that **would** be an object if it wasn't empty.
 
-In this chapter we'll look at Objects (obviously), Arrays, Maps, Sets, and Dates. We'll learn how to use Arrays and Array-like objects to write variadic functions (functions that take a variable number of arguments), and we'll also expand our JavaScript evaluation model to include some things that are very important for evaluating objects and executing code that works on objects.
+In this chapter we'll look at Objects (obviously) and Dates. We'll also expand our JavaScript evaluation model to include some things that are very important for evaluating objects and executing code that works on objects.
 
 ## Objects
 
@@ -162,6 +162,8 @@ const person = {
 
 person.greet("Vikram"); //-> "Hello, Vikram!"
 ```
+
+Using this method shorthand is the same as if you declared a property key and then assigned a `function` function to it. Arrow functions do something slightly different, which we'll see at the end of the chapter.
 
 If you want your `Person` factory function to return objects with the method on them, simply add the method to the object returned by the function:
 
