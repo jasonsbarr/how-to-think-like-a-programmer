@@ -402,6 +402,8 @@ String(true); //-> "true"
 Boolean(""); //-> false
 ```
 
+### Objects as Function Parameters
+
 ### The Spread Operator
 
 ### Destructuring Objects
