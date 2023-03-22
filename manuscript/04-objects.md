@@ -665,7 +665,7 @@ function changeName(person, name) {
 changeName(person, "Bob");
 ```
 
-it will actually mutate the object everywhere it is used in the program, which may not be what you want.
+it will actually mutate the object everywhere it is used in the program, which may not be what you want. The above example is obvious, but object mutability can actually be a source of very annoying bugs that are difficult to track down and fix.
 
 It's usually better to create a copy of the object and return that. You can do that with `Object.assign`:
 
