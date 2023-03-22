@@ -406,6 +406,12 @@ typeof null //-> "object"
 
 `typeof` also does not distinguish between different object types. As far as it's concerned, a value is either a primitive (in which case it has a name like "string") or an object (in which case it is "object"). We'll cover objects in detail in chapter 4. For now, just recognize that if you want to get the type of an object (e.g. a `Date`) you'll need to do a little extra work.
 
+Note that using the `typeof` operator is the only valid way to reference a variable name that has not been defined.
+
+```js
+typeof undefinedVariableName; //-> "undefined"
+```
+
 ## Conditional (or Ternary) Expressions
 
 The conditional expression allows you to test a value and choose which of 2 expressions you want to evaluate based on whether the test is truthy or falsy. It is the only operator that takes 3 operands, so sometimes you'll see it called the ternary operator.
