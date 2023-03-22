@@ -211,6 +211,9 @@ function makePerson(name, age) {
         }
     }
 }
+
+const person = makePerson("Jason", 42);
+person.introduce(); //-> "Hello, I'm Jason"
 ```
 
 You reference a property on `this` in exactly the same way as you would on any other object.
