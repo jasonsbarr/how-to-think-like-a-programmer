@@ -4,12 +4,10 @@
 04-objects.md
 05-arrays.md
 05-project-game.md
-06-simple-algorithms.md
+06-algorithms.md
 08-strings-regexp.md
 10-json-files.md
 10-project-cli-notes-app.md
-11-higher-order-functions.md
-12-recursion.md
 13-asynchronous-programming.md
 14-promises-async.md
 15-server-side-programming.md
@@ -17,5 +15,4 @@
 17-programming-browser.md
 21-project-browser.md
 26-project-full-stack.md
-27-final-project.md
 28-conclusion.md

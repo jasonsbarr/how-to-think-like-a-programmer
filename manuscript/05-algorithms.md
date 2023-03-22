@@ -10,6 +10,8 @@
 
 ## Finding the Longest Lexicographical Substring
 
+## The Accumulator and Pointer Patterns
+
 ## Basics of Binary Search
 
 ## Binary Search of an Array
