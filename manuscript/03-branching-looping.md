@@ -543,7 +543,7 @@ If you want to stop a loop regardless of whether its condition has become falsy,
 ```js
 let i = 1;
 while (true) {
-    if (i % 2 === 0) { // checks if number is true
+    if (i % 2 === 0) { // checks if number is even
         break;
     }
 
