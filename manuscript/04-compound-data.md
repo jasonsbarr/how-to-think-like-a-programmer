@@ -1,5 +1,15 @@
 # Working with Compound Data Types
 
+You know enough JavaScript now to do some pretty complex stuff. It's time to grow your knowledge of data types in JavaScript to match the skills you've learned so far. In this chapter we're going to cover *compound data types*, which are data types made up of amalgamations of other data, including both primitive types and other compound types.
+
+One thing to note as we go through this chapter: the `typeof` operator isn't going to be terribly useful here because all the types we're about to explore will evaluate to "object" if you use `typeof` on them.
+
+That's because according to the JavaScript type system we have 2 different kinds of types: primitive types and objects.
+
+You'll also remember that the special value `null` has type `object` as well, because it represents an empty value that **could** be an object. One that **would** be an object if it wasn't empty.
+
+In this chapter we'll look at Objects (obviously), Arrays, Maps, Sets, and Dates. We'll learn how to use Arrays and Array-like objects to write variadic functions (functions that take a variable number of arguments), and we'll also expand our JavaScript evaluation model to include some things that are very important for evaluating objects and executing code that works on objects.
+
 ## Objects
 
 ### Simple Data Objects, a.k.a. POJOs
@@ -11,6 +21,8 @@
 ### Iterating over Objects
 
 ### Creating Objects with Functions
+
+### Constructor Functions and The `new` Keyword
 
 ### The Spread Operator
 
@@ -33,6 +45,8 @@
 ## Maps
 
 ## Sets
+
+## Dates
 
 ## Variadic Functions
 
