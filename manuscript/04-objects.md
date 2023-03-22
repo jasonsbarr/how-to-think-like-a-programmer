@@ -467,7 +467,7 @@ Now you have a fully-featured Programmer type that inherits from the Person type
 
 Note that `string[]` in the docblock above denotes an array of strings. We'll talk about arrays in the next chapter.
 
-Using `Object.setPrototypeOf` like this properly sets up the inheritance chain both for the Programmer constructor and the prototype of Programmer instances.
+Using `Object.setPrototypeOf` like this properly sets up the inheritance chain both for the Programmer constructor and the prototype of Programmer instances. `Object.create` still works perfectly fine if all you want to do is have one object inherit from another object.
 
 ### Classes
 
