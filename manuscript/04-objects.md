@@ -677,6 +677,8 @@ function changeName(person, name) {
 
 You can also do it with the spread operator, which we'll cover in the next section.
 
+In cases where immutability is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
+
 ### The Spread Operator
 
 ### Destructuring Objects
