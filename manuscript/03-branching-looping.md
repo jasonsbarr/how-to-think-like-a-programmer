@@ -483,7 +483,7 @@ Iteration means putting your code into a loop that runs repeatedly until a condi
 
 ### While Loops
 
-While loops are more general than for loops, because you simply loop while a condition is met. You're responsible for handling everything that happens in order to make sure the condition actually ceases to be true at some point. If the condition never becomes false, then your code will loop forever. This is called an infinite loop.
+While loops are more general than for loops, because you simply loop while a condition is met. You're responsible for handling everything that happens in order to make sure the condition actually ceases to be true at some point. If the condition never becomes falsy, then your code will loop forever. This is called an infinite loop.
 
 To write a while loop, simply use the keyword `while` followed by an expression in parentheses that evaluates to a truthy or falsy value, then another statement. I recommend using a block statement for the same reason as with `if` statements above: if you want to add additional statements to your loop body, the interpreter won't know to include them as part of the loop without the curly braces.
 
