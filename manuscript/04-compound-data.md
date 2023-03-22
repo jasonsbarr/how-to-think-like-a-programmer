@@ -465,7 +465,118 @@ Programmer.new = function(name, age, languages) {
 
 Now you have a fully-featured Programmer type that inherits from the Person type.
 
+Note that `string[]` in the docblock above denotes an array of strings. We'll talk about arrays in the next chapter.
+
 Using `Object.setPrototypeOf` like this properly sets up the inheritance chain both for the Programmer constructor and the prototype of Programmer instances.
+
+### Classes
+
+Prototypal inheritance is extremely powerful and flexible, but sometimes you don't need all that. There's a simpler way to do all this prototypal inheritance if all you want to do is set up a simple inheritance chain, and that's using classes. Classes were introduced to JavaScript in ES2015, and abstract away the messy details of setting prototypes an inheritance. To create a Person class, just use the `class` keyword:
+
+```js
+/**
+ * @class Person
+ * @property {string} name
+ * @property {number} age
+ */
+class Person {
+    /**
+     * Constructs a Person
+     * @param {string} name
+     * @param {number} age
+     */
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    /**
+     * Static constructor method
+     * @param {string} name
+     * @param {number} age
+     * @returns {Person}
+     */
+    static new(name, age) {
+        return new Person(name, age);
+    }
+
+    /**
+     * Getter for name property
+     * @returns {string}
+     */
+    get name() {
+        return this.name;
+    }
+
+    /**
+     * Setter for name property
+     * @param {string} newName
+     */
+    set name(newName) {
+        this.name = newName[0].toUpperCase() + newName.slice(1).toLowerCase();
+    }
+
+    /**
+     * Greet another Person
+     * @param {string} name
+     * @returns {string}
+     */
+    greet(name) {
+        return "Hello, " + name + "!";
+    }
+
+    /**
+     * Introduce yourself to another Person
+     */
+    introduce() {
+        return "Hello, I'm " + this.name + ".";
+    }
+}
+
+// create a new Person
+const jason = new Person("Jason", 42);
+
+// or use the static method
+const daniel = Person.new("Daniel", 9);
+```
+
+Now if you want to create a Programmer class that inherits from the Person class, you need to use the `extends` and `super` keywords:
+
+```js
+/**
+ * @class Programmer
+ * @extends Person
+ * @property {string} name
+ * @property {number} age
+ * @property {string[]} languages
+ */
+class Programmer extends Person {
+    /**
+     * Constructs a Programmer
+     * @param {string} name
+     * @param {number} age
+     * @param {string[]} languages
+     */
+    constructor(name, age, languages) {
+        super(name, age);
+        this.languages = languages;
+    }
+
+    /**
+     * How do you know if a person is a programmer?
+     * Do nothing and they'll tell you!
+     * @returns {string}
+     */
+    introduce() {
+        const superGreeting = super.greet();
+        return superGreeting + " I am a programmer!";
+    }
+}
+```
+
+`extends` tells the interpreter you want to set up prototypal inheritance between the Programmer and Person classes, and `super` means you're accessing either the constructor (when called as if it were a function) or a property (when used as if it were an object) on the class you're inheriting from.
+
+Note that classes don't actually introduce new functionality into JavaScript. They're just a convenient shorthand for prototypes and prototypal inheritance.
 
 ### Native Constructors
 
@@ -493,6 +604,7 @@ As a general rule, using the constructors of primitive types to create objects i
 Number("5"); //-> 5
 String(true); //-> "true"
 Boolean(""); //-> false
+BigInt(10); //-> 10n
 ```
 
 ### Objects as Function Parameters
