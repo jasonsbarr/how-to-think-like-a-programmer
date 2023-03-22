@@ -12,13 +12,268 @@ In this chapter we'll look at Objects (obviously), Arrays, Maps, Sets, and Dates
 
 ## Objects
 
+The simplest kind of JavaScript object is simply `Object`.
+
+Object is a constructor, just like String and Number. We'll explore constructors later in the chapter, but for now it's enough to know that all objects get properties from Object.
+
+Some languages make you define object types with classes before you can construct actual instances of objects. JavaScript does not. We **do** have classes in JavaScript, but they work differently from classes you may have used in other programming languages.
+
+Instead of constructing objects from classes, JavaScript has *prototype* based objects. We'll get deep into prototypes and how they work later in the book, but for now it's enough to know that any object can be the prototype for any other object.
+
+You can also create object literals using curly braces:
+
+```js
+const obj = {};
+```
+
+The above snipped creates an object with no additional properties besides the default ones that come on every object (almost, we'll see exceptions later in the book).
+
+You can define properties as key/value pairs on an object literal:
+
+```js
+const person = {
+    name: "Jason",
+    age: 42
+};
+```
+
+Then you access the property data using member expressions:
+
+```js
+person.name //-> "Jason"
+```
+
+An object property's key can be any string or symbol. If the key is a string that is a valid variable name, you can define it without quotation marks. If the key is not a valid variable name, you have to use quotation marks:
+
+```js
+const invalidVariableNames = {
+    "+": function(a, b) {
+        return a + b;
+    },
+    "my name": "Jason"
+}
+```
+
+Remember, a function can be used as just another data value, so it's perfectly acceptable to assign a function to an object property as a method. In this case, we need to use bracket notation to call the method since "+" isn't a valid variable name:
+
+```js
+invalidVariableNames["+"](2, 3); //-> 5
+```
+
+Actually, that's not quite true. You can use numbers as property keys:
+
+```js
+const people = {
+    0: {
+        name: "Jason",
+        age: 42
+    },
+    1: {
+        name: "Daniel",
+        age: 9
+    }
+}
+```
+
+Then access the value with bracket notation:
+
+```js
+people[0]; //-> { name: "Jason", age: 42 }
+```
+
+You can also use bracket notation to compute object property names. This works well with using symbol property keys:
+
+```js
+const person = {
+    [Symbol.for("name")]: "Jason",
+    ["a" + "g" + "e"]: 42
+}
+```
+
 ### Simple Data Objects, a.k.a. POJOs
+
+Simply defining properties with values on object literals is the simplest way to use objects in JavaScript. If you're familiar with functional programming languages like Elm or F#, this is similar to how records work in those languages.
+
+These simple data objects are also known as POJOs, which stands for "Plain Old JavaScript Objects."
+
+If you never learned anything else about JavaScript except what we've covered so far in this book, you could still write any program you ever wanted to write in JavaScript. True, we haven't covered Arrays yet, but you can simply think of Arrays as objects with numeric property keys and everything will work just fine.
+
+You can create a factory function to construct Person objects:
+
+```js
+/**
+ * @typedef Person
+ * @property {string} name
+ * @property {number} age
+ */
+
+/**
+ * Constructs a Person
+ * @param {string} name
+ * @param {number} age
+ * @returns {Person}
+ */
+function makePerson(name, age) {
+    return { name, age };
+}
+```
+
+Notice that in the above function we don't use `name: name` or `age: age` like you might expect. That's because JavaScript allows *shorthand property definitions*. When a variable and object property have the same name, you only have to include the variable name when constructing your object literal.
 
 ### Methods
 
+As you saw previously, you can simply define a function as an object property's value and use it as a method. JavaScript has an abbreviated form of this when creating object literals:
+
+```js
+const person = {
+    name: "Jason",
+    age: 42,
+    greet(name) {
+        return "Hello, " + name + "!";
+    }
+}
+
+person.greet("Vikram"); //-> "Hello, Vikram!"
+```
+
+If you want your `Person` factory function to return objects with the method on them, simply add the method to the object returned by the function:
+
+```js
+/**
+ * Constructs a Person
+ * @param {string} name
+ * @param {number} age
+ * @returns {Person}
+ */
+function makePerson(name, age) {
+    return {
+        name,
+        age,
+        greet(name) {
+            return "Hello, " + name + "!";
+        }
+    };
+}
+```
+
+Now all your `Person` objects will have the "greet" method.
+
 ### The `this` Keyword
 
+You can see how all this is useful, I'm sure, but what if you want the object to be able to reference itself?
+
+Let's say you want your Person object to have an "introduce" method that allows a Person to tell someone else their name.
+
+You do this using the `this` keyword:
+
+```js
+/**
+ * Constructs a Person
+ * @param {string} name
+ * @param {number} age
+ * @returns {Person}
+ */
+function makePerson(name, age) {
+    return {
+        name,
+        age,
+        introduce() {
+            return "Hello, I'm " + this.name;
+        }
+    }
+}
+```
+
+You reference a property on `this` in exactly the same way as you would on any other object.
+
+It seems simple, but `this` can actually get surprisingly complex in JavaScript. I'll explain more about that later in the chapter.
+
 ### Iterating over Objects
+
+You can iterate over all an object's properties. This can be done in 2 ways:
+
+```js
+const person = {
+    name: "Jason",
+    age: 42,
+    nationality: "United States",
+    nativeLanguage: "English"
+};
+
+// iterate using a for...in loop
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+
+// iterate using Object.keys
+for (let key of Object.keys(person)) {
+    console.log(key + ": " + person[key]);
+}
+
+```
+
+Note that `Object.keys` only works with string keys that are *own properties* on the object. An object's own properties are the ones defined directly on the object itself, and not inherited from another object as prototype properties.
+
+### Configuring Object Properties
+
+Both of these techniques only work with properties that are enumerable. An object's properties are set to enumerable by default, but you can use the `Object.defineProperty` method to define non-enumerable properties:
+
+```js
+const person = {
+    name: "Jason",
+    age: 42
+};
+
+Object.defineProperty(person, "name", { enumerable: false });
+```
+
+In addition to the `enumerable` attribute, you can also use the 3rd argument to `Object.defineProperty` to set whether a property is configurable and writeable. Configurable means the property's attributes can be further edited. Writeable means the value of the property can be overwritten with something else. Trying to edit a non-writeable property will throw an error.
+
+The other things you can define through the 3rd argument to `Object.defineProperty` are the property's value, a getter function, and a setter function. Here's an example of a getter function for a property "fullName" that isn't defined directly on the object itself:
+
+```js
+const person = {
+    firstName: "Jason",
+    lastName: "Barr",
+    age: 42,
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+
+// use with a simple member expression
+person.fullName; //-> "Jason Barr"
+```
+
+You can use getters and setters for properties already defined on an object or for "virtual" properties like this one that have not been defined on the object. To use `Object.defineProperty` to set the above getter:
+
+```js
+Object.defineProperty(person, "fullName", {
+    get: function() {
+        return this.firstName + " " + this.lastName;
+    }
+});
+```
+
+When you create a setter function, you can set the value of that property using a simple member expression and the function's logic will be applied to the value:
+
+```js
+const person {
+    // ...
+    set firstName(name) {
+        return name[0].toUpperCase() + name.slice(1).toLowerCase();
+    }
+};
+
+person.firstName = "rObErT";
+person.firstName; //-> Robert
+```
+
+You can also use `Object.defineProperty` for setters just like you can with getters.
+
+Note that you can also use bracket notation to access a character in a string, starting with 0 as the index of the first character. In programming we start counting from 0 instead of 1, which can be confusing for beginners.
+
+Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
 
 ### Creating Objects with Functions
 
