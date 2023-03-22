@@ -372,7 +372,100 @@ Person.prototype = personProto;
 
 Either way works just as well.
 
-There is much more you can do with prototypes, and there are more ways to set the prototype of an object type, but we'll cover that later in the book.
+### Creating a Static Constructor
+
+I personally am not a huge fan of the `new [Constructor]` syntax. I prefer a more functional interface for object creation, so I like to add a *static* constructor method to my constructors.
+
+A static method or property is simply one that's attached to the constructor itself, instead of the instance.
+
+To create a static "new" method that constructs an object, all you have to do is abstract away the `new` syntax in its own method:
+
+```js
+Person.new = function(name, age) {
+    return new Person(name, age);
+}
+
+// now create a new Person
+const jason = Person.new("Jason", 42);
+```
+
+You don't have to do it this way if you prefer using the `new` syntax to construct objects; it's just my personal preference.
+
+#### The Constructor Property
+
+Using a constructor this way gives Person instances a constructor property that resolves to the Person constructor:
+
+```js
+const jason = Person.new("Jason", 42);
+jason.constructor; //-> Person {}
+jason.constructor.name; //-> "Person"
+```
+
+### Extending and Inheriting Objects
+
+If you have any experience with object oriented programming, you know that inheritance is an important way of extending an object's functionality. In JavaScript, inheritance works through prototypes. You can create an object with another object as its prototype using the `Object.create` method, and thus create a subtype of the first object:
+
+```js
+const programmerProto = Object.create(Person.prototype);
+```
+
+Now the `programmerProto` object has `Person.prototype` as its prototype, so it has all the properties and methods of that object. Next you can add additional methods to the prototype using `Object.assign`, which adds all the properties of one object to another object:
+
+```js
+const programmerMethods = {
+    writeCode() {
+        console.log("I am writing a program");
+    }
+};
+
+Object.assign(programmerProto, programmerMethods);
+```
+
+Note that `Object.assign` mutates its target directly, adding properties right onto the leftmost object. Mutating an object can be problematic, because you might assume you have one kind of data when in fact you have something different, so it's common to use `Object.assign` with an empty object as its target. Note that you can pass as many arguments to `Object.assign` as you need. It will simply write the properties to the first object, starting with the 2nd argument and continuing rightward. If 2 objects have the same property key, the last one on the right "wins."
+
+```js
+// assume the Programmer constructor exists
+Programmer.prototype = Object.assign({}, programmerProto, programmerMethods);
+```
+
+There is one problem with setting up inheritance this way with `Object.create`: it obfuscates the "constructor" property on the subtype's constructor.
+
+You can use `Object.setPrototypeOf` to solve this problem:
+
+```js
+/**
+ * @typedef Programmer
+ * @property {string} name
+ * @property {number} age
+ * @property {string[]} languages
+ */
+/**
+ * Constructs a Programmer
+ * @param {string} name
+ * @param {number} age
+ * @param {string[]} languages
+ */
+function Programmer(name, age, languages) {
+    this.name = name;
+    this.age = age;
+    this.languages = languages;
+
+    Object.setPrototypeOf(Programmer.prototype, Person.prototype);
+    Object.setPrototypeOf(Programmer, Person);
+}
+
+// merge new methods onto Programmer.prototype
+Programmer.prototype = Object.assign(Programmer.prototype, programmerMethods);
+
+// add a static constructor (optional)
+Programmer.new = function(name, age, languages) {
+    return new Programmer(name, age, languages);
+};
+```
+
+Now you have a fully-featured Programmer type that inherits from the Person type.
+
+Using `Object.setPrototypeOf` like this properly sets up the inheritance chain both for the Programmer constructor and the prototype of Programmer instances.
 
 ### Native Constructors
 
