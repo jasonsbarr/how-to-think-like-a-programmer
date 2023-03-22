@@ -672,7 +672,7 @@ We could write an entire book about text encoding, but I'll just say the way sof
 
 Unicode maps text to numbers according to various different encoding schemes, the most common of which is UTF-8. When text is encoded as UTF-8, all "characters," which means a Unicode scalar value that represents some bit of text in some alphabet, are mapped to a sequence of 1, 2, 3, or 4 bytes (8 bits each).
 
-A bit is the smallest size value you can represent in a computer, which in binary code is just a 1 or 0. A byte is 8 bits. You've probably seen your computer's RAM or storage space given in terms of megabytes or gigabytes, which are 1 million or 1 billion bytes, respectively.
+A bit is the smallest size value you can represent in a computer, which in binary code is just a 1 or 0. A byte is 8 bits. You've probably seen your computer's RAM or storage space given in terms of megabytes or gigabytes, which are 1 million or 1 billion bytes, respectively. You can represent any number from 0-255 with 1 byte.
 
 JavaScript doesn't use UTF-8. For all practical purposes, we can say JavaScript uses UTF-16.
 
