@@ -5,9 +5,9 @@
 05-arrays.md
 05-project-game.md
 06-simple-algorithms.md
-07-json-files.md
 08-strings-regexp.md
 09-closures.md
+10-json-files.md
 10-higher-order-functions.md
 11-project-cli-notes-app.md
 12-recursion.md
