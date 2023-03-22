@@ -618,7 +618,7 @@ You can increment by more than 1:
 
 ```js
 // logs even numbers from 0 to 18
-for (let i = 0; sum < 20; i += 2) {
+for (let i = 0; i < 20; i += 2) {
     console.log(i);
 }
 ```
