@@ -739,7 +739,7 @@ Next, we evaluate each argument expression one at a time, from left to right as 
 absoluteValue(-15);
 ```
 
-After that, we substitute the evaluated value of each argument for every case where the parameter name it's replaced occurs in the function body.
+After that, we substitute the evaluated value of each argument for every case where the parameter name in the same position occurs in the function body.
 
 ```js
 {
