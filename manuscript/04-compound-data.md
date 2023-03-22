@@ -275,9 +275,55 @@ Note that you can also use bracket notation to access a character in a string, s
 
 Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
 
-### Creating Objects with Functions
-
 ### Constructor Functions and The `new` Keyword
+
+You saw above how to use a factory function to create objects of a certain type. JavaScript also has special functions called constructors that can be used to create objects. You define a constructor function just like any other function, but assign values to properties using the `this` keyword:
+
+```js
+/**
+ * @typedef Person
+ * @property {string} name
+ * @property {number} age
+ */
+/**
+ * Constructs a Person
+ * @constructor {Person}
+ * @param {string} name
+ * @param {number} age
+ */
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+```
+
+To use a constructor function to create an object, use the `new` keyword:
+
+```js
+const jason = new Person("Jason", 42);
+```
+
+### Prototypes
+
+What if you want your Person object to have methods on them?
+
+One way to do this is simply to define the methods in the constructor:
+
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.greet = function(name) {
+        return "Hello, " + name + "!";
+    };
+}
+```
+
+This works, but it wastes space because every copy of the Person type has its own copy of the function. That's no big deal when you're talking about 2 or 3 instances of your object, but what if you're building something like a game where you could have thousands or even hundreds of thousands of instances? In that case, the extra memory used by multiple copies of the same function could cause problems.
+
+Since the function is always the same, there's no need to have a separate copy of it for every object instance. A single copy that's shared by all the instances is just what we need. In JavaScript, we do this through prototypes.
+
+### Native Constructors
 
 ### The Spread Operator
 
