@@ -676,7 +676,7 @@ A bit is the smallest size value you can represent in a computer, which in binar
 
 JavaScript doesn't use UTF-8. For all practical purposes, we can say JavaScript uses UTF-16.
 
-In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each) sequences. It's actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
+In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each) sequences. JavaScript's string type is actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
 
 It's important to note that a Unicode scalar may not correspond exactly to what we think of as a "character" in text. It's a character for the computer's purposes, but some user-perceived characters may actually be made up of multiple Unicode scalars.
 
