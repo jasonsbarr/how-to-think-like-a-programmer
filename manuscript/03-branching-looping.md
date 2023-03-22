@@ -211,7 +211,7 @@ To use the function, simply call it with a textual prompt as an argument. When y
 
 The function receives its input from the command line as a string, which means you'll have to cast it to any other type you need.
 
-Here's a sample program to try it out:
+Here's a sample program to try it out. Note the extra space at the end of the argument, so the user's input isn't right up against the end of the prompt:
 
 ```js
 const name = input("What is your name? ");
@@ -643,7 +643,7 @@ You can also use `break` and `continue` statements inside a for loop:
  */
 function addEvens(start, end) {
     for (let i = start, sum = 0; i < end; i++) {
-        if (i % 0 !== 0) {
+        if (i % 2 !== 0) {
             continue;
         }
 
