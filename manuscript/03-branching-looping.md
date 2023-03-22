@@ -475,7 +475,7 @@ There's absolutely nothing wrong with this solution, and good for you if you tho
 
 There's another way to handle the problem though. That's by using *iteration*.
 
-Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again. It's rarely an issue in practice, but there are occasional cases where it makes a difference (mostly when processing large amounts of data or performing a massive number of repetitions).
+Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again. It's rarely an issue in practice, but there are occasional cases where it makes a difference (mostly when processing absolutely huge amounts of data or performing a massive number of repetitions).
 
 Plus for beginning programmers iteration often seems more intuitive than recursion because thinking recursively can be more complex than thinking in terms of iteration.
 
