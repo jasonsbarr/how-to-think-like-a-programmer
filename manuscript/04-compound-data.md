@@ -323,7 +323,80 @@ This works, but it wastes space because every copy of the Person type has its ow
 
 Since the function is always the same, there's no need to have a separate copy of it for every object instance. A single copy that's shared by all the instances is just what we need. In JavaScript, we do this through prototypes.
 
+There are a few different ways to assign methods to an object type's prototype.
+
+First, we can assign them directly to the "prototype" property of the Person constructor:
+
+```js
+/**
+ * @typedef Person
+ * @property {string} name
+ * @property {number} age
+ */
+/**
+ * Constructs a Person
+ * @constructor {Person}
+ * @param {string} name
+ * @param {number} age
+ */
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.greet = function(name) {
+    return "Hello, " + name + "!";
+};
+```
+
+Second, we can create an object with methods to be shared by the instances of our Person type and then set it to be the constructor's "prototype" property:
+
+```js
+const personProto = {
+    greet(name) {
+        return "Hello, " + name + "!";
+    },
+
+    introduce() {
+        return "Hello, I'm " + this.name;
+    }
+};
+
+// definition of Person constructor
+Person.prototype = personProto;
+```
+
+Either way works just as well.
+
+There is much more you can do with prototypes, and there are more ways to set the prototype of an object type, but we'll cover that later in the book.
+
 ### Native Constructors
+
+Now you know what I mean when I say String, Number, etc. are constructors. There's a small difference between these native constructors and ones you'll define, though.
+
+You should avoid doing things like this:
+
+```js
+const five = new Number(5);
+```
+
+It's technically legal, and you can use the resulting value in much the same way as you could use a primitive number, but then there's this:
+
+```js
+typeof five; //-> "object"
+```
+
+Were you expecting "number"? Whoops!
+
+On top of that, it will throw an error if you try to use `new` with the constructors of the 2 newer primitive types, BigInt and Symbol.
+
+As a general rule, using the constructors of primitive types to create objects is a bad idea; however, you **can** use the constructors as simple functions to cast values from one type to another:
+
+```js
+Number("5"); //-> 5
+String(true); //-> "true"
+Boolean(""); //-> false
+```
 
 ### The Spread Operator
 
