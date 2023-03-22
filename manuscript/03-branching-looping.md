@@ -829,7 +829,7 @@ You can nest any number of functions and the scope chain will be constructed fro
 
 When you call a function, the JavaScript interpreter takes the execution context for that function along with the arguments provided in the function call and uses them to create a *call stack frame*. This happens during the interpreter's execution pass.
 
-You saw above how calling a function causes its argument expressions to be evaluated one at a time, from left to right. In order to do the step of substituting the argument values for the parameter names in the function body, the interpreter makes a copy of the function's local environment that's part of its execution context. Then it replaces the parameter names with the argument values in the new copy of the environment. This new object is a call stack frame, which is then placed on top of the call stack.
+You saw above how calling a function causes its argument expressions to be evaluated one at a time, from left to right. In order to do the step of substituting the argument values for the parameter names in the function body, the interpreter makes a copy of the function's local environment that's part of its execution context. Then it assigns the argument values to the parameter names in the new copy of the environment. This new object is a call stack frame, which is then placed on top of the call stack.
 
 The call stack is a stack data structure the interpreter maintains internally that keeps track of which function is currently being executed and what functions have yet to be executed.
 
