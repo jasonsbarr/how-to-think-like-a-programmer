@@ -359,6 +359,10 @@ const personProto = {
 
     introduce() {
         return "Hello, I'm " + this.name;
+    },
+
+    haveBirthday() {
+        this.age++;
     }
 };
 
