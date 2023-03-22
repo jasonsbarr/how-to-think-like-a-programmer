@@ -455,17 +455,17 @@ If you're thinking to yourself, "Didn't we already introduce a way to repeat cod
  * @param {string} userInput
  * @returns {number}
  */
-function getNumber(userInput) {
+function getAge(userInput) {
     const value = Number(userInput);
 
     if (Number.isNaN(value)) {
-        return getNumber(input("How old are you? "));
+        return getAge(input("How old are you? "));
     }
 
     return value;
 }
 
-const age = getNumber(input("How old are you? "));
+const age = getAge(input("How old are you? "));
 console.log("You are " + age + " years old!");
 ```
 
