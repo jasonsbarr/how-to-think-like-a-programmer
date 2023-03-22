@@ -469,7 +469,9 @@ const age = getAge(input("How old are you? "));
 console.log("You are " + age + " years old!");
 ```
 
-There's absolutely nothing wrong with this solution, and good for you if you thought of it yourself. Note that we don't need an `else` clause above because the `return` statement in the `if` block ensures that the rest of the function won't be executed.
+Note that we don't need an `else` clause above because the `return` statement in the `if` block ensures that the rest of the function won't be executed.
+
+There's absolutely nothing wrong with this solution, and good for you if you thought of it yourself.
 
 There's another way to handle the problem though. That's by using *iteration*.
 
