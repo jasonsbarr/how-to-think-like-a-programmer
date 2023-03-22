@@ -677,9 +677,40 @@ function changeName(person, name) {
 
 You can also do it with the spread operator, which we'll cover in the next section.
 
-In cases where immutability is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
+In cases where immutable data is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
 
 ### The Spread Operator
+
+The spread operator allows you to "spread" an object into a new object, which lets you copy, merge, and update objects without mutating the originals.
+
+To spread an object, use the `...` operator:
+
+```js
+const person = { name: "Jason", age: 42 };
+const programming = { languages: ["JavaScript", "Python", "F#", "Rust"] };
+const hobbies = { games: ["chess", "golf"], others: ["musical instruments", "RPGs"] }
+
+// let's make a copy of person
+const personCopy = { ...person };
+
+// Jason has a birthday, so let's create a
+// new object and update the age
+const person2 = { ...person, age: 43 };
+
+// Jason is also a programmer and has hobbies,
+// so let's merge all those properties
+const jason = { ...person, ...programming, ...hobbies };
+```
+
+Now we can rewrite the `changeName` function above like this:
+
+```js
+function changeName(person, name) {
+    return { ...person, name };
+}
+```
+
+That way we don't have to mutate the original object to update it.
 
 ### Destructuring Objects
 
