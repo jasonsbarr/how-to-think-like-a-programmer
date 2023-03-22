@@ -801,10 +801,98 @@ For complete documentation of all the Date object's properties and methods, see 
 
 ## JavaScript Evaluation Model
 
+Now let's incorporate objects into the mental model of the JavaScript interpreter we began constructing in the previous chapter.
+
 ### Function Calls and `this`
+
+You'll remember from our discussion of execution contexts that the 3rd part of constructing the execution context is setting the value of `this`.
+
+You've seen above that we use `this` as a means of referencing the object itself within its own constructor and methods. For most languages with objects, that's everything there is to know about `this`. JavaScript is a bit more complicated. You can actually access `this` in any execution context, not just in object method calls.
+
+There is actually a value for `this` in every execution context created during the execution of a JavaScript program, including global, module, and function contexts.
+
+In the global execution context, the value of `this` depends on whether or not the code is running in *strict mode*.
+
+Strict mode was added to the language in 2009 and it disallows certain programming practices that are seen as poor style. You'll never see any of them in this book, so we don't need to go into exactly what they are. You can assume all code in this book works in strict mode. You can set strict mode either globally or on a per-function basis.
+
+You initiate strict mode by adding the string `"strict mode"` at the top of your script or at the top of a function. All code in ES2015 modules is in strict mode.
+
+When you're writing a script (i.e. not a module), if strict mode is off then the value of `this` is set to the global object. This is `window` in the browser and `global` in Node.js. In either runtime you can access the global object with the keyword `globalThis`.
+
+In a module, `this` is set to undefined since modules are in strict mode.
+
+When executing a function, `this` can be either the same value as it has in the global context or it can be set to another object.
+
+It's set to another object when:
+
+- Calling a constructor with the `new` keyword
+- A function is called with its `call`, `apply`, or `bind` methods
+- A method is being called via a member expression
+
+When calling a constructor with `new`, `this` is set to the object being constructed. That's why you can set properties using `this` in a constructor (or class constructor).
+
+When calling a function with `call`, `apply`, or `bind`, `this` is set to the object passed as the first parameter to whichever of the 3 methods is being used.
+
+When calling a method with a member expression, `this` is set to the object of which the method is a property.
+
+That means if you forget the `new` keyword when calling a constructor you'll get different behavior from what you expected:
+
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+const person1 = new Person("Jason", 42);
+// note there is no "new" keyword
+const person2 = Person("Daniel", 9);
+
+// if in sloppy mode:
+window.name; //-> "Daniel"
+window.age; //-> 9
+```
+
+If you try to call the constructor without `new` in strict mode, the interpreter will try to set "age" and "name" properties on `undefined`, which throws an error.
+
+### Call, Apply, and Bind
+
+Every function has the call, apply, and bind methods.
+
+Each of these lets you set the value of `this` with the first argument to the method.
+
+With call, the first argument sets `this` and then you pass all the rest of the arguments to the function after that.
+
+Apply is exactly the same, except that instead of a list of separate arguments you pass the arguments in an array (we'll look at arrays in the next chapter).
+
+Bind is a little different.
+
+Bind creates a new function that has its `this` value bound to whatever you gave it as its first argument. You can also bind argument values to parameters, giving it any number between 0 and all the arguments the function takes. If you bind some parameters but leave some unbound, this is known as *partial application* of the function. Then when you call the function all you have to do is give it arguments for the remaining parameters.
+
+Bind is useful if you want to create a single function and use it as a method for objects with different prototypes. It also comes in handy in some situations when programming in the browser, which we'll look at later in the book.
 
 ### The Differences between `function` Functions and Arrow Functions
 
+Remember in the 2nd chapter when I said arrow functions and `function` functions were different? This is the most important difference. Literally `this`, I mean.
+
+`function` functions bind `this` when they are executed. Arrow functions do not.
+
+That means if you use an arrow function as an object method you can't reference `this` in its body:
+
+```js
+const person = {
+    name: "Jason",
+    introduce: () => {
+        return "My name is " + this.name + ".";
+    }
+};
+
+person.introduce(); //-> "My name is undefined."
+```
+
 ## Recap
+
+Now you know how to use objects, as well as different ways to construct them. This will allow you to model data in more realistic and useful ways in your programs.
+
+In the next chapter, we'll look at the built-in collection types: Map, Set, and Array.
 
 ## Exercises
