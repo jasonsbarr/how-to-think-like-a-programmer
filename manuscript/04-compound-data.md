@@ -30,6 +30,10 @@
 
 ### Array Destructuring
 
+## Maps
+
+## Sets
+
 ## Variadic Functions
 
 ### The `arguments` Object
