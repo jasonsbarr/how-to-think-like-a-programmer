@@ -456,7 +456,7 @@ let x = value1 ?? 0;
 If the value could be falsy and you want to make sure you have a truthy value, use `||`:
 
 ```js
-let x = value1 || 0;
+let x = value1 || 1;
 ```
 
 Before we had the nullish coalescing operator, our only option for default values was to use `||`, which could cause problems if a falsy value other than `null` or `undefined` was acceptable.
