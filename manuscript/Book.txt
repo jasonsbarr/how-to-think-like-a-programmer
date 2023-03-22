@@ -1,7 +1,8 @@
 01-introduction.md
 02-simple-data.md
 03-branching-looping.md
-04-compound-data.md
+04-objects.md
+05-arrays.md
 05-project-game.md
 06-simple-algorithms.md
 07-json-files.md
