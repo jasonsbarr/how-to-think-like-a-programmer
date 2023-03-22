@@ -443,7 +443,7 @@ if (Number.isNaN(age)) {
 }
 ```
 
-"Okay," I hear you thinking. "That kinda works, but it's ridiculous." And you're absolutely right. Doing it this way violates one of the most important guidelines for programmers: DRY, or "Don't Repeat Yourself." If you find yourself copying and pasting code, or writing the same exact (or very similar) code again and again, you're probably missing out on an opportunity to abstract away some bit of functionality into its own function that could be used in multiple places.
+"Okay," I hear you thinking. "That kinda works, but it's ridiculous." And you're absolutely right. Doing it this way violates one of the most important guidelines for programmers: *DRY*, or "Don't Repeat Yourself." If you find yourself copying and pasting code, or writing the same exact (or very similar) code again and again, you're probably missing out on an opportunity to abstract away some bit of functionality into its own function that could be used in multiple places.
 
 Plus there's no way to be sure you'll have enough `if` checks for them to finally get it right! Even if you nest 1,000 conditional statements with the exact same prompt, they could always try the wrong input 1,001 times and then you're back to square one.
 
