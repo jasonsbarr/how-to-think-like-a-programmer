@@ -607,6 +607,12 @@ Boolean(""); //-> false
 BigInt(10); //-> 10n
 ```
 
+You can also extend a native constructor as a class, though that's not something you're going to need to do very often (if ever):
+
+```js
+class MyArray extends Array {}
+```
+
 ### Objects as Function Parameters
 
 ### The Spread Operator
