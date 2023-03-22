@@ -649,7 +649,7 @@ You can pass objects to any function just like you can with any other value, how
 So if you do something like this:
 
 ```js
-const person = new Person("Jason", 42);
+let person = new Person("Jason", 42);
 
 /**
  * Change the name of a Person instance
@@ -662,7 +662,7 @@ function changeName(person, name) {
     return person;
 }
 
-changeName(person, "Bob");
+person = changeName(person, "Bob");
 ```
 
 it will actually mutate the object everywhere it is used in the program, which may not be what you want. The above example is obvious, but object mutability can actually be a source of very annoying bugs that are difficult to track down and fix.
