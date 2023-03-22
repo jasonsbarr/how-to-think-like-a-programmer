@@ -90,6 +90,32 @@ const person = {
 }
 ```
 
+### Aliasing Objects
+
+You can alias (make a new name for) an object simply by assigning it to a new variable. Look out, though, because if you make any changes to (mutate) the new alias it will also mutate the original object as well. That's because objects are *reference types*.
+
+Primitives like number are value types, which means the value is immutable and when you assign it to a variable it essentially copies the data to the new variable. Immutable means it can't be changed, and numbers are immutable because 10 is always 10 no matter what you do to it. Since objects are reference types, when you alias an object no data is copied. The interpreter just creates a new pointer to the same object in memory, which is shared between the different variables.
+
+```js
+let a = 10;
+let b = a; // a === 10
+b = 15;
+a; //-> still 10
+
+const person = { name: "Jason" };
+const jason = person;
+jason.age = 42;
+person; //-> { name: "Jason", age: 42 }
+```
+
+Note that the `person` object is still mutated **even though it was declared with `const`**. That's because `const` only creates a constant **binding**. It does **not** create immutable data. If you want an object to be immutable, you have to use `Object.freeze`:
+
+```js
+const person = { name: "Jason" };
+Object.freeze(person);
+person.age = 42 // ERROR
+```
+
 ### Simple Data Objects, a.k.a. POJOs
 
 Simply defining properties with values on object literals is the simplest way to use objects in JavaScript. If you're familiar with functional programming languages like Elm or F#, this is similar to how records work in those languages.
@@ -614,6 +640,42 @@ class MyArray extends Array {}
 ```
 
 ### Objects as Function Parameters
+
+You can pass objects to any function just like you can with any other value, however there are a couple of important things to take note of:
+
+1. Objects are passed by reference, which means when you pass an object into a function you're not passing a copy of the data, but a reference to the actual object itself which means anything you change in the function will change on the object itself both in and outside of the function
+2. Objects are mutable by default, which means you can easily change anything about the object and JavaScript won't stop or warn you
+
+So if you do something like this:
+
+```js
+const person = new Person("Jason", 42);
+
+/**
+ * Change the name of a Person instance
+ * @param {Person} person
+ * @param {string} name
+ * @returns {Person}
+ */
+function changeName(person, name) {
+    person.name = name;
+    return person;
+}
+
+changeName(person, "Bob");
+```
+
+it will actually mutate the object everywhere it is used in the program, which may not be what you want.
+
+It's usually better to create a copy of the object and return that. You can do that with `Object.assign`:
+
+```js
+function changeName(person, name) {
+    return Object.assign({}, person, { name });
+}
+```
+
+You can also do it with the spread operator, which we'll cover in the next section.
 
 ### The Spread Operator
 
