@@ -8,9 +8,7 @@
 
 ## Linear Search of an Array
 
-## Finding the Longest Alphabetical Substring
-
-## Accumulators and Pointers
+## Finding the Longest Lexicographical Substring
 
 ## Basics of Binary Search
 
@@ -28,7 +26,21 @@
 
 ### Memoized Solution
 
-## Designing Functions
+## How To Design Programs
+
+### Problem Analysis
+
+### Decomposition
+
+### Creating a "Wish List" of Functions
+
+### Documenting Your Functions
+
+### Testing Your Functions
+
+### Composing Many Functions into a Solution
+
+### Putting It All Together
 
 ## Recap
 
