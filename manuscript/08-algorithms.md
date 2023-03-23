@@ -1,4 +1,10 @@
-# Some Simple Algorithms
+{class:part}
+
+# Intermediate Programming
+
+Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. We'll dig more deeply into JavaScript features, and you'll also start learning more about how to design programs and write them more effectively.
+
+# Basic Algorithms
 
 ## Declarative vs. Imperative Knowledge
 
@@ -8,23 +14,33 @@
 
 ## Linear Search of an Array
 
-## Finding the Longest Lexicographical Substring
-
-## The Accumulator and Pointer Patterns
+## Finding the Longest Alphabetical Substring
 
 ## Basics of Binary Search
 
 ## Binary Search of an Array
 
-## Finding The Square Root with Binary Search
+## A More Efficient Square Root Algorithm
 
 ## The Big O of Binary Search
+
+## Bubble Sort
+
+## Merge Sort
+
+## Stacks and Queues
+
+## Linked Lists
+
+## Trees and Tree Traversal
 
 ## How To Design Programs
 
 ### Problem Analysis
 
 ### Decomposition
+
+### Data Design
 
 ### Creating a "Wish List" of Functions
 
