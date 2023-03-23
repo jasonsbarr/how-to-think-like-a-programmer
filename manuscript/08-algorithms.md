@@ -28,20 +28,6 @@ Now that you've grasped the basics of programming in JavaScript, we'll take it u
 
 ## Merge Sort
 
-## Stacks and Queues
-
-## Linked Lists
-
-### Singly Linked Lists
-
-### Linked List Algorithms
-
-### Linked List Stacks and Queues
-
-### Doubly Linked Lists
-
-## Trees and Tree Traversal
-
 ## How To Design Programs
 
 ### Problem Analysis
