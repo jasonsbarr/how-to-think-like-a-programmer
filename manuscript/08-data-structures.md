@@ -6,9 +6,9 @@
 
 ## Singly Linked Lists
 
-## Linked List Algorithms
-
 ## Linked List Stacks and Queues
+
+## Linked List Algorithms
 
 ## Doubly Linked Lists
 
