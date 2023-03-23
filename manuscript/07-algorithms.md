@@ -24,9 +24,15 @@ Now that you've grasped the basics of programming in JavaScript, we'll take it u
 
 ## The Big O of Binary Search
 
+## Sorting Algorithms
+
 ## Bubble Sort
 
+## Selection Sort
+
 ## Merge Sort
+
+## Quick Sort
 
 ## Asymptotic Analysis of Algorithms
 
