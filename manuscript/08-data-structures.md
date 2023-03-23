@@ -12,6 +12,8 @@
 
 ## Doubly Linked Lists
 
+## Hash Tables
+
 ## Tree-Shaped Data
 
 ## How To Design Data

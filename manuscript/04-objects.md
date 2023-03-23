@@ -117,6 +117,22 @@ person.age = 42; // the interpreter will ignore this
 person; //-> { name: "Jason" }
 ```
 
+Since objects are mutable by default, if I know I could possibly mutate an object of any kind I will declare it with `let` instead of `const` to avoid confusion and signal that the value of the object may change. This includes objects of the collection types we'll look at in the next chapter.
+
+## Object Equality
+
+Since objects are reference types, an equals check only evaluates to `true` if both the left and right side objects are the exact same object, i.e. one is an alias of the other. JavaScript uses *reference equality* to compare objects.
+
+```js
+const o = { a: "hi", b: "bye" };
+const o2 = o;
+
+o === o2; //-> true
+o === { a: "hi", b: "bye" }; //-> false
+```
+
+Note that this is the same regardless of whether you use `==` or `===` for comparison.
+
 ## Simple Data Objects, a.k.a. POJOs
 
 Simply defining properties with values on object literals is the simplest way to use objects in JavaScript. If you're familiar with functional programming languages like Elm or F#, this is similar to how records work in those languages.

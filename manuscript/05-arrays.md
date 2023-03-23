@@ -1,6 +1,137 @@
 # Built-In Collection Types: Maps, Sets, and Arrays
 
+JavaScript has 3 built-in *collection* types that we will look at in this chapter. A collection type allows you to group data together in a structured manner. The 3 built-in collection types are Maps, Sets, and Arrays.
+
 ## Maps
+
+A JavaScript Map is an object made up of key/value pairs. It's conceptually similar to an object, except that with an object you can only have property keys that are strings or symbols. The keys of a Map entry can be any type, including objects and even other Maps.
+
+You can mix and match the types of your keys and values, but don't. Maps are most effective when you have the same type for all keys and the same type for all values. Obviously the key and value types don't have to be the same. If you **absolutely** need different types for values and you need keys with a type other than string or symbol, you have to use a Map. You should avoid getting into situations where this is necessary. If you need entry values with different types, an object is more appropriate than a Map.
+
+## Constructing Maps
+
+Unlike with objects, there is no literal syntax for a Map. You have to use the Map constructor:
+
+```js
+let m = new Map(); // creates an empty Map
+```
+
+You can also create a Map directly from an array of pairs, which are arrays with 2 elements representing key/value pairs:
+
+```js
+const pairs = [ [ "a", "hello" ], [ "b", "goodbye" ] ];
+//-> Map { "a" => "hello", "b" => "goodbye" }
+```
+
+Obviously we'll cover constructing arrays later in the chapter, but this is an example of using array literal syntax to create an array of array pairs.
+
+The ability to use an array of pairs to construct a Map means you can easily convert an object to a Map:
+
+```js
+const obj = { a: "hi", b: "bye" };
+const m = new Map(Object.entries(obj));
+```
+
+## Working with Maps
+
+To add entries to a Map, use the `Map.prototype.set` method with the key and value:
+
+```js
+m.set("key1", "value1");
+```
+
+The `set` method both sets the value for the given key and returns the Map itself with the new entry.
+
+To read an entry from the Map use `Map.prototype.get` with the key:
+
+```js
+m.get("key1");
+```
+
+Trying to get an entry with a nonexistent key will evaluate to `undefined`, so if you're uncertain whether a Map key has been set you'll want to use the `has` method as shown below.
+
+Note that, because all objects (including collection types) are reference types, an equals comparison on 2 Maps will only evaluate to `true` if one is an alias of the other:
+
+```js
+// This creates a map with the same entries as m, above
+const m2 = new Map(Object.entries({ key1: "value1" }));
+
+m === m2; //-> false
+```
+
+To check and see if a Map has an entry with a certain key, use `Map.prototype.has`:
+
+```js
+m.has("key2"); //-> false
+```
+
+This allows you to avoid getting `undefined` values when fetching data from a Map:
+
+```js
+let value;
+if (!m.has("key2")) {
+    value = "value2";
+    m.set("key2", "value2");
+} else {
+    value = m.get("key2");
+}
+```
+
+To remove an entry from the Map, pass its key to `Map.prototype.delete`:
+
+```js
+m.delete("key2"); //-> true
+```
+
+If the entry is successfully deleted `delete` returns `true`; otherwise it returns `false`.
+
+If you need to delete all the data in a Map, use `Map.prototype.clear`:
+
+```js
+m.clear(); // m is now empty
+```
+
+It's good programming practice in general to avoid mutating your objects like this, but there are cases where it's necessary.
+
+## Iterating over A Map
+
+Similar to objects, a Map has methods to get its keys, values, and entries.
+
+`Map.prototype.keys` returns the keys:
+
+```js
+for (let key of m.keys()) {
+    console.log(m.get(key));
+}
+
+for (let value of m.values()) {
+    console.log(value);
+}
+
+for (let entry of m.entries()) {
+    console.log(entry);
+}
+```
+
+The `keys` and `values` methods both return a MapIterator, which is an iterable object similar to an array. It doesn't have the same properties and methods as an array, though, so if you want to use it like an array you'll need to convert it first. The `entries` method returns a MapEntries object, which is an iterable object that contains array key/value pairs for all the entries. Again, if you want to use it with array methods you'll have to convert it. I'll cover how to convert iterable objects to arrays later in this chapter.
+
+If all you want to do is iterate over a Map's entries, Maps are themselves iterable so you can simply use a for...of loop with the Map itself:
+
+```js
+for (let entry of m) {
+    console.log(entry);
+}
+```
+
+Since each Map entry is given as an array pair by the iterable, you can use destructuring to break it apart, in a similar fashion to how you destructure an object:
+
+```js
+for (let [key, value] of m) {
+    console.log(key + ":", value);
+}
+```
+
+You can use destructuring to extract values from any iterable, which we'll cover in detail later in the chapter.
 
 ## Sets
 
