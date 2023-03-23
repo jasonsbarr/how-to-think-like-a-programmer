@@ -14,6 +14,6 @@
 
 ## Hash Tables
 
-## Tree-Shaped Data
+## Trees
 
 ## How To Design Data
