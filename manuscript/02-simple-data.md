@@ -101,8 +101,10 @@ If the value is too far from 0, it evaluates to the one of the special number va
 Bigints are integer numbers that can grow indefinitely large in either direction. They are written as integers with an `n` at the end.
 
 ```js
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000 //-> evaluates to Infinity
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000n //-> evaluates to this integer
+//-> evaluates to Infinity
+1000000000000000000000000000000000000000000000000000000000000000000000000000000000
+//-> evaluates to this integer
+1000000000000000000000000000000000000000000000000000000000000000000000000000000000n
 ```
 
 You can't use numbers and bigints together in the same mathematical operation. If you try, it will cause an error.
