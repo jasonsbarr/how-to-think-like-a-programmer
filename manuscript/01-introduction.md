@@ -74,6 +74,10 @@ Keep at it, and one day you'll get better than me.
 
 I hope you do!
 
+Learning the basics of how to use a programming language is easy. Learning how to be an excellent programmer is really hard and takes a **lot** of work. This book will demystify large parts of the process for you, but you have to put in the work yourself to really learn the material. You have to practice writing lots of programs in order to get good at writing programs.
+
+There are no shortcuts to mastery, but this book can serve as a trusted guide along the path.
+
 ## Programs and Programming Languages
 
 We've talked a lot about writing and reasoning about programs, but what is a program? Moreover, what is a programming language?
