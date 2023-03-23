@@ -18,7 +18,7 @@ Object is a constructor, just like String and Number. We'll explore constructors
 
 Some languages make you define object types with classes before you can construct actual instances of objects. JavaScript does not. We **do** have classes in JavaScript, but they work differently from classes you may have used in other programming languages.
 
-Instead of constructing objects from classes, JavaScript has *prototype* based objects. We'll get deep into prototypes and how they work later in the book, but for now it's enough to know that any object can be the prototype for any other object.
+Instead of constructing objects from classes, JavaScript has *prototype* based objects. We'll get deep into prototypes and how they work later in the chapter, but for now it's enough to know that any object can be the prototype for any other object.
 
 You can also create object literals using curly braces:
 

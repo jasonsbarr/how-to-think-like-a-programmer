@@ -21,6 +21,8 @@
 21-project-browser.md
 22-using-a-database.md
 23-project-full-stack.md
-24-problem-solving.md
-25-final-project.md
-26-conclusion.md
+24-reactive-ui.md
+25-problem-solving.md
+26-challenge-walkthroughs
+27-final-project.md
+28-conclusion.md
