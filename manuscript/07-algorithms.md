@@ -1,6 +1,6 @@
 {class:part}
 
-# Intermediate Programming
+# Part II: Intermediate Programming
 
 Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. We'll dig into more useful JavaScript features, and you'll also start learning more about algorithms, data structures, and how to design effective programs.
 
