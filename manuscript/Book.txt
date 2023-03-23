@@ -31,4 +31,6 @@
 31-final-project-1.md
 32-final-project-2.md
 33-final-project-3.md
-34-conclusion.md
+34-final-project-4.md
+35-final-project-5.md
+36-conclusion.md
