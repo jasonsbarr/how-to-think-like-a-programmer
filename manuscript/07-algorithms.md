@@ -28,7 +28,7 @@ Now that you've grasped the basics of programming in JavaScript, we'll take it u
 
 ## Merge Sort
 
-## Big O Recap
+## Asymptotic Analysis of Algorithms
 
 ## Recap
 
