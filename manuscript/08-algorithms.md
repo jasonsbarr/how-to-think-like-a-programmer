@@ -34,8 +34,6 @@ Now that you've grasped the basics of programming in JavaScript, we'll take it u
 
 ### Decomposition
 
-### Data Design
-
 ### Creating a "Wish List" of Functions
 
 ### Documenting Your Functions
