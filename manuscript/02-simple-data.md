@@ -157,7 +157,7 @@ You can also increment and decrement numbers using the `++` and `--` operators. 
 ```js
 10++ //-> 11
 10-- //-> 9
-x++ // x is now equal to its previous value + 1
+++x // x is now equal to its previous value + 1
 ```
 
 The increment and decrement operators can be used in either prefix (before the value) or postfix (after the value) position.
