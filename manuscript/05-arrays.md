@@ -48,6 +48,8 @@ To read an entry from the Map use `Map.prototype.get` with the key:
 m.get("key1");
 ```
 
+If the key you pass to `get` as an argument is a reference type, the interpreter will use reference equality to compare the argument to the Map's keys. That means the object must be the same object or an alias for the object. Passing it an object that is structurally the same (i.e. has the same property keys and values) will not work.
+
 Trying to get an entry with a nonexistent key will evaluate to `undefined`, so if you're uncertain whether a Map key has been set you'll want to use the `has` method as shown below.
 
 Note that, because all objects (including collection types) are reference types, an equals comparison on 2 Maps will only evaluate to `true` if one is an alias of the other:
@@ -77,13 +79,15 @@ if (!m.has("key2")) {
 }
 ```
 
+Just like with `get`, if the key is a reference type it must be the exact same object.
+
 To remove an entry from the Map, pass its key to `Map.prototype.delete`:
 
 ```js
 m.delete("key2"); //-> true
 ```
 
-If the entry is successfully deleted `delete` returns `true`; otherwise it returns `false`.
+If the entry is successfully deleted `delete` returns `true`; otherwise it returns `false`. Just like with `get` and `has`, if you give `delete` an object it will only delete the entry if it's the exact same object or an alias.
 
 If you need to delete all the data in a Map, use `Map.prototype.clear`:
 
