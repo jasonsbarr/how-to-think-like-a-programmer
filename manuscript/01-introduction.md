@@ -24,8 +24,6 @@ An interpreter is another program, outside the JavaScript programs you'll write,
 
 You'll also learn how to design rock-solid, efficient programs and how to solve any coding problem so you'll ace your technical interviews when it's time to get a programming job.
 
-At the end of the book you'll build your very own programming language as a final project. The language will be similar to Clojure. You'll design the language, build the parser, build the interpreter, including a fully-featured macro system, object-oriented programming, and modules, build a Web-based IDE, and put together a full-stack runtime environment. This project will make an incredible piece for your portfolio. How many people can say they've created their own programming language from scratch? At the end of this book, you'll be able to say just that.
-
 ## Software Engineering
 
 Thinking like a programmer means thinking like an engineer. You are *engineering* solutions in code to the problems you face.
@@ -46,9 +44,7 @@ Also, if you work through this whole book you'll cover about as much as you woul
 
 Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
 
-There are exercises at the end of each chapter.
-
-At the end of each part of the book, there's a substantial project. There's also the massive final project at the end.
+There are exercises at the end of each chapter, and there are several projects throughout the book.
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
 
