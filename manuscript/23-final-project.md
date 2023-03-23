@@ -1,1 +1,1 @@
-# Final Project: A Fully Featured Bug Tracker
+# Final Project: A Fully Featured Bug Tracker/Project Manager
