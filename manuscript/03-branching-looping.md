@@ -853,6 +853,6 @@ Eventually the interpreter gets back to the global stack frame, and then it cont
 
 Now you have a solid understanding of almost everything you need to know about JavaScript to write substantial programs. Understanding control flow enables you to write more complex algorithms, and knowing how the interpreter executes functions will enable you to comprehend and debug even the most complex programs.
 
-In the next chapter we'll look at compound data types. All the data we've seen so far has been comprised of primitive types. Compound types allow you to combine data of different types into more complex data types and structures, which allows you to represent data in more flexible and useful ways.
+In the next chapter we'll look at objects, which are a kind of *compound type*. All the data we've seen so far has been comprised of primitive types. Compound types allow you to combine data of different types into more complex data types and structures, which allows you to represent data in more flexible and useful ways.
 
 ## Exercises
