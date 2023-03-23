@@ -405,6 +405,8 @@ When talking about time complexity, programmers tend to discuss algorithms in te
 
 The key here is to understand that we want to measure the efficiency of the algorithm itself, not the actual elapsed time it takes to make the computation. A more efficient algorithm will run faster on a given machine than a less efficient one, regardless of how powerful the computer itself that's running the computation is.
 
+Analyzing a program to understand its efficiency is called *asymptotic analysis*. The term actually comes from really advanced math, but you don't need to know anything more complex than the math you studied in middle school to actually do it.
+
 Before we introduced conditional statements to our arsenal we could only write very boring programs. Nothing more than a sequence of single instructions. A program simply took as long to run as there were steps to execute. This is known as a *constant time algorithm*. If a computation takes *k* steps to perform, then its running time is constant because the input to the function doesn't matter. Regardless of whether the input is huge or tiny, the computation still takes the same number of steps.
 
 With the addition of conditional statements, things get a little more interesting. Now the number of steps performed depends on which branch of a conditional is taken.

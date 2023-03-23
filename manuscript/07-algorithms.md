@@ -2,7 +2,7 @@
 
 # Part II: Intermediate Programming
 
-Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. We'll dig into more useful JavaScript features, and you'll also start learning more about algorithms, data structures, and how to design effective programs.
+Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. First, you'll learn about algorithms, data structures, and how to design good programs. Then we'll dig into some additional JavaScript features that will expand your level of competence with the language. Finally, there's a project at the end to put it all together.
 
 # Basic Algorithms
 
@@ -25,6 +25,10 @@ Now that you've grasped the basics of programming in JavaScript, we'll take it u
 ## The Big O of Binary Search
 
 ## Bubble Sort
+
+## Merge Sort
+
+## Big O Recap
 
 ## Recap
 
