@@ -22,7 +22,7 @@ As we work through this book, we'll progressively develop mental models of compu
 
 An interpreter is another program, outside the JavaScript programs you'll write, that executes the programs written in some programming language (in this case, JavaScript).
 
-Then, at the end of the book, you'll write an interpreter for your very own programming language as a final project. You'll explore different versions of the interpreter that use different evaluation models. The goal is to help you completely understand how a programming language works from top to bottom, so you can reason more accurately about your own programs.
+Then, at the end of the book, you'll build your very own programming language as a final project. You'll design the language, build the parser, build the interpreter, build a Web-based IDE, and put together a full-stack runtime environment.
 
 ## Software Engineering
 
