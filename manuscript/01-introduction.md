@@ -22,7 +22,9 @@ As we work through this book, we'll progressively develop mental models of compu
 
 An interpreter is another program, outside the JavaScript programs you'll write, that executes the programs written in some programming language (in this case, JavaScript).
 
-Then, at the end of the book, you'll build your very own programming language as a final project. You'll design the language, build the parser, build the interpreter, build a Web-based IDE, and put together a full-stack runtime environment.
+You'll also learn how to design rock-solid, efficient programs and how to solve any coding problem so you'll ace your technical interviews when it's time to get a programming job.
+
+At the end of the book you'll build your very own programming language as a final project. The language will be similar to Clojure. You'll design the language, build the parser, build the interpreter, including a fully-featured macro system, object-oriented programming, and modules, build a Web-based IDE, and put together a full-stack runtime environment. This project will make an incredible piece for your portfolio. How many people can say they've created their own programming language from scratch? At the end of this book, you'll be able to say just that.
 
 ## Software Engineering
 
@@ -44,15 +46,15 @@ Also, if you work through this whole book you'll cover about as much as you woul
 
 Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
 
-There are exercises throughout and at the end of each chapter.
+There are exercises at the end of each chapter.
 
-After every 4th chapter, there's a substantial project. There's also the final project at the end.
+At the end of each part of the book, there's a substantial project. There's also the massive final project at the end.
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
 
 ## How To Get The Most out of This Book
 
-This is not a book for cramming. It is a book to be digested in pieces, likely no larger than 1 chapter at a time.
+This is not a book for cramming. It is a book to be digested in pieces, preferably no larger than 1 chapter at a time.
 
 I've tried to incorporate insights from recent research into how we learn into the structure of the book. Coming back to previous topics and repeating them in further depth. Interleaving aspects of different topics in the content and exercises. Giving plenty of opportunities to practice your skill development. Breaking the material down into "chunks" your brain can easily hold.
 
@@ -115,7 +117,7 @@ Syntax is simply the symbols used to write programs in a language, and the rules
 
 For example, in JavaScript 5 is a number. `+` is an operator, which is like a built-in function that can be applied to its operands. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
 
-Producing an error that halts the program is known as "throwing an error." With some languages it's called "raising an error."
+Producing an error that halts the program is known as "throwing an error."
 
 Static semantics defines which syntactically well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static-semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will throw an error.
 
@@ -159,7 +161,7 @@ Some of them are good, but some of them can be extremely frustrating. I'll give 
 
 JavaScript most often runs in interpreters. The code is executed as the interpreter reads in and processes the code, rather than being compiled ahead of time into binary executables you can run later.
 
-JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapters. If you have no programming experience and have no idea what anything I've just said means, don't worry about it! I'll explain everything you need to know when we get there.
+JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapter. If you have no programming experience and have no idea what anything I've just said means, don't worry about it! I'll explain everything you need to know when we get there.
 
 One last thing about JavaScript: you may see the term "ECMAScript" on occasion. That's because shortly after JavaScript was released people quickly realized there needed to be a standard for it, to keep differences in browsers from making things too difficult for programmers. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the *official* specification for what is and is not valid JavaScript.
 
@@ -181,11 +183,11 @@ The easiest way to install Node is simply to go to the [Node.js website](https:/
 
 You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
 
-If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book. While I will use modern JavaScript syntax and commonly-accepted best practices, I won't use cutting-edge features that either aren't (yet) fully part of the standard or that have been released after February of 2023.
+If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book. While I will use modern JavaScript syntax and commonly-accepted best practices, I won't use cutting-edge features that either aren't (yet) fully part of the standard or that have been released after April of 2023.
 
 Simply run the installer you've chosen and respond to any prompts it gives you.
 
-If you're on a Linux PC or Mac, there's a tool called NVM that will let you manage and use different versions of Node.
+If you're on a Linux PC or Mac, there's a tool called NVM (Node Version Manager) that will let you manage and use different versions of Node.
 
 I use NVM on both my work and personal computers so I can test my code against multiple versions to make sure my applications will work properly with different versions. You can learn more about NVM at [their GitHub repo](https://github.com/nvm-sh/nvm).
 
@@ -195,7 +197,7 @@ You don't need to do anything to use JavaScript in the browser; unless you've de
 
 You'll be able to use all the language features your browser supports right out of the box.
 
-I test all my browser code in Chrome, Firefox, Safari, and Edge to make sure there's a consistent user experience across browsers. I also test on tablet and mobile devices, both Android and iOS.
+I test all my browser code in Chrome, Firefox, Safari, and Edge to make sure there's a consistent user experience across browsers. I also test on tablet and mobile devices, both Android and iOS. All the code in this book should be compatible with the latest version of every modern browser.
 
 JavaScript is usually loaded in a web page either from a `script` element or an external file. Most of the time you'll want to use an external file so you can share code between multiple web pages.
 
@@ -237,7 +239,7 @@ This will load the Node REPL and give you a prompt where you can enter code.
 
 REPL stands for "Read Eval Print Loop," and it's exactly what it sounds like: it reads the code you type in, executes it, prints the result of the computation, and then goes back to the beginning to do it all over again until you close out the REPL.
 
-You can also write this program in your browser's console. In most browsers you can open the console with CTRL (or CMD on a Mac)  + Shift + j, and you'll be given a prompt where you can enter code into the console. For the most part, the console works in the same way as the Node REPL.
+You can also write this program in your browser's console. In most browsers you can open the console with CTRL (or CMD on a Mac) + Shift + j, and you'll be given a prompt where you can enter code into the console. For the most part, the console works in the same way as the Node REPL.
 
 Ready for your first program? Here it is, so type it into your REPL (or console):
 
