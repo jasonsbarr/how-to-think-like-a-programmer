@@ -229,6 +229,8 @@ Getting the remainder of any number and zero evaluates to `NaN`.
 
 The string type holds textual data. Some languages have separate types for individual characters and strings, but JavaScript only has the string type. A single character in JavaScript is just a string with a single character in it.
 
+A string can be enclosed by either single or double quotes, as long as you use the same quote for both the beginning and end. Strings created with quotes can't span more than one line. In chapter 11, you'll see a kind of string that can be multiline.
+
 As shown earlier, you can "add" strings. More correctly, you can concatenate them using the `+` operator.
 
 ```js
