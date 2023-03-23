@@ -2,10 +2,10 @@
 02-simple-data.md
 03-branching-looping.md
 04-objects.md
-06-arrays.md
-07-project-game.md
-08-algorithms.md
-09-data-structures.md
+05-arrays.md
+06-project-game.md
+07-algorithms.md
+08-data-structures.md
 09-strings-regexp.md
 10-json-files.md
 11-project-cli-notes-app.md
