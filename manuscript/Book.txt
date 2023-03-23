@@ -18,4 +18,5 @@
 18-project-browser.md
 19-using-a-database.md
 20-project-full-stack.md
+21-problem-solving.md
 36-conclusion.md
