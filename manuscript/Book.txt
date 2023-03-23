@@ -13,7 +13,7 @@
 13-json-files.md
 14-asynchronous-programming.md
 15-promises-async.md
-16-project-cli-notes-app.md
+16-project-cli-chat-app.md
 17-server-side-programming.md
 18-project-rest-api.md
 19-dom-and-events.md
