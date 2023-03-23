@@ -20,4 +20,5 @@
 20-using-a-database.md
 21-project-full-stack.md
 22-problem-solving.md
+23-final-project.md
 36-conclusion.md
