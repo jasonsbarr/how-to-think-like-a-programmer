@@ -92,7 +92,7 @@ const person = {
 
 ## Aliasing Objects
 
-You can alias (make a new name for) an object simply by assigning it to a new variable. Look out, though, because if you make any changes to (mutate) the new alias it will also mutate the original object as well. That's because objects are *reference types*.
+You can alias (make a new name for) an object simply by assigning it to a new variable. Look out, though, because if you make any changes to (a.k.a. mutate) the new alias it will also mutate the original object as well. That's because objects are *reference types*.
 
 Primitives like number are value types, which means the value is immutable and when you assign it to a variable it essentially copies the data to the new variable. Immutable means it can't be changed, and numbers are immutable because 10 is always 10 no matter what you do to it. Since objects are reference types, when you alias an object no data is copied. The interpreter just creates a new pointer to the same object in memory, which is shared between the different variables.
 
