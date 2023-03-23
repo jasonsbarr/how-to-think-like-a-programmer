@@ -90,7 +90,7 @@ const person = {
 }
 ```
 
-### Aliasing Objects
+## Aliasing Objects
 
 You can alias (make a new name for) an object simply by assigning it to a new variable. Look out, though, because if you make any changes to (mutate) the new alias it will also mutate the original object as well. That's because objects are *reference types*.
 
@@ -117,7 +117,7 @@ person.age = 42; // the interpreter will ignore this
 person; //-> { name: "Jason" }
 ```
 
-### Simple Data Objects, a.k.a. POJOs
+## Simple Data Objects, a.k.a. POJOs
 
 Simply defining properties with values on object literals is the simplest way to use objects in JavaScript. If you're familiar with functional programming languages like Elm or F#, this is similar to how records work in those languages.
 
@@ -147,7 +147,7 @@ function makePerson(name, age) {
 
 Notice that in the above function we don't use `name: name` or `age: age` like you might expect. That's because JavaScript allows *shorthand property definitions*. When a variable and object property have the same name, you only have to include the variable name when constructing your object literal.
 
-### Methods
+## Methods
 
 As you saw previously, you can simply define a function as an object property's value and use it as a method. JavaScript has an abbreviated form of this when creating object literals:
 
@@ -187,7 +187,7 @@ function makePerson(name, age) {
 
 Now all your `Person` objects will have the "greet" method.
 
-### The `this` Keyword
+## The `this` Keyword
 
 You can see how all this is useful, I'm sure, but what if you want the object to be able to reference itself?
 
@@ -220,7 +220,7 @@ You reference a property on `this` in exactly the same way as you would on any o
 
 It seems simple, but `this` can actually get surprisingly complex in JavaScript. I'll explain more about that later in the chapter.
 
-### Iterating over Objects
+## Iterating over Objects
 
 You can iterate over all an object's properties. This can be done in 2 ways:
 
@@ -248,7 +248,7 @@ Note that `Object.keys` only works with string keys that are *own properties* on
 
 There is also an `Object.values` method that returns a list of the object's property values and an `Object.entries` method that returns a list of pairs, where each pair has a property's key name and its value.
 
-### Configuring Object Properties
+## Configuring Object Properties
 
 Both of these techniques only work with properties that are enumerable. An object's properties are set to enumerable by default, but you can use the `Object.defineProperty` method to define non-enumerable properties:
 
@@ -309,7 +309,7 @@ Note that you can also use bracket notation to access a character in a string, s
 
 Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
 
-### Constructor Functions and The `new` Keyword
+## Constructor Functions and The `new` Keyword
 
 You saw above how to use a factory function to create objects of a certain type. JavaScript also has special functions called constructors that can be used to create objects. You define a constructor function just like any other function, but assign values to properties using the `this` keyword:
 
@@ -337,7 +337,7 @@ To use a constructor function to create an object, use the `new` keyword:
 const jason = new Person("Jason", 42);
 ```
 
-### Prototypes
+## Prototypes
 
 What if you want your Person object to have methods on them?
 
@@ -435,7 +435,7 @@ jason.constructor; //-> Person {}
 jason.constructor.name; //-> "Person"
 ```
 
-### Extending and Inheriting Objects
+## Extending and Inheriting Objects
 
 If you have any experience with object oriented programming, you know that inheritance is an important way of extending an object's functionality. In JavaScript, inheritance works through prototypes. You can create an object with another object as its prototype using the `Object.create` method, and thus create a subtype of the first object:
 
@@ -503,7 +503,7 @@ Note that `string[]` in the docblock above denotes an array of strings. We'll ta
 
 Using `Object.setPrototypeOf` like this properly sets up the inheritance chain both for the Programmer constructor and the prototype of Programmer instances. `Object.create` still works perfectly fine if all you want to do is have one object inherit from another object.
 
-### Classes
+## Classes
 
 Prototypal inheritance is extremely powerful and flexible, but sometimes you don't need all that. There's a simpler way to do all this prototypal inheritance if all you want to do is set up a simple inheritance chain, and that's using classes. Classes were introduced to JavaScript in ES2015, and abstract away the messy details of setting prototypes an inheritance. To create a Person class, just use the `class` keyword:
 
@@ -616,7 +616,7 @@ jason.constructor.name; //-> "Programmer"
 
 Note that classes don't actually introduce new functionality into JavaScript. They're just a convenient shorthand for prototypes and prototypal inheritance.
 
-### Native Constructors
+## Native Constructors
 
 Now you know what I mean when I say String, Number, etc. are constructors. There's a small difference between these native constructors and ones you'll define, though.
 
@@ -651,7 +651,7 @@ You can also extend a native constructor as a class, though that's not something
 class MyArray extends Array {}
 ```
 
-### Objects as Function Parameters
+## Objects as Function Parameters
 
 You can pass objects to any function just like you can with any other value, however there are a couple of important things to take note of:
 
@@ -691,7 +691,7 @@ You can also do it with the spread operator, which we'll cover in the next secti
 
 In cases where immutable data is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
 
-### The Spread Operator
+## The Spread Operator
 
 The spread operator allows you to "spread" an object into a new object, which lets you copy, merge, and update objects without mutating the originals.
 
@@ -724,7 +724,7 @@ function changeName(person, name) {
 
 That way we don't have to mutate the original object to update it.
 
-### Destructuring Objects
+## Destructuring Objects
 
 You can also destructure objects, which means taking them apart using their property names. Destructuring only works for string keys that are valid variable names.
 
@@ -756,6 +756,32 @@ console.log(age, name); //-> prints 62 "Annette"
 ```
 
 You can destructure any arbitrary number of nested objects, but you should probably avoid going more than 1 or 2 levels deep because it's confusing to read.
+
+The last thing to know about destructuring objects is that you can destructure an object into basically the equivalent of named function arguments:
+
+```js
+/**
+ * Binds data to parameters and executes a database query
+ * @param {Object} args
+ * @param {string} args.query
+ * @param {Object} args.binds
+ * @param {string} args.dbName
+ * @returns {Object}
+ */
+function executeQuery({ query, binds, dbName }) {
+    return queryDatabase(dbName, query, binds);
+}
+```
+
+To execute the function, you need to pass in an object that has these properties and types. You can pass in an object whole or destructure the object into the function call:
+
+```js
+const query = "select * from users where activation_date not null";
+const binds = {};
+const dbName = "DataWarehouse1";
+
+const data = executeQuery({ query, binds, dbName });
+```
 
 ## Dates
 
