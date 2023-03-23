@@ -71,6 +71,7 @@ This allows you to avoid getting `undefined` values when fetching data from a Ma
 
 ```js
 let value;
+
 if (!m.has("key2")) {
     value = "value2";
     m.set("key2", "value2");
@@ -163,6 +164,10 @@ If you pass an array or other iterable to the Set constructor, it will deduplica
 let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
 ```
 
+## Working with Sets
+
+## Iterating over A Set
+
 ## Arrays
 
 ## Constructing Arrays
@@ -173,9 +178,11 @@ let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
 
 ## Higher Order Array Methods
 
-## Spreading Arrays
+## Iterable Objects
 
-## Array Destructuring
+## Spreading Iterables
+
+## Iterable Destructuring
 
 ## Variadic Functions
 
