@@ -2,7 +2,7 @@
 
 # Intermediate Programming
 
-Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. We'll dig more deeply into JavaScript features, and you'll also start learning more about how to design programs and write them more effectively.
+Now that you've grasped the basics of programming in JavaScript, we'll take it up a level. We'll dig more deeply into JavaScript features, and you'll also start learning more about algorithms, designing data structures, and how to design effective programs.
 
 # Basic Algorithms
 
