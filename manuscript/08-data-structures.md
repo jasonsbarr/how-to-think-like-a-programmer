@@ -8,12 +8,12 @@
 
 ## Linked List Stacks and Queues
 
-## Linked List Algorithms
-
 ## Doubly Linked Lists
 
 ## Hash Tables
 
 ## Trees
+
+## Graphs
 
 ## How To Design Data
