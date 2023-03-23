@@ -204,7 +204,7 @@ JavaScript is usually loaded in a web page either from a `script` element or an 
 To load an external JavaScript file, you just need to include it in a `script` element:
 
 ```html
-<script src="path/to/file.js"></script> <!-- note the empty element and closing tag -->
+<script src="path/to/file.js"></script>
 ```
 
 That's all you need to do! You may see examples elsewhere that include the attribute and value `type="text/javascript"` in the opening tag, but that hasn't been required for well over a decade.
