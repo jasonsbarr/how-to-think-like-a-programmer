@@ -6,23 +6,23 @@
 
 ## Arrays
 
-### The Need for Arbitrary-Length Data
+## Constructing Arrays
 
-### Constructing Arrays
+## Iterating over Arrays
 
-### Iterating over Arrays
+## Simple Array Methods
 
-### Simple Array Methods
+## Higher Order Array Methods
 
-### Spreading Arrays
+## Spreading Arrays
 
-### Array Destructuring
+## Array Destructuring
 
 ## Variadic Functions
 
-### The `arguments` Object
+## The `arguments` Object
 
-### Using a Rest Parameter
+## Using a Rest Parameter
 
 ## Functions with Default Parameters
 
