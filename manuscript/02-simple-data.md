@@ -90,7 +90,7 @@ function absoluteValue(num) {
 }
 ```
 
-The comment for the above function signature uses a *docblock* to document the function. I'll explain what that means when we look at designing functions in chapter 3.
+The comment for the above function signature uses a *docblock* to document the function. I'll explain what that means when we look at designing functions in chapter 9.
 
 JavaScript used to only have 1 numeric type, number, which can represent either integers or decimal numbers. Recently they've added bigints to the standard. A value of type number is limited in how large they can get on either side of 0.
 
