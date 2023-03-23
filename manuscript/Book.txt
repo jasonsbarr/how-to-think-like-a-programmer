@@ -17,5 +17,5 @@
 17-project-browser.md
 18-using-a-database.md
 19-project-full-stack.md
-20-final-project.md
-21-conclusion.md
+xx-final-project.md
+xxx-conclusion.md
