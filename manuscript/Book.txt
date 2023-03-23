@@ -8,6 +8,7 @@
 08-data-structures.md
 09-how-to-design-programs.md
 10-strings-regexp.md
+11-iterators-generators.md
 11-json-files.md
 12-project-cli-notes-app.md
 13-asynchronous-programming.md

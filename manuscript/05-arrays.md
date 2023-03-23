@@ -97,6 +97,12 @@ m.clear(); // m is now empty
 
 It's good programming practice in general to avoid mutating your objects like this, but there are cases where it's necessary.
 
+Finally, to see how many entries are in a Map, use the `size` property:
+
+```js
+m.size; // currently 0 after clearing
+```
+
 ## Iterating over A Map
 
 Similar to objects, a Map has methods to get its keys, values, and entries.
@@ -137,7 +143,25 @@ for (let [key, value] of m) {
 
 You can use destructuring to extract values from any iterable, which we'll cover in detail later in the chapter.
 
+In current standards-compliant JavaScript interpreters (as of April, 2023), the order of entries when you iterate over the Map will be the same order in which they were added. This was not true when Maps were first added to the language, so if you have to work with older versions of a browser or Node you may not be able to depend on that behavior.
+
 ## Sets
+
+JavaScript Sets are similar to arrays, except that they are guaranteed to not contain duplicate values. Note that when dealing with a Set of objects the values are only considered to be duplicate if they are the exact same object or aliases of the same object.
+
+## Constructing Sets
+
+Just like with Maps, there is no literal syntax to create Sets. You have to use the Set constructor:
+
+```js
+let s = new Set();
+```
+
+If you pass an array or other iterable to the Set constructor, it will deduplicate the object's values and add each unique value to the set:
+
+```js
+let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
+```
 
 ## Arrays
 
