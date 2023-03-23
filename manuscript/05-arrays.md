@@ -172,6 +172,8 @@ let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
 
 ## Constructing Arrays
 
+## Accessing Array Elements
+
 ## Iterating over Arrays
 
 ## Simple Array Methods
