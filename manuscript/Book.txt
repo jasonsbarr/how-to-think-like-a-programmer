@@ -17,7 +17,7 @@
 16-testing.md
 17-how-to-design-programs.md
 18-problem-solving.md
-19-project-programming-language
+19-project-programming-language.md
 20-final-project-1-design.md
 21-final-project-2-data-model.md
 22-final-project-3-server.md
