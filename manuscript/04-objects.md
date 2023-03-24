@@ -848,6 +848,52 @@ There are also equivalent setter methods like `Date.prototype.setHours` that let
 
 For complete documentation of all the Date object's properties and methods, see [the MDN Date page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 
+## JSON and Data
+
+JSON is a *serialized data* format invented specifically for use with JavaScript. Serialized data is structured data that is converted into a string format that preserves the structure and contents of the data for later use. It's often used to store data in a file or database, or to transmit data over a network connection.
+
+JSON is a string, and you can represent the following JavaScript types in it:
+
+- Numbers (but not BigInts)
+- Strings
+- Booleans
+- `null`
+- Objects
+- Arrays
+
+JavaScript has 2 methods on the built-in `JSON` object for working with JSON data: `JSON.stringify` and `JSON.parse`.
+
+When you have data in some combination of the above types that you want to serialize into JSON, you call the `JSON.stringify` method on it:
+
+```js
+const data = {
+    people: [ // [] is array literal syntax, which you'll learn in the next chapter
+        {
+            name: "Jason",
+            age: 42
+        },
+        {
+            name: "Gretchen",
+            age: 39
+        },
+        {
+            name: "Daniel",
+            age: 9
+        }
+    ]
+};
+
+const jsonData = JSON.stringify(data); // typeof jsonData === "string"
+```
+
+Now you can do something with the `jsonData` value that you couldn't have done with the original data, like send it over the network to be stored on a server.
+
+When it's time to retrieve and use the data, `JSON.parse` will turn the string of JSON back into data in your program:
+
+```js
+const peopleData = JSON.parse(jsonData); // typeof peopleData === "object"
+```
+
 ## JavaScript Evaluation Model
 
 Now let's incorporate objects into the mental model of the JavaScript interpreter we began constructing in the previous chapter.
