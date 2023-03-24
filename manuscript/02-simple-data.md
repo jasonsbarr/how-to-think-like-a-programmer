@@ -638,6 +638,8 @@ function absoluteValue(num) {
 
 This function ends with a `return` statement. A `return` statement contains the expression the entire function evaluates to when it is called. If a return statement is not executed inside the function, the function call evaluates to `undefined`.
 
+You'll see different people talk about function parameters and arguments in different ways. Some people use the terms interchangeably. In this book, *parameters* means the list of parameters given when the function is created, and *arguments* means the actual values given for those parameters when the function is called.
+
 ### Call Expressions
 
 You execute a function by giving the function itself followed by parentheses with any arguments it may require inside. In this case it's the function name, but the function value can be any expression that evaluates to a function:
