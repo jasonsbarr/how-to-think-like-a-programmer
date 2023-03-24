@@ -158,23 +158,149 @@ Just like with Maps, there is no literal syntax to create Sets. You have to use 
 let s = new Set();
 ```
 
-If you pass an array or other iterable to the Set constructor, it will deduplicate the object's values and add each unique value to the set:
+If you pass an array or other iterable to the Set constructor, it will deduplicate the object's values and add each unique value to the Set:
 
 ```js
 let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
 ```
 
+Like with Map keys or values, you should try to always have all the elements of your Set be the same type.
+
 ## Working with Sets
+
+To get the number of elements in a Set, use the `size` property:
+
+```js
+s.size; //-> 4
+```
+
+Add a value to a Set with the `Set.prototype.add` method:
+
+```js
+s.add(5);
+```
+
+The `add` method both adds the value to the Set and returns the Set.
+
+To check if a value is in a Set, use `Set.prototype.has`. Note that since there are no keys you check the value, not a key like you do with Maps:
+
+```js
+s.has(5); //-> true
+```
+
+You can delete a value from a Set with `Set.prototype.delete`:
+
+```js
+s.delete(5);
+```
+
+It returns `true` if the value is deleted, and `false` if nothing is deleted.
+
+You can also clear a Set with `Set.prototype.clear`:
+
+```js
+s.clear();
+s.size; //-> 0
+```
 
 ## Iterating over A Set
 
+Interestingly, a Set has `keys`, `values`, and `entries` methods just like a Map. `Set.prototype.keys` returns a SetIterator of the values in the Set. `Set.prototype.values` returns a SetIterator of the values in the Set. `Set.prototype.entries` returns a SetIterator that contains pairs that hold each value twice, as if it were created from a Map that had all its keys the same as their values.
+
+You can also iterate over a Set with for...of:
+
+```js
+for (let value of s) {
+    console.log(value);
+}
+```
+
+Like Maps, in currently standards-compliant versions of JavaScript the iterator will go in the order in which the elements were added to the set. This behavior is not guaranteed in earlier versions, so if you have to support older browsers or older versions of Node you can't depend on that behavior.
+
 ## Arrays
+
+Arrays are an ordered collection of elements. The elements of an array can be any type, including other arrays. Like with Maps and Sets, you should try to have all the elements of your array be the same type except for under certain circumstances. If you're using an array to represent a tuple of elements, and you know ahead of time which element of the array will be which type, then it's ok to mix types. A tuple is a collection of mixed-type elements, similar to an object's values, but without keys. It's just a collection of values.
 
 ## Constructing Arrays
 
+The simplest way to construct an array is with the literal syntax:
+
+```js
+// an array of numbers
+const nums = [ 1, 2, 3, 4 ];
+
+// a tuple of mixed types
+const person = [ "Jason", 42 ];
+```
+
+You can create an array of empty elements by passing an integer to the `Array` constructor:
+
+```js
+const empties = Array(5); //-> an array of 5 undefined elements
+```
+
+If you have an iterable object, you can convert it to an array using `Array.from`:
+
+```js
+const arr = Array.from(s); //-> [ 1, 2, 3, 4 ]
+```
+
+`Array.from` also takes an optional 2nd argument for a mapping function. This function will be applied to every element of the array, and can take 1 or 2 parameters. The first argument is the element of the iterable the function is being applied to, and the 2nd (optional) argument is the numeric index of the element being mapped:
+
+```js
+// note the use of _ to indicate an unused argument
+// this is a convention used in many languages
+const squares = Array.from(Array(4), (_, i) => i * i); //-> [ 1, 4, 9, 16 ];
+```
+
 ## Accessing Array Elements
 
+You access an array element by its numeric index in brackets (i.e. a member expression with bracket syntax). The first element of the array has the index 0.
+
+```js
+squares[2]; //-> 9
+```
+
+You can also add elements to an array by assigning to a member expression that has the number of an index not yet defined:
+
+```js
+squares[4] = 25; // array is now [ 1, 4, 9, 16, 25 ]
+```
+
+You can skip indexes when adding new elements. This will fill the spots between the last element in the array and the new element with `undefined`.
+
+```js
+squares[7] = 64;
+// array is now [ 1, 4, 9, 16, 25, undefined, undefined, 64 ]
+```
+
+To know how many elements are in an array, including empty elements, use the `length` property:
+
+```js
+squares.length; //-> 8
+```
+
 ## Iterating over Arrays
+
+You can iterate over an array in 2 ways: with a regular for loop or a for...of loop.
+
+To iterate over an array with a for loop, use the loop counter as the array index:
+
+```js
+for (let i = 0; i < squares.length; i++) {
+    console.log(squares[i]);
+}
+```
+
+Unless you have a good reason not to, though, it's usually better to use a for...of loop because then you don't have to worry about a counter:
+
+```js
+for (let num of squares) {
+    console.log(num);
+}
+```
+
+I suppose you could also use a while loop with a counter if you **really** wanted to, but why would you do that?
 
 ## Simple Array Methods
 
