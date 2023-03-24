@@ -733,11 +733,11 @@ You can also destructure any other iterable object. Do note that if you use a re
 
 ## Variadic Functions
 
+Now that you know how iterables work, you can see how to write *variadic functions*. A variadic function is one that can take any number of optional arguments after whatever required arguments are given.
+
 ## The `arguments` Object
 
 ## Using a Rest Parameter
-
-## Functions with Default Parameters
 
 ## Linear Time Algorithms
 

@@ -721,6 +721,23 @@ If the body is just a single expression, you don't have to use a block statement
 
 Arrow functions and `function` functions are almost exactly equivalent. The differences between them don't matter for now, but we'll discuss them later in the book.
 
+#### Functions with Default Arguments
+
+You can give a function's parameter default arguments that will be used if the caller doesn't pass in arguments for those parameters. Here's an example using a function that returns a Range object. A Range is a list of numbers that goes from `start` to `end` (non-inclusive of the end number) with an optional `step` parameter that defaults to 1 and defines the step size between numbers in the list.
+
+```js
+/**
+ * Constructs a range
+ * @param {number} start
+ * @param {number} end
+ * @param {number} [step=1]
+ * @returns {Range}
+ */
+function range(start, end, step = 1) {
+    // construct range
+}
+```
+
 ### Functions and Scope
 
 A function creates its own scope for the body of the function. The main purpose of the scope is so the parameters of a function can be bound to arguments when the function is called, and the parameter names can be treated just like variables inside the function body. Statements inside a function scope can access variables in outer scopes, just like with block scopes.
