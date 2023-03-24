@@ -144,6 +144,20 @@ for (let [key, value] of m) {
 
 You can use destructuring to extract values from any iterable, which we'll cover in detail later in the chapter.
 
+There's also a `Map.prototype.forEach` method that takes a callback function and applies that function to every entry of the map. The callback to `forEach` takes as its parameters the entry value, the entry key, and the map itself (the latter 2 are optional):
+
+```js
+const m = new Map(Object.entries({ a: "hi", b: "bye" }));
+
+m.forEach((val, key, map) => {
+    console.log(key + ":", val);
+});
+```
+
+Note that `forEach` does not return a value. It takes an optional second argument that sets the value of `this` while `forEach` is executing.
+
+There is one big difference between using `forEach` and a for...of loop to iterate over a Map: with `forEach`, it will always iterate over the entire Map. You can't use `break` or `continue` to control the flow of the iteration.
+
 In current standards-compliant JavaScript interpreters (as of April, 2023), the order of entries when you iterate over the Map will be the same order in which they were added. This was not true when Maps were first added to the language, so if you have to work with older versions of a browser or Node you may not be able to depend on that behavior.
 
 ## Sets
@@ -215,6 +229,18 @@ for (let value of s) {
 }
 ```
 
+Like Maps, Sets have a `forEach` method. The callback takes the value, key, and the set itself (the latter 2 are optional). Since Sets don't actually have keys, the key is the same as the value:
+
+```js
+const s = new Set([1, 2, 3, 4, 5]);
+
+s.forEach((val) => {
+    console.log(val);
+});
+```
+
+Like `Map.prototype.forEach`, `Set.prototype.forEach` takes an optional second argument to set the value of `this` when `forEach` is executing.
+
 Like Maps, in currently standards-compliant versions of JavaScript the iterator will go in the order in which the elements were added to the set. This behavior is not guaranteed in earlier versions, so if you have to support older browsers or older versions of Node you can't depend on that behavior.
 
 ## Arrays
@@ -254,6 +280,17 @@ const squares = Array.from(Array(4), (_, i) => i * i); //-> [ 1, 4, 9, 16 ];
 ```
 
 `Array.from` can actually receive a 3rd argument, which sets the value of `this`, but I've never used it.
+
+You can also pass any object with a `length` property to the first argument of `Array.from` and it will create an array with that many elements. You can use this to create ranges of numbers:
+
+```js
+function makeRange(start, stop, step) {
+    return Array.from(
+        { length: (stop - start) / step + 1 },
+        (_, i) => start + (i * step)
+    );
+}
+```
 
 Finally, you can create an array from an arbitrary-length list of arguments using `Array.of`:
 
@@ -481,6 +518,8 @@ nums.unshift(1); //-> returns 1
 ## More Array Methods
 
 For complete documentation of how to use arrays and all array methods, including a few not covered here, see [the MDN Array entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
+
+## Working with Array Methods
 
 ## Iterable Objects
 
