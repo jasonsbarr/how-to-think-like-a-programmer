@@ -1,3 +1,3 @@
 # Asynchronous Programming
 
-## Example: A Basic REST API Server
+## Example: A Basic HTTP Server
