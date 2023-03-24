@@ -144,7 +144,7 @@ for (let [key, value] of m) {
 
 You can use destructuring to extract values from any iterable, which we'll cover in detail later in the chapter.
 
-There's also a `Map.prototype.forEach` method that takes a callback function and applies that function to every entry of the map. The callback to `forEach` takes as its parameters the entry value, the entry key, and the map itself (the latter 2 are optional):
+There's also a `Map.prototype.forEach` method that takes a *callback* and applies that function to every entry of the map. A callback is a function you pass to another function as an argument that is then executed while the main function is itself executing. The callback to `forEach` takes as its parameters the entry value, the entry key, and the map itself (the latter 2 are optional):
 
 ```js
 const m = new Map(Object.entries({ a: "hi", b: "bye" }));
@@ -393,6 +393,13 @@ const arr = [ [ 1, 2, 3 ], 4, 5 ];
 arr.flat(); //-> [ 1, 2, 3, 4, 5 ]
 ```
 
+You can pass in an optional integer argument to tell `flat` how many levels to un-nest:
+
+```js
+const arr = [ [ 1, 2, [ 3 ] ], 4, 5];
+arr.flat(1); //-> [ 1, 2, [ 3 ], 4, 5 ]
+```
+
 ### `Array.prototype.includes`
 
 Checks to see if an array has an element with a certain value. Remember that with reference types it has to be the exact same object or an alias.
@@ -515,17 +522,214 @@ nums.unshift(1); //-> returns 1
 
 ## Higher Order Array Methods
 
+### `Array.prototype.every`
+
+Returns `true` if every element in the array satisfies a *predicate* (function that checks to see if something is true or false):
+
+```js
+[ 2, 4, 6, 8 ].every((el) => el % 2 === 0); //-> true
+```
+
+### `Array.prototype.filter`
+
+Removes elements from an array that do not satisfy the predicate. The predicate takes the array element as an argument, plus optional arguments for the current index and the array itself.
+
+```js
+[1, 2, 3, 4, 5, 6].filter((el) => el % 2 === 0); //-> [ 2, 4, 6 ]
+```
+
+### `Array.prototype.find`
+
+Finds and returns the first array element that satisfies a predicate. Returns `undefined` if there is no matching value.
+
+```js
+const people = [
+    { name: "Jason", age: 42 },
+    { name: "Gretchen", age: 39 },
+    { name: "Daniel", age: 9 }
+];
+
+people.find((person) => person.name === "Jason");
+```
+
+### `Array.prototype.findIndex`
+
+Like `find`, but returns the numeric index of the first matching element. Returns -1 if none is found.
+
+```js
+people.findIndex((person) => person.age > 50); //-> -1
+```
+
+### `Array.prototype.findLast` and `Array.prototype.findLastIndex`
+
+Like `find` and `findIndex`, except that they work on the **last** matching element. Obviously if there's only 1 matching element they return a value for it. Return `undefined` and -1 respectively if there is no matching element.
+
+### `Array.prototype.flatMap`
+
+Applies a mapping function to every element of the array and then flattens it. Like using `map` followed by `flat(1)`, but somewhat more efficient.
+
+```js
+const words = [ [ "It's", "always" ], [ "sunny" ], [ "in Philadelphia" ] ];
+// split is a method that splits a string into an array
+words.flatMap((el) => el.split(" "));
+//-> [ "It's", "always", "sunny", "in", "Philadelphia" ]
+```
+
+### `Array.prototype.forEach`
+
+Similiar to the `forEach` methods for Maps and Sets. The callback takes the current array element then optional arguments for the current index and the array itself.
+
+```js
+[ 1, 2, 3, 4, 5, 6 ].forEach((n, i, a) => {
+    if (n % 2 === 0) {
+        console.log("This array element is even");
+    }
+
+    if (i % 2 === 0) {
+        console.log("This index is even");
+    }
+
+    if (i === a.length - 1) {
+        console.log("This is the last element");
+    }
+});
+```
+
+### `Array.prototype.map`
+
+Applies a callback that maps each element of the array to a new value, then returns an array of the transformed values. Does not modify the original array. Callback can take the same arguments as `forEach`.
+
+```js
+const people = [
+    { name: "Jason", age: 42 },
+    { name: "Gretchen", age: 39 },
+    { name: "Daniel", age: 9 }
+];
+
+people.map((person) => person.name); //-> [ "Jason", "Gretchen", "Daniel" ]
+```
+
+### `Array.prototype.reduce`
+
+Applies a reducer function and accumulates a value that is returned after the last iteration. The callback takes 2 required parameters: the accumulator value and the current value. Then it can take 2 optional arguments for the current index and the array itself. `reduce` takes an optional second argument that sets the initial value of the accumulator. If no initial value is given, it will use the 1st element's value. I recommend always passing in an initializer argument to avoid confusion and hard-to-diagnose bugs.
+
+`reduce` is extremely powerful. You can actually implement any other higher-order array method's functionality using `reduce`.
+
+```js
+/**
+ * Sums up an array of numbers
+ * @param {number[]} numbers
+ * @returns {number}
+ */
+function sum(numbers) {
+    return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+// uses the range function from above
+// remember it doesn't include the
+// end number in the range
+sum(range(1, 11, 1)); //-> 55
+
+// using reduce like map
+people.reduce((names, person) => {
+    // later in the chapter I'll show
+    // you a better way to do this
+    names.push(person.name);
+    return names;
+}, []);
+```
+
+There is also a `reduceRight` method that is exactly the same except that it iterates backwards, start from the last element of the array and going to the first.
+
+### `Array.prototype.some`
+
+Checks to see if **any** element in the array satisfies a predicate:
+
+```js
+people.some((person) => person.age > 40); //-> true
+```
+
 ## More Array Methods
 
 For complete documentation of how to use arrays and all array methods, including a few not covered here, see [the MDN Array entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
 ## Working with Array Methods
 
+Here's an example that puts together several array methods to perform a task similar to something you might need to do at some point:
+
+```js
+// let's assume getUsers returns a list of users from a database
+const users = getUsers();
+
+const adults = users
+                // note that to return an object from an arrow function
+                // you must wrap it in parentheses if there's no
+                // block statement with a return statement
+                .map((user) => ({ email: user.email, name: user.name, age: user.age }))
+                // reject all the users younger than 18
+                .filter((user) => user.age >= 18)
+                // sort from oldest to youngest
+                .sort((a, b) => b.age - a.age);
+```
+
+The above example fetches a list of users from the database. We only care about 3 data attributes for each user, so we use `map` to cherry pick those 3 attributes from the initial user object. Then we only want users who are adults, so we `filter` out all the users who aren't at least 18 years old. Finally, we want them sorted from oldest to youngest so we pass a comparing function to `sort`.
+
 ## Iterable Objects
+
+There are several objects in JavaScript that are iterable. You've seen Maps, Sets, MapIterators, SetIterators, MapEntries, and SetEntries objects already in this chapter. Later in this chapter you'll see the `arguments` object, which is another iterable object.
+
+You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object. We'll see how to do that in chapter 13.
 
 ## Spreading Iterables
 
+Similar to how you can spread objects, you can spread arrays. You can spread an array into another array:
+
+```js
+const people = [ "Jason", "Gretchen", "Daniel" ];
+const morePeople = [ ...people, "Josh", "Chris" ];
+```
+
+In one of the examples for `reduce` I used the `push` method to add an element to an array like this:
+
+```js
+people.reduce((names, person) => {
+    names.push(person.name);
+    return names;
+}, []);
+```
+
+It's better to avoid mutating the accumulator whenever possible. In fact, it's generally better to avoid mutating arrays at all unless you make a copy first and then mutate the copy. You always want to have a way to get back to your original data unless it's absolutely impossible, which may be the case if you're working with absolutely massive arrays that would make it far too slow and resource-intensive to make a copy, but that's about the only time you'd need to do that.
+
+You can copy and update the accumulator array by spreading it:
+
+```js
+people.reduce((names, person) => [ ...names, person.name ]);
+```
+
+One neat thing about spreading is that it actually works with any iterable, not just arrays. That's because the interpreter uses the `[Symbol.iterator]` method to figure out how to spread out the elements.
+
 ## Iterable Destructuring
+
+Like with objects, you can destructure array values:
+
+```js
+const names = [ "Jason", "Gretchen", "Daniel" ];
+const [ jason, gretchen, daniel ] = names;
+```
+
+You can name the variables anything you want. Skip an array index by leaving an empty space between two commas:
+
+```js
+const [ jason, , daniel ] = names;
+```
+
+Finally, you can gather unused array elements from destructuring into another array. This is called a rest variable.
+
+```js
+const [ jason, ...rest ] = names;  //-> rest is [ "Gretchen", "Daniel" ]
+```
+
+You can also destructure any other iterable object. Do note that if you use a rest variable it will gather the remaining elements into an array, because destructuring doesn't know about the constructor for whatever kind of object you're destructuring from.
 
 ## Variadic Functions
 
@@ -578,6 +782,8 @@ Now, you might look at the above code and be confused: shouldn't the algorithm's
 That's a good observation, and in real terms doubling the number of iterations could absolutely affect how long it takes an algorithm to run in real time.
 
 However, in terms of Big O, it's still just O(n) because there is only one set of inputs. The running time of the code is a function of how large the input is, regardless of whether that input is processed 1, 2, or 1,000 times. The number of steps it takes to process the input in each iteration isn't important.
+
+As a general rule with Big O, if you count the steps and come up with a constant value then you can substitute 1 for the constant.
 
 Big O notation is an **approximation** of the running time, not a calculation of every little thing that affects how long it actually takes for the computation to run.
 
