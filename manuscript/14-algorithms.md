@@ -22,13 +22,11 @@
 
 ## Bubble Sort
 
-## Selection Sort
-
 ## Merge Sort
 
-## Quick Sort
-
 ## Asymptotic Analysis of Algorithms
+
+## Quadratic and Exponential Time Algorithms
 
 ## Recap
 
