@@ -678,7 +678,7 @@ The above example fetches a list of users from the database. We only care about 
 
 There are several objects in JavaScript that are iterable. You've seen Maps, Sets, MapIterators, SetIterators, MapEntries, and SetEntries objects already in this chapter. Later in this chapter you'll see the `arguments` object, which is another iterable object.
 
-You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object. We'll see how to do that in chapter 13.
+You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object.
 
 ## Spreading Iterables
 
