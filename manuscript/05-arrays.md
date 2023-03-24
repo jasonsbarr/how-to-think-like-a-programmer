@@ -706,6 +706,24 @@ You can copy and update the accumulator array by spreading it:
 people.reduce((names, person) => [ ...names, person.name ]);
 ```
 
+You can also spread an array as some or all of the arguments to a function if the array contains the right number of compatible values for the function.
+
+```js
+/**
+ * Adds 3 numbers
+ * @param {number} n1
+ * @param {number} n2
+ * @param {number} n3
+ * @returns {number}
+ */
+function add3(n1, n2, n3) {
+    return n1 + n2 + n3;
+}
+
+const nums = [1, 2, 3];
+add3(...nums); //-> 6
+```
+
 One neat thing about spreading is that it actually works with any iterable, not just arrays. That's because the interpreter uses the `[Symbol.iterator]` method to figure out how to spread out the elements.
 
 ## Iterable Destructuring
