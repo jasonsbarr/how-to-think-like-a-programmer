@@ -6,6 +6,7 @@
 06-project-game.md
 07-algorithms.md
 08-data-structures.md
+09-testing.md
 09-how-to-design-programs.md
 10-project-programming-language.md
 11-strings-regexp.md
