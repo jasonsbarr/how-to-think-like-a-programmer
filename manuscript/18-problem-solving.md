@@ -5,3 +5,5 @@
 ## How To Solve any Problem
 
 ## Problem Solving Patterns
+
+## Example Problems and Solutions
