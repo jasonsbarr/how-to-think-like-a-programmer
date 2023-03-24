@@ -4,6 +4,8 @@
 
 ## Decomposition
 
+## Designing Data
+
 ## Creating a "Wish List" of Functions
 
 ## Documenting Your Functions

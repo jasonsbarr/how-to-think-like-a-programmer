@@ -21,5 +21,3 @@
 ## Breadth-First Search and Depth-First Search
 
 ## Graph Algorithms
-
-## How To Design Data
