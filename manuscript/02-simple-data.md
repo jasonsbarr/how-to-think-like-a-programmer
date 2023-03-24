@@ -740,6 +740,8 @@ function range(start, end, step = 1) {
 }
 ```
 
+Note that default arguments should always come at the end of your parameter list. JavaScript will let you use default arguments with any position in the list, but it doesn't make much sense to do that because in order to use the default argument you'd have to explicitly pass `undefined` into the function to skip that parameter's place in the list.
+
 ### Functions and Scope
 
 A function creates its own scope for the body of the function. The main purpose of the scope is so the parameters of a function can be bound to arguments when the function is called, and the parameter names can be treated just like variables inside the function body. Statements inside a function scope can access variables in outer scopes, just like with block scopes.

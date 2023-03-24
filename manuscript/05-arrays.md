@@ -680,6 +680,8 @@ There are several objects in JavaScript that are iterable. You've seen Maps, Set
 
 You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object.
 
+You'll often see people refer to iterable objects as "array-like objects."
+
 ## Spreading Iterables
 
 Similar to how you can spread objects, you can spread arrays. You can spread an array into another array:
@@ -755,7 +757,36 @@ Now that you know how iterables work, you can see how to write *variadic functio
 
 ## The `arguments` Object
 
+One way to create variadic functions is by using the `arguments` object. This object is an iterable object that collects all the arguments passed into a function. You can use bracket syntax member expressions with integer indexes to access the items in `arguments`.
+
+It's **not** an array, so if you want to do anything interesting with it you need to create an array from it:
+
+```js
+const argsArray = Array.from(arguments);
+```
+
+The `arguments` object will include all arguments passed into a function even if there are more arguments given than formal parameters defined for the function.
+
+Note that only `function` functions, both function declarations and function expressions, have an `arguments` object. Arrow functions do not have `arguments`, so if you try to use it inside the body of an arrow function you'll get an error.
+
 ## Using a Rest Parameter
+
+The other way to define a variadic function, which is the one I recommend you use because it works with any function and it's more flexible, is with a rest parameter.
+
+A rest parameter is similar to a rest variable when destructuring. You use the same `...` operator before the parameter name. A rest parameter should always be last in your parameter list. Like with destructuring, arguments starting at the position of the rest parameter will be collected into an array. You can name the rest parameter whatever you want.
+
+```js
+/**
+ * Sum up a variadic number of numbers
+ * @param {...number} numbers
+ * @returns {number}
+ */
+function sum(...numbers) {
+    return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+sum(1, 2, 3, 4, 5); //-> 15
+```
 
 ## Linear Time Algorithms
 
