@@ -23,4 +23,5 @@
 22-final-project-3-server.md
 23-final-project-4-reactive-ui.md
 24-final-project-5-auth.md
-30-conclusion.md
+25-final-project-6-deployment.md
+26-conclusion.md
