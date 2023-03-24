@@ -1,8 +1,12 @@
 # Introduction
 
-You are about to embark on an amazing journey. Learning to program is a highly-sought after skill in today's technology-driven world. By learning to program, you can dramatically increase your income in a short period of time while you get to work on interesting and challenging projects. Not only that, but programming can even be lots of fun! There's nothing quite like encountering a problem, working through a solution, and building it in code. Most importantly, you'll learn thinking skills that can be applied to any problem domain, code-related or not.
+You are about to embark on an amazing journey.
 
-This book is a bit different from most "learn to code" books and courses. Too many programming books for beginners teach you the syntax and basics of a programming language, but that's where it ends.
+Learning to program is a highly-sought after skill in today's technology-driven world. By learning to program, you can dramatically increase your income in a short period of time while you get to work on interesting and challenging projects. Not only that, but programming can even be lots of fun! There's nothing quite like encountering a problem, working through a solution, and building it in code.
+
+Most importantly, you'll learn thinking skills that can be applied to any problem domain, code-related or not.
+
+This book is a bit different from most "learn to code" books. Too many programming books for beginners teach you the syntax and basics of a programming language, but that's where it ends.
 
 This book does more.
 
@@ -38,7 +42,7 @@ Lather, rinse, and repeat until you have a bulletproof program that comprehensiv
 
 You won't just understand how to write programs after working through this book (and I do **highly** suggest you work through the exercises and projects).
 
-You'll understand how the computer works more deeply than most beginning (and even intermediate) programmers, and you won't just know how to write a program. You'll also know how to analyze it and, whenever possible, how to make it more efficient.
+You'll understand how the computer works more deeply than most beginning (and even intermediate) programmers. You'll also know how to analyze your programs and, whenever possible, make them more efficient.
 
 Also, if you work through this whole book you'll cover about as much as you would learn from an introductory computer science course at a top university. You'll work through some pretty advanced programming problems!
 
@@ -46,8 +50,8 @@ Also, if you work through this whole book you'll cover about as much as you woul
 
 The book is divided into 4 sections:
 
-1. Basic Programming
-2. Intermediate JavaScript Topics
+1. Basic JavaScript Programming
+2. Intermediate JavaScript Programming
 3. Algorithms and Program Design
 4. Final Project
 
@@ -65,11 +69,13 @@ Finally, there's a massive final project that will make a worthy addition to any
 
 This is not a book for cramming. It is a book to be digested in pieces, preferably no larger than 1 chapter at a time.
 
-I've tried to incorporate insights from recent research into how we learn into the structure of the book. Coming back to previous topics and repeating them in further depth. Interleaving aspects of different topics in the content and exercises. Giving plenty of opportunities to practice your skill development. Breaking the material down into "chunks" your brain can easily hold.
+Our brains learn best by breaking large, complex units of information into small "chunks." I've divided each chapter into topics and subtopics to try to help you with your chunking. Once you have an understanding of the concepts, you need to reinforce them through review and deliberate practice. That's where the exercises and projects come in.
 
-You can help your brain learn the material more completely and more permanently if you set aside time each day to work on it.
+You can help your brain learn the material more completely and permanently if you set aside time each day to work on it.
 
 Practicing programming for 30 minutes a day 5 times a week is better than practicing for 2 and a half hours once a week.
+
+It's also vital that you get as much high-quality sleep as possible, because that's when our brains really solidify the new neural connections we're creating through the learning process.
 
 This should go without saying, but code along with the examples. Do the exercises. Even the harder ones. Do the projects. Expand on the projects using what you know. Get creative with it. The best way to learn to program well is to write programs.
 
@@ -87,7 +93,11 @@ Keep at it, and one day you'll get better than me.
 
 I hope you do!
 
-Learning the basics of how to use a programming language is easy. Learning how to be an excellent programmer is really hard and takes a **lot** of work. This book will demystify large parts of the process for you, but you have to put in the work yourself to really learn the material. You have to practice writing lots of programs in order to get good at writing programs.
+Learning the basics of how to use a programming language is easy. Learning how to be an excellent programmer is really hard and takes a **lot** of work.
+
+This book will demystify large parts of the process for you, but you have to put in the work yourself to really learn the material.
+
+You have to practice writing lots of programs in order to get good at writing programs.
 
 There are no shortcuts to mastery, but this book can serve as a trusted guide along the path.
 
