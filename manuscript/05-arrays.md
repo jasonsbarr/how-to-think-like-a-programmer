@@ -245,12 +245,20 @@ If you have an iterable object, you can convert it to an array using `Array.from
 const arr = Array.from(s); //-> [ 1, 2, 3, 4 ]
 ```
 
-`Array.from` also takes an optional 2nd argument for a mapping function. This function will be applied to every element of the array, and can take 1 or 2 parameters. The first argument is the element of the iterable the function is being applied to, and the 2nd (optional) argument is the numeric index of the element being mapped:
+`Array.from` also takes an optional 2nd argument for a mapping callback function. This function will be applied to every element of the array, and can take 1 or 2 parameters. The first argument is the element of the iterable the function is being applied to, and the 2nd (optional) argument is the numeric index of the element being mapped:
 
 ```js
 // note the use of _ to indicate an unused argument
 // this is a convention used in many languages
 const squares = Array.from(Array(4), (_, i) => i * i); //-> [ 1, 4, 9, 16 ];
+```
+
+`Array.from` can actually receive a 3rd argument, which sets the value of `this`, but I've never used it.
+
+Finally, you can create an array from an arbitrary-length list of arguments using `Array.of`:
+
+```js
+const ofArray = Array.of(1, 2, 3, 4); //-> [ 1, 2, 3, 4 ]
 ```
 
 ## Accessing Array Elements
@@ -300,11 +308,179 @@ for (let num of squares) {
 }
 ```
 
-I suppose you could also use a while loop with a counter if you **really** wanted to, but why would you do that?
+I suppose you could also use a while loop with a counter if you **really** wanted to, but don't do that unless you have a **really** good reason.
+
+## Array Methods
+
+Arrays have many useful methods that allow you to perform many different operations on their elements. I've divided them into 2 categories: "simple" methods that do not take a function as one of their arguments (except for `sort`, which **can** take a function but doesn't have to), and "higher-order methods" that **do** take a function as one of their arguments.
 
 ## Simple Array Methods
 
+Here are some simple array methods.
+
+### `Array.isArray`
+
+To check if an object is an array:
+
+```js
+const s = new Set([1, 2, 3, 4]);
+Array.isArray(s); //-> false
+```
+
+### `Array.prototype.at`
+
+Gets the element at a given array index. If you give it a negative number, it will count back from the end (so -1 gets the last element of the array and so on):
+
+```js
+squares.at(-1); //-> 64
+```
+
+### `Array.prototype.concat`
+
+Concatenates two or more arrays together:
+
+```js
+const a1 = [ 1, 2 ];
+const a2 = [ 3, 4 ];
+a1.concat(a2); //-> [ 1, 2, 3, 4 ]
+```
+
+The `concat` method returns a new array and does not modify any of the original arrays.
+
+### `Array.prototype.flat`
+
+"Flattens" nested arrays into a single array:
+
+```js
+const arr = [ [ 1, 2, 3 ], 4, 5 ];
+arr.flat(); //-> [ 1, 2, 3, 4, 5 ]
+```
+
+### `Array.prototype.includes`
+
+Checks to see if an array has an element with a certain value. Remember that with reference types it has to be the exact same object or an alias.
+
+```js
+const nums = [ 1, 2, 3, 4, 5 ];
+nums.includes(15); //-> false
+```
+
+### `Array.prototype.indexOf`
+
+Returns the index of the element if the argument matches an element in the array; otherwise it returns -1:
+
+```js
+nums.indexOf(3); //-> 2
+nums.indexOf(100); //-> -1
+```
+
+### `Array.prototype.join`
+
+Joins together all the elements in an array as a single string. Takes an optional argument of a string that will be inserted between elements.
+
+```js
+const words = [ "Every", "good", "boy", "does", "fine" ];
+words.join(" "); //-> "Every good boy does fine"
+```
+
+### `Array.prototype.lastIndexOf`
+
+Like `indexOf`, only it returns the index of the last time an element is found in an array. Returns -1 if not found.
+
+```js
+const nums = [ 1, 2, 3, 1, 3, 1];
+nums.lastIndexOf(1); //-> 5
+```
+
+### `Array.prototype.pop`
+
+Removes and returns the last element of an array. If the array is empty, returns `undefined`.
+
+```js
+const nums = [ 1, 2, 3, 4, 5 ];
+nums.pop(); //-> 5
+// array is now [ 1, 2, 3, 4 ]
+```
+
+### `Array.prototype.push`
+
+Pushes its argument onto the end of the array, then returns the argument:
+
+```js
+[ 1, 2, 3 ].push(4); //-> returns 4
+// array is now [ 1, 2, 3, 4 ]
+```
+
+### `Array.prototype.reverse`
+
+Reverses an array. Mutates the original array **and** returns the reversed array:
+
+```js
+[ 1, 2, 3, 4 ].reverse(); //-> [ 4, 3, 2, 1 ]
+```
+
+### `Array.prototype.shift`
+
+Like `pop`, but for the first element in the array. Returns `undefined` if the array is empty.
+
+```js
+const nums = [ 1, 2, 3, 4 ];
+nums.shift(); //-> 1
+// array is now [ 2, 3, 4 ]
+```
+
+### `Array.prototype.slice`
+
+Creates a copy of the elements of an array from the first index argument to an optional second index argument (not inclusive of the last index). If you only give it 1 argument, it copies to the end of the array. If you use negative numbers, it counts that index from the end of the array.
+
+```js
+[ 1, 2, 3, 4, 5 ].slice(1, 4); //-> [ 2, 3, 4 ]
+```
+
+### `Array.prototype.sort`
+
+Sorts the elements in an array. Takes an optional function to determine how to sort the elements. Note that if you call `sort` on an array that contains any type other than strings, and if you don't pass a sorting function as an argument, it will coerce the elements to strings and then sort them. This is most noticeable with numbers, because you get something very different from what you'd expect when sorting numbers:
+
+```js
+[ "boy", "cat", "apple" ].sort(); //-> [ "apple", "boy", "cat" ]
+[ 2, 1, 5, 10, 22 ].sort(); //-> [ 1, 10, 2, 22, 5 ]
+```
+
+To sort numbers properly, use a sorting function. Note that your sorting function takes 2 arguments, which are the 2 elements of the array to compare for sorting. If the a element should go before the b element, your function should return a positive number. If the b element should go before the a element, your function should return a negative number. If the two elements have equal values that are being checked, it should return 0.
+
+```js
+[ 2, 1, 5, 10, 22 ].sort((a, b) => a - b); //-> [ 1, 2, 5, 10, 22 ]
+
+const people = [
+    { name: "Jason", age: 42 },
+    { name: "Gretchen", age: 39 },
+    { name: "Daniel", age: 9 }
+];
+
+// sort by the age property
+people.sort((a, b) => a.age - b.age);
+
+// sort by the name property
+people.sort((a, b) => a > b ? 1 : a < b ? -1 : 0);
+```
+
+Like `reverse`, sort both mutates the original array **and** returns the sorted array.
+
+### `Array.prototype.unshift`
+
+Like `push`, but at the beginning of the array.
+
+```js
+const nums = [ 2, 3, 4 ];
+nums.unshift(1); //-> returns 1
+// array is now [ 1, 2, 3, 4 ]
+```
+
 ## Higher Order Array Methods
+
+## More Array Methods
+
+For complete documentation of how to use arrays and all array methods, including a few not covered here, see [the MDN Array entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
 ## Iterable Objects
 
