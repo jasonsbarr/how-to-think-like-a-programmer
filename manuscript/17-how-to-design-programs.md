@@ -20,7 +20,7 @@
 
 ## Composing Many Functions into a Solution
 
-## Putting It All Together
+## Designing Classes
 
 ## Recap
 

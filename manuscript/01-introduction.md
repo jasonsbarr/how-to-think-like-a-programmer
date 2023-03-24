@@ -42,11 +42,24 @@ You'll understand how the computer works more deeply than most beginning (and ev
 
 Also, if you work through this whole book you'll cover about as much as you would learn from an introductory computer science course at a top university. You'll work through some pretty advanced programming problems!
 
+## About The Book
+
+The book is divided into 4 sections:
+
+1. Basic Programming
+2. Intermediate JavaScript Topics
+3. Algorithms and Program Design
+4. Final Project
+
+The sections are divided into 6 or 7 chapters each.
+
 Each chapter covers an important topic you need to know to become a proficient JavaScript programmer.
 
-There are exercises at the end of each chapter, and there are several projects throughout the book.
+There are exercises at the end of each chapter, and there's a project at the end of each section.
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
+
+Finally, there's a massive final project that will make a worthy addition to any portfolio.
 
 ## How To Get The Most out of This Book
 
@@ -86,13 +99,13 @@ A program is simply a combination of data and logic that computes a result.
 
 To compute means to calculate. It's usually associated with numbers, although modern computers can map numbers onto text, images, and many other kinds of data. It's all numbers at the most basic level, though.
 
-Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into machine language the CPU can understand, which consists only of binary numbers (0s and 1s). Breaking code down into binary machine language is known as compiling. Everything we do with computers comes from these binary numbers and how the CPU handles them.
+Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into code in a machine language the CPU can understand, which consists only of binary numbers (0s and 1s). Breaking higher-level code down into binary machine code is known as compiling. Everything we do with computers depends on these binary numbers and how the CPU handles them.
 
-From these binary numbers come instructions that tell the CPU which code to execute, when to execute it, and how to produce the result of the program.
+The machine code contains instructions that tell the CPU what to do, what data to use, and how to produce the result of the program.
 
 Since the CPU doesn't process the programming language code directly, we have to build interpreters that can do that. Interpreters are themselves written in programming languages, and each level of execution runs in its own interpreter until it gets all the way down to the level of the CPU.
 
-You can think of the CPU as a hardware interpreter that executes binary code.
+You can think of the CPU as a hardware interpreter that executes machine code.
 
 There are dozens, maybe even hundreds of programming languages out there. All of them follow the same basic process. The programs written in a programming language either execute directly in the interpreter itself or are compiled down to machine code so the CPU can execute them.
 
@@ -102,7 +115,7 @@ Others, like C, are higher level, but still require you to work with memory and 
 
 Then there are still higher level languages, like JavaScript, where the details of memory management and CPU operations are hidden away and all you have to do is write the high level logic of the program to get the result you're looking for. The computer handles all the details for you.
 
-### The Fundamental Elements of A Programming Language
+## The Fundamental Elements of A Programming Language
 
 Every programming language has 4 fundamental elements:
 
@@ -115,27 +128,27 @@ The primitive constructs are things like basic data types and built-in functions
 
 Syntax is simply the symbols used to write programs in a language, and the rules that define well-formed statements in it.
 
-For example, in JavaScript 5 is a number. `+` is an operator, which is like a built-in function that can be applied to its operands. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript. However, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
+For example, in JavaScript 5 is a number. `+` is an operator, which is like a built-in function that can be applied to its operands. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript; however, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
 
 Producing an error that halts the program is known as "throwing an error."
 
-Static semantics defines which syntactically well-formed statements have a meaning in the language. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static-semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number." In other languages, the interpreter will throw an error.
+The static semantics of a language defines which syntactically well-formed statements have a valid meaning. For example, `"hello"` is another primitive, as is the operator `*`. `"hello" * 5` is a syntactically valid statement, because it follows the form operand operator operand, but it is static-semantically invalid because `"hello" * 5` does not produce a valid meaning in the language. In JavaScript, the interpreter signals to you that the statement is invalid by producing the value `NaN`, which stands for "Not a Number."
 
-Static semantics also encompasses things like the type system of a language, and any other characteristics of the language that can be statically verified&mdash;that is, verified before the code is compiled or executed. Some languages even make it possible to verify certain aspects of a program's logic ahead of time.
+Static semantics also includes things like the type system of a language, and any other characteristics of the language that can be statically verified&mdash;that is, verified before the code is compiled or executed. Some languages even make it possible to verify parts of a program's logic ahead of time.
 
 There are languages that do a great deal of pre-execution static semantic checking, like Java and Haskell. For better or worse, JavaScript does very little in that regard.
 
-Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly.
+Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly. A semantic error would be something like `5 + "5"`, where you have the number 5 and try to add it to the text "5." JavaScript will let you do this; the result is the text "55." If you intended to add 2 numbers together, this is a semantic error and you'll have to find the source of the bug.
 
 Semantic errors are the worst kind of error in a program because they can be very difficult to find. You don't even know they exist until you run the program with input that produces the wrong value.
 
 The interpreter can't catch semantic errors ahead of time, so you have to actually run the program to discover them.
 
-Writing tests to catch potential logic errors is a good practice, and we will write tests for many of our programs in this book.
+Writing tests to catch potential semantic errors is a good practice, and we will write tests for many of our programs in this book.
 
-### Abstraction and Combination
+## Abstraction and Combination
 
-Programming languages don't just give you primitives to work with; they also give you means of *abstraction* and *combination*.
+Programming languages don't just give you primitives like 5 and `+` to work with; they also give you means of *abstraction* and *combination*.
 
 Abstraction means hiding the details so the person using a thing doesn't need to know exactly how it works.
 
@@ -183,7 +196,7 @@ The easiest way to install Node is simply to go to the [Node.js website](https:/
 
 You'll see they have 2 versions for you to choose from: the LTS (Long Term Support) and Current versions.
 
-If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book. While I will use modern JavaScript syntax and commonly-accepted best practices, I won't use cutting-edge features that either aren't (yet) fully part of the standard or that have been released after April of 2023.
+If you want to have the latest and greatest stable features as they're incorporated into Node, you'll want the Current version. If you prefer safety and stability, and don't mind possibly being slightly behind on new features, the LTS version is for you. Either will work equally well with this book. While I will use modern JavaScript syntax and commonly-accepted best practices, I won't use cutting-edge features that either aren't (yet) fully part of the standard or that have been released after April of 2023. That means you should be able to run all the code in this book on a recent version of any modern browser or Node.js.
 
 Simply run the installer you've chosen and respond to any prompts it gives you.
 
@@ -215,7 +228,7 @@ If you don't know HTML and CSS, don't worry; I'll include all the code you need 
 
 You can download all the code used in this book, as well as project starters and tests for exercises, in the book's GitHub repository.
 
-<!-- TODO: course repository and downloading directions -->
+TODO: Create course repository and give downloading instructions
 
 ## Installing Packages with NPM
 
