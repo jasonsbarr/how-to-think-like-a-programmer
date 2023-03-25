@@ -932,7 +932,7 @@ Now you can do something with the `jsonData` value that you couldn't have done w
 When it's time to retrieve and use the data, `JSON.parse` will turn the string of JSON back into data in your program:
 
 {title: "Continuing in `json.js`:"}
-```js
+```js startline=22
 const peopleData = JSON.parse(jsonData); // typeof peopleData === "object"
 console.log(peopleData); // same as the original data object
 ```
@@ -1035,4 +1035,38 @@ Now you know how to use objects, as well as different ways to construct them. Th
 
 In the next chapter, we'll look at the built-in collection types: `Map`, `Set`, and `Array`.
 
+## Questions for Review
+
+1. What does it mean to say an object is a reference type?
+2. What are some potential pitfalls of aliasing objects?
+3. True or false: `{ a: "hi" } === { a: "hi" }`
+4. What do you do if you want to create an object literal with string keys that are not valid identifier names?
+5. What are the 4 fundamental aspects of any programming language?
+6. What 2 statements define if a file is an ES2015 module?
+7. What is a prototype?
+8. True or false: you must define object types with classes before creating objects in JavaScript.
+9. What is JSON?
+10. What 2 things does every programming language give you?
+11. What are the 2 kinds of member expression syntax?
+12. Explain how prototypal inheritance works.
+13. Explain what happens when you call a constructor with the `new` keyword.
+14. What are the 2 ways you can directly set the prototype of an object? Hint: one of them creates a new object.
+15. How can you update an object's values without mutating the object itself?
+16. What are the 3 kinds of loops?
+17. How is the value of `this` set? There are 4 ways.
+18. Why do you think your recursive `fibonacci` function from the last chapter ran so slowly on large number inputs?
+19. How can you iterate over an object? What properties are accessed when you iterate over an object?
+20. Explain how closure works.
+
 ## Exercises
+
+1. A linked list is a kind of object that has `head` and `tail` properties. A single list element is called a node. `head` stores a value, and `tail` either stores `null` or another list (node). Assume `head` cannot be null. Define a function `list` that constructs a list and stores the argument to the function in the list's `head` property and sets `tail` to null. Define another function `append` that sets `tail` to another list and can be used on a list with any number of nodes connected from `tail` to `tail`. In other words, `append` should traverse the entire list across all its `tail` properties until it reaches the last `tail`, which should be `null`, and sets that `tail` property to a new list node.
+2. Define a function `insert` that takes a value and a number `n`, and inserts a new node at the nth `tail` of the list. The `tail` of the new node should be set to the remainder of the original list after the nth node. Return the new list from `append`.
+3. Define a function `deleteNode` that takes a number `n` and removes the nth node from the list. The `tail` of node n - 1 should be set to node n + 1. Return the new list.
+4. Write a program that takes user input in answers to 2 questions: one asking for a name, the other asking for an age. Take the 2 answers and turn them into an object with `name` and `age` properties. Loop getting the input so you get an arbitrary number of objects. The easiest way to store the objects will probably be to use a containing object with the name values as keys for the corresponding objects (since we haven't seen arrays or Maps yet). Then add up all the age values and return the result.
+5. A vector is a kind of object that stores values in properties with numeric keys. The keys start at 0 and continue sequentially. Assume there cannot be gaps between the numbers. Define a function `vector` that takes one value as an argument, creates a vector object, and assigns the value to the 0th index. The vector should have a `length` property that is non-enumerable (see `Object.defineProperty`) that tracks how many items are in it.
+6. Define a function `appendVector` that appends a value to the end of the vector. E.g. if the vector has 3 elements in it, this function should add the value to the index 3. Don't forget about the `length` property. Return the new vector.
+7. Define a function `insertVector` that inserts a value between 2 elements in the vector and moves the element that was in that spot plus everything following it up 1 index. I.e. if you have 4 items in the vector and insert something into index 2, the item in index 2 moves to index 3, the one in 3 to 4, and so on. Return the new vector.
+8. Define a function `deleteVector` that removes the item at the nth index of a vector and shifts the elements after that index down a spot. Return the new vector.
+9. Write a function `deepEqual` that compares 2 objects. If the objects have all the same property keys with the exact same values for each key, return `true`. The function must check any nested objects for equality as well.
+10. Write a class called `Group` (since Set is already taken). Like Set, it has add, delete, and has methods. Its constructor creates an empty group, add adds a value to the group (but only if it isn’t already a member), delete removes its argument from the group (if it was a member), and has returns a Boolean value indicating whether its argument is a member of the group.
