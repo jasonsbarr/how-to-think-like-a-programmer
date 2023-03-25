@@ -1,251 +1,12 @@
 # Built-In Collection Types
 
-JavaScript has 3 built-in *collection* types that we will look at in this chapter. A collection type allows you to group data together in a structured manner. The 3 built-in collection types are Maps, Sets, and Arrays.
-
-## Maps
-
-A JavaScript Map is an object made up of key/value pairs. It's conceptually similar to an object, except that with an object you can only have property keys that are strings or symbols. The keys of a Map entry can be any type, including objects and even other Maps.
-
-You can mix and match the types of your keys and values, but don't. Maps are most effective when you have the same type for all keys and the same type for all values. Obviously the key and value types don't have to be the same. If you **absolutely** need different types for values and you need keys with a type other than string or symbol, you have to use a Map. You should avoid getting into situations where this is necessary. If you need entry values with different types, an object is more appropriate than a Map.
-
-### Constructing Maps
-
-Unlike with objects, there is no literal syntax for a Map. You have to use the Map constructor:
-
-```js
-let m = new Map(); // creates an empty Map
-```
-
-You can also create a Map directly from an array of pairs, which are arrays with 2 elements representing key/value pairs:
-
-```js
-const pairs = [ [ "a", "hello" ], [ "b", "goodbye" ] ];
-//-> Map { "a" => "hello", "b" => "goodbye" }
-```
-
-Obviously we'll cover constructing arrays later in the chapter, but this is an example of using array literal syntax to create an array of array pairs.
-
-The ability to use an array of pairs to construct a Map means you can easily convert an object to a Map:
-
-```js
-const obj = { a: "hi", b: "bye" };
-const m = new Map(Object.entries(obj));
-```
-
-### Working with Maps
-
-To add entries to a Map, use the `Map.prototype.set` method with the key and value:
-
-```js
-m.set("key1", "value1");
-```
-
-The `set` method both sets the value for the given key and returns the Map itself with the new entry.
-
-To read an entry from the Map use `Map.prototype.get` with the key:
-
-```js
-m.get("key1");
-```
-
-If the key you pass to `get` as an argument is a reference type, the interpreter will use reference equality to compare the argument to the Map's keys. That means the object must be the same object or an alias for the object. Passing it an object that is structurally the same (i.e. has the same property keys and values) will not work.
-
-Trying to get an entry with a nonexistent key will evaluate to `undefined`, so if you're uncertain whether a Map key has been set you'll want to use the `has` method as shown below.
-
-Note that, because all objects (including collection types) are reference types, an equals comparison on 2 Maps will only evaluate to `true` if one is an alias of the other:
-
-```js
-// This creates a map with the same entries as m, above
-const m2 = new Map(Object.entries({ key1: "value1" }));
-
-m === m2; //-> false
-```
-
-To check and see if a Map has an entry with a certain key, use `Map.prototype.has`:
-
-```js
-m.has("key2"); //-> false
-```
-
-This allows you to avoid getting `undefined` values when fetching data from a Map:
-
-```js
-let value;
-
-if (!m.has("key2")) {
-    value = "value2";
-    m.set("key2", "value2");
-} else {
-    value = m.get("key2");
-}
-```
-
-Just like with `get`, if the key is a reference type it must be the exact same object.
-
-To remove an entry from the Map, pass its key to `Map.prototype.delete`:
-
-```js
-m.delete("key2"); //-> true
-```
-
-If the entry is successfully deleted `delete` returns `true`; otherwise it returns `false`. Just like with `get` and `has`, if you give `delete` an object it will only delete the entry if it's the exact same object or an alias.
-
-If you need to delete all the data in a Map, use `Map.prototype.clear`:
-
-```js
-m.clear(); // m is now empty
-```
-
-It's good programming practice in general to avoid mutating your objects like this, but there are cases where it's necessary.
-
-Finally, to see how many entries are in a Map, use the `size` property:
-
-```js
-m.size; // currently 0 after clearing
-```
-
-### Iterating over Maps
-
-Similar to objects, a Map has methods to get its keys, values, and entries.
-
-`Map.prototype.keys` returns the keys:
-
-```js
-for (let key of m.keys()) {
-    console.log(m.get(key));
-}
-
-for (let value of m.values()) {
-    console.log(value);
-}
-
-for (let entry of m.entries()) {
-    console.log(entry);
-}
-```
-
-The `keys` and `values` methods both return a MapIterator, which is an iterable object similar to an array. It doesn't have the same properties and methods as an array, though, so if you want to use it like an array you'll need to convert it first. The `entries` method returns a MapEntries object, which is an iterable object that contains array key/value pairs for all the entries. Again, if you want to use it with array methods you'll have to convert it. I'll cover how to convert iterable objects to arrays later in this chapter.
-
-If all you want to do is iterate over a Map's entries, Maps are themselves iterable so you can simply use a for...of loop with the Map itself:
-
-```js
-for (let entry of m) {
-    console.log(entry);
-}
-```
-
-Since each Map entry is given as an array pair by the iterable, you can use destructuring to break it apart, in a similar fashion to how you destructure an object:
-
-```js
-for (let [key, value] of m) {
-    console.log(key + ":", value);
-}
-```
-
-You can use destructuring to extract values from any iterable, which we'll cover in detail later in the chapter.
-
-There's also a `Map.prototype.forEach` method that takes a *callback* and applies that function to every entry of the map. A callback is a function you pass to another function as an argument that is then executed while the main function is itself executing. The callback to `forEach` takes as its parameters the entry value, the entry key, and the map itself (the latter 2 are optional):
-
-```js
-const m = new Map(Object.entries({ a: "hi", b: "bye" }));
-
-m.forEach((val, key, map) => {
-    console.log(key + ":", val);
-});
-```
-
-Note that `forEach` does not return a value. It takes an optional second argument that sets the value of `this` while `forEach` is executing.
-
-There is one big difference between using `forEach` and a for...of loop to iterate over a Map: with `forEach`, it will always iterate over the entire Map. You can't use `break` or `continue` to control the flow of the iteration.
-
-In current standards-compliant JavaScript interpreters (as of April, 2023), the order of entries when you iterate over the Map will be the same order in which they were added. This was not true when Maps were first added to the language, so if you have to work with older versions of a browser or Node you may not be able to depend on that behavior.
-
-## Sets
-
-JavaScript Sets are similar to arrays, except that they are guaranteed to not contain duplicate values. Note that when dealing with a Set of objects the values are only considered to be duplicate if they are the exact same object or aliases of the same object.
-
-### Constructing Sets
-
-Just like with Maps, there is no literal syntax to create Sets. You have to use the Set constructor:
-
-```js
-let s = new Set();
-```
-
-If you pass an array or other iterable to the Set constructor, it will deduplicate the object's values and add each unique value to the Set:
-
-```js
-let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
-```
-
-Like with Map keys or values, you should try to always have all the elements of your Set be the same type.
-
-### Working with Sets
-
-To get the number of elements in a Set, use the `size` property:
-
-```js
-s.size; //-> 4
-```
-
-Add a value to a Set with the `Set.prototype.add` method:
-
-```js
-s.add(5);
-```
-
-The `add` method both adds the value to the Set and returns the Set.
-
-To check if a value is in a Set, use `Set.prototype.has`. Note that since there are no keys you check the value, not a key like you do with Maps:
-
-```js
-s.has(5); //-> true
-```
-
-You can delete a value from a Set with `Set.prototype.delete`:
-
-```js
-s.delete(5);
-```
-
-It returns `true` if the value is deleted, and `false` if nothing is deleted.
-
-You can also clear a Set with `Set.prototype.clear`:
-
-```js
-s.clear();
-s.size; //-> 0
-```
-
-### Iterating over Sets
-
-Interestingly, a Set has `keys`, `values`, and `entries` methods just like a Map. `Set.prototype.keys` returns a SetIterator of the values in the Set. `Set.prototype.values` returns a SetIterator of the values in the Set. `Set.prototype.entries` returns a SetIterator that contains pairs that hold each value twice, as if it were created from a Map that had all its keys the same as their values.
-
-You can also iterate over a Set with for...of:
-
-```js
-for (let value of s) {
-    console.log(value);
-}
-```
-
-Like Maps, Sets have a `forEach` method. The callback takes the value, key, and the set itself (the latter 2 are optional). Since Sets don't actually have keys, the key is the same as the value:
-
-```js
-const s = new Set([1, 2, 3, 4, 5]);
-
-s.forEach((val) => {
-    console.log(val);
-});
-```
-
-Like `Map.prototype.forEach`, `Set.prototype.forEach` takes an optional second argument to set the value of `this` when `forEach` is executing.
-
-Like Maps, in currently standards-compliant versions of JavaScript the iterator will go in the order in which the elements were added to the set. This behavior is not guaranteed in earlier versions, so if you have to support older browsers or older versions of Node you can't depend on that behavior.
+JavaScript has 3 built-in *collection* types that we will look at in this chapter. A collection type allows you to group data together in a structured manner. The 3 built-in collection types are Arrays, Maps, and Sets.
 
 ## Arrays
 
-Arrays are an ordered collection of elements. The elements of an array can be any type, including other arrays. Like with Maps and Sets, you should try to have all the elements of your array be the same type except for under certain circumstances. If you're using an array to represent a tuple of elements, and you know ahead of time which element of the array will be which type, then it's ok to mix types. A tuple is a collection of mixed-type elements, similar to an object's values, but without keys. It's just a collection of values.
+Arrays are an ordered collection of elements. The elements of an array can be any type, including other arrays. Like with Maps and Sets, you should try to have all the elements of your array be the same type except for under certain circumstances.
+
+If you're using an array to represent a tuple of elements, and you know ahead of time which element of the array will be which type, then it's ok to mix types. A tuple is a collection of mixed-type elements, similar to an object's values, but without keys. It's just a collection of values. You can use a tuple to return multiple values from an object, which you'll see later in the chapter when we talk about destructuring.
 
 ### Constructing Arrays
 
@@ -268,7 +29,7 @@ const empties = Array(5); //-> an array of 5 undefined elements
 If you have an iterable object, you can convert it to an array using `Array.from`:
 
 ```js
-const arr = Array.from(s); //-> [ 1, 2, 3, 4 ]
+const arr = Array.from(new Set([1, 2, 3, 3, 5, 4, 3, 2])); //-> [ 1, 2, 3, 4, 5 ]
 ```
 
 `Array.from` also takes an optional 2nd argument for a mapping callback function. This function will be applied to every element of the array, and can take 1 or 2 parameters. The first argument is the element of the iterable the function is being applied to, and the 2nd (optional) argument is the numeric index of the element being mapped:
@@ -327,13 +88,13 @@ squares.length; //-> 8
 
 ### Bracket Access and Strings
 
-Note that you can also use bracket notation to access a character in a string, starting with 0 as the index of the first character. In programming we start counting from 0 instead of 1, which can be confusing for beginners.
+Note that you can also use bracket notation to access a character in a string, starting with 0 as the index of the first character.
 
-Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
+Somewhat confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between char code and code point numeric values in many cases.
 
 ### Iterating over Arrays
 
-You can iterate over an array in 2 ways: with a regular for loop or a for...of loop.
+You can iterate over an array with a regular for loop or a for...of loop.
 
 To iterate over an array with a for loop, use the loop counter as the array index:
 
@@ -343,7 +104,7 @@ for (let i = 0; i < squares.length; i++) {
 }
 ```
 
-Unless you have a good reason not to, though, it's usually better to use a for...of loop because then you don't have to worry about a counter:
+It's usually better to use a for...of loop unless you have a good reason not to, because then you don't have to worry about a counter. The interpreter will keep track of the elements for you:
 
 ```js
 for (let num of squares) {
@@ -351,7 +112,7 @@ for (let num of squares) {
 }
 ```
 
-I suppose you could also use a while loop with a counter if you **really** wanted to, but don't do that unless you have a **really** good reason.
+You could also use a while loop with a counter if you wanted, but don't do that unless you have a **really** good reason.
 
 ## Array Methods
 
@@ -363,11 +124,18 @@ Here are some simple array methods.
 
 #### `Array.isArray`
 
-To check if an object is an array:
+If you try `typeof` with an array, it's not very helpful:
+
+```js
+typeof [1, 2, 3]; //-> "object"
+```
+
+To check if an object is an array, use this method instead:
 
 ```js
 const s = new Set([1, 2, 3, 4]);
 Array.isArray(s); //-> false
+Array.isArray([1, 2, 3, 4]); //-> true
 ```
 
 #### `Array.prototype.at`
@@ -375,6 +143,7 @@ Array.isArray(s); //-> false
 Gets the element at a given array index. If you give it a negative number, it will count back from the end (so -1 gets the last element of the array and so on):
 
 ```js
+squares.at(0); //-> 1
 squares.at(-1); //-> 64
 ```
 
@@ -405,6 +174,8 @@ You can pass in an optional integer argument to tell `flat` how many levels to u
 const arr = [ [ 1, 2, [ 3 ] ], 4, 5];
 arr.flat(1); //-> [ 1, 2, [ 3 ], 4, 5 ]
 ```
+
+`flat` creates a new array and does not modify the original one.
 
 #### `Array.prototype.includes`
 
@@ -461,6 +232,8 @@ Pushes its argument onto the end of the array, then returns the argument:
 // array is now [ 1, 2, 3, 4 ]
 ```
 
+`push` and `pop` both mutate the original array.
+
 #### `Array.prototype.reverse`
 
 Reverses an array. Mutates the original array **and** returns the reversed array:
@@ -478,6 +251,8 @@ const nums = [ 1, 2, 3, 4 ];
 nums.shift(); //-> 1
 // array is now [ 2, 3, 4 ]
 ```
+
+Mutates the original array.
 
 #### `Array.prototype.slice`
 
@@ -511,7 +286,7 @@ const people = [
 people.sort((a, b) => a.age - b.age);
 
 // sort by the name property
-people.sort((a, b) => a > b ? 1 : a < b ? -1 : 0);
+people.sort((a, b) => (a > b) ? 1 : (a < b) ? -1 : 0);
 ```
 
 Like `reverse`, sort both mutates the original array **and** returns the sorted array.
@@ -527,6 +302,8 @@ nums.unshift(1); //-> returns 1
 ```
 
 ### Higher Order Array Methods
+
+These methods each take a *callback* that is applied to every entry in the array one at a time. A callback is a function you pass to another function as an argument that is then executed while the main function is itself executing.
 
 #### `Array.prototype.every`
 
@@ -583,7 +360,7 @@ words.flatMap((el) => el.split(" "));
 
 #### `Array.prototype.forEach`
 
-Similiar to the `forEach` methods for Maps and Sets. The callback takes the current array element then optional arguments for the current index and the array itself.
+Iterates over each element of the array and applies a callback to it. The callback takes the current array element then optional arguments for the current index and the array itself. Does not return a value.
 
 ```js
 [ 1, 2, 3, 4, 5, 6 ].forEach((n, i, a) => {
@@ -668,27 +445,14 @@ Here's an example that puts together several array methods to perform a task sim
 const users = getUsers();
 
 const adults = users
-                // note that to return an object from an arrow function
-                // you must wrap it in parentheses if there's no
-                // block statement with a return statement
-                .map((user) => ({ email: user.email, name: user.name, age: user.age }))
-                // reject all the users younger than 18
-                .filter((user) => user.age >= 18)
-                // sort from oldest to youngest
-                .sort((a, b) => b.age - a.age);
+    .map((user) => ({ email: user.email, name: user.name, age: user.age }))
+    .filter((user) => user.age >= 18)
+    .sort((a, b) => b.age - a.age);
 ```
 
 The above example fetches a list of users from the database. We only care about 3 data attributes for each user, so we use `map` to cherry pick those 3 attributes from the initial user object. Then we only want users who are adults, so we `filter` out all the users who aren't at least 18 years old. Finally, we want them sorted from oldest to youngest so we pass a comparing function to `sort`.
 
-## Iterable Objects
-
-There are several objects in JavaScript that are iterable. You've seen Maps, Sets, MapIterators, SetIterators, MapEntries, and SetEntries objects already in this chapter. Later in this chapter you'll see the `arguments` object, which is another iterable object.
-
-You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object.
-
-You'll often see people refer to iterable objects as "array-like objects."
-
-### Spreading Iterables
+### Spreading Arrays
 
 Similar to how you can spread objects, you can spread arrays. You can spread an array into another array:
 
@@ -734,7 +498,7 @@ add3(...nums); //-> 6
 
 One neat thing about spreading is that it actually works with any iterable, not just arrays. That's because the interpreter uses the `[Symbol.iterator]` method to figure out how to spread out the elements.
 
-### Iterable Destructuring
+### Array Destructuring
 
 Like with objects, you can destructure array values:
 
@@ -755,13 +519,305 @@ Finally, you can gather unused array elements from destructuring into another ar
 const [ jason, ...rest ] = names;  //-> rest is [ "Gretchen", "Daniel" ]
 ```
 
-You can also destructure any other iterable object. Do note that if you use a rest variable it will gather the remaining elements into an array, because destructuring doesn't know about the constructor for whatever kind of object you're destructuring from.
-
 You can also combine destructuring arrays and objects:
 
 ```js
 const { name, games: [ golf, ...games ] } = { name: "Jason", games: [ "Golf", "Chess", "D&D" ] };
 ```
+
+## Maps
+
+A JavaScript Map is an object made up of key/value pairs. It's conceptually similar to an Object, except that with an object you can only have property keys that are strings or symbols. The keys of a Map entry can be any type, including objects and even other Maps.
+
+You can mix and match the types of your keys and values, but don't. Maps are most effective when you have the same type for all keys and the same type for all values. Obviously the key and value types don't have to be the same. If you **absolutely** need different types for values and you need keys with a type other than string or symbol, you have to use a Map. You should avoid getting into situations where this is necessary. If you need entry values with different types, an object is more appropriate than a Map.
+
+### Constructing Maps
+
+Unlike with objects, there is no literal syntax for a Map. You have to use the Map constructor:
+
+```js
+let m = new Map(); // creates an empty Map
+```
+
+You can also create a Map directly from an array of pairs, which are arrays with 2 elements representing key/value pairs (tuples):
+
+```js
+const pairs = [ [ "a", "hello" ], [ "b", "goodbye" ] ];
+//-> Map { "a" => "hello", "b" => "goodbye" }
+```
+
+The ability to use an array of pairs to construct a Map means you can easily convert an object to a Map:
+
+```js
+const obj = { a: "hi", b: "bye" };
+const m = new Map(Object.entries(obj));
+```
+
+### Working with Maps
+
+To add entries to a Map, use the `Map.prototype.set` method with the key and value:
+
+```js
+m.set("key1", "value1");
+```
+
+The `set` method both sets the value for the given key and returns the Map itself with the new entry.
+
+To read an entry from the Map use `Map.prototype.get` with the key:
+
+```js
+m.get("key1");
+```
+
+If the key you pass to `get` as an argument is a reference type, the interpreter will use reference equality to compare the argument to the Map's keys. That means the object must be the same object or an alias for the object. Passing it an object that is structurally the same (i.e. has the same property keys and values) will not work.
+
+```js
+const o = { a: "hi", b: "bye" };
+const m = new Map([ [ o, "this is a value" ] ]);
+m.get(o); //-> "this is a value"
+m.get({ a: "hi", b: "bye" }); //-> undefined
+```
+
+Trying to get an entry with a nonexistent key will evaluate to `undefined`, so if you're uncertain whether a Map key has been set you'll want to use the `has` method as shown below.
+
+Note that, because all objects (including collection types) are reference types, an equals comparison on 2 Maps will only evaluate to `true` if one is an alias of the other:
+
+```js
+// This creates a map with the same entries as m, above
+const m2 = new Map(Object.entries({ key1: "value1" }));
+const m3 = m;
+
+m === m2; //-> false
+m === m3; //-> true
+```
+
+To check and see if a Map has an entry with a certain key, use `Map.prototype.has`:
+
+```js
+m.has("key2"); //-> false
+```
+
+This allows you to avoid getting `undefined` values when fetching data from a Map:
+
+```js
+let value;
+
+if (!m.has("key2")) {
+    value = "value2";
+    m.set("key2", "value2");
+} else {
+    value = m.get("key2");
+}
+```
+
+Just like with `get`, if the key is a reference type it must be the exact same object.
+
+To remove an entry from the Map, pass its key to `Map.prototype.delete`:
+
+```js
+m.delete("key2"); //-> true
+```
+
+If the entry is successfully deleted `delete` returns `true`; otherwise it returns `false`. Just like with `get` and `has`, if you give `delete` an object it will only delete the entry if it's the exact same object or an alias.
+
+If you need to delete all the data in a Map, use `Map.prototype.clear`:
+
+```js
+m.clear(); // m is now empty
+```
+
+It's good programming practice in general to avoid mutating your objects like this, but there are cases where it's necessary.
+
+Finally, to see how many entries are in a Map, use the `size` property:
+
+```js
+m.size; // currently 0 after clearing
+```
+
+### Iterating over Maps
+
+Similar to objects, a Map has methods to get its keys, values, and entries.
+
+`Map.prototype.keys` returns the keys:
+
+```js
+for (let key of m.keys()) {
+    console.log(m.get(key));
+}
+
+for (let value of m.values()) {
+    console.log(value);
+}
+
+for (let entry of m.entries()) {
+    console.log(entry);
+}
+```
+
+The `keys` and `values` methods both return a MapIterator, which is an iterable object similar to an array. It doesn't have the same properties and methods as an array, though, so if you want to use it like an array you'll need to convert it first. The `entries` method returns a MapEntries object, which is an iterable object that contains array key/value pairs for all the entries. Again, if you want to use it with array methods you'll have to convert it. I'll cover how to convert iterable objects to arrays later in this chapter.
+
+If all you want to do is iterate over a Map's entries, Maps are themselves iterable so you can simply use a for...of loop with the Map itself:
+
+```js
+for (let entry of m) {
+    console.log(entry);
+}
+```
+
+Since each Map entry is given as an array pair by the iterable, you can use destructuring to break it apart:
+
+```js
+for (let [key, value] of m) {
+    console.log(key + ":", value);
+}
+```
+
+There's also a `Map.prototype.forEach` method:
+
+```js
+const m = new Map(Object.entries({ a: "hi", b: "bye" }));
+
+m.forEach((val, key, map) => {
+    console.log(key + ":", val);
+});
+```
+
+Note that `forEach` does not return a value. It takes an optional second argument that sets the value of `this` while `forEach` is executing.
+
+There is one big difference between using `forEach` and a for...of loop to iterate over a Map: with `forEach`, it will always iterate over the entire Map. You can't use `break` or `continue` to control the flow of the iteration.
+
+In current standards-compliant JavaScript interpreters (as of April, 2023), the order of entries when you iterate over the Map will be the same order in which they were added. This was not true when Maps were first added to the language, so if you have to work with older versions of a browser or Node you may not be able to depend on that behavior.
+
+## An Example of Working with Maps
+
+{title: "File: `maps.js`"}
+```js
+const peopleObj = {
+    jason: { name: "Jason", age: 42 },
+    gretchen: { name: "Gretchen", age: 39 },
+    daniel: { name: "Daniel", age: 9 }
+}
+
+const m1 = new Map(Object.entries(peopleObj));
+console.log("m1:", m1);
+
+let m2 = new Map();
+let m3 = m2;
+
+for (let key of Object.keys(peopleObj)) {
+    m2.set(key, peopleObj[key]);
+}
+
+console.log("m2:", m2);
+console.log("m3:", m3);
+console.log("m1 equals m2?", m1 === m2); //-> false
+console.log("m2 equals m3?", m2 === m3); //-> true
+
+m2.set("risk", { name: "Risk", age: 62 });
+
+for (let [key, value] of m2) { // uses array destructuring
+    console.log(key + ":", value);
+}
+
+m2.delete("risk");
+console.log("m2:", m2);
+
+m2.clear();
+console.log("m2:", m2);
+```
+
+## Sets
+
+JavaScript Sets are similar to arrays, except that they are guaranteed to not contain duplicate values. Note that when dealing with a Set of objects the values are only considered to be duplicate if they are the exact same object or aliases of the same object.
+
+### Constructing Sets
+
+Just like with Maps, there is no literal syntax to create Sets. You have to use the Set constructor:
+
+```js
+let s = new Set();
+```
+
+If you pass an array to the Set constructor, it will deduplicate the array's values and add each unique value to the Set:
+
+```js
+let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
+```
+
+Like with Map keys or values, you should try to always have all the elements of your Set be the same type.
+
+### Working with Sets
+
+To get the number of elements in a Set, use the `size` property:
+
+```js
+s.size; //-> 4
+```
+
+Add a value to a Set with the `Set.prototype.add` method:
+
+```js
+s.add(5);
+```
+
+The `add` method both adds the value to the Set and returns the Set.
+
+To check if a value is in a Set, use `Set.prototype.has`. Note that since there are no keys you check the value, not a key like you do with Maps:
+
+```js
+s.has(5); //-> true
+```
+
+You can delete a value from a Set with `Set.prototype.delete`:
+
+```js
+s.delete(5);
+```
+
+It returns `true` if the value is deleted, and `false` if nothing is deleted.
+
+You can also clear a Set with `Set.prototype.clear`:
+
+```js
+s.clear();
+s.size; //-> 0
+```
+
+### Iterating over Sets
+
+Interestingly, a Set has `keys`, `values`, and `entries` methods just like a Map. `Set.prototype.keys` returns a SetIterator of the values in the Set. `Set.prototype.values` returns a SetIterator of the values in the Set. `Set.prototype.entries` returns a Set Entries iterator that contains pairs that hold each value twice, as if it were created from a Map that had all its keys the same as their values.
+
+You can also iterate over a Set with for...of:
+
+```js
+for (let value of s) {
+    console.log(value);
+}
+```
+
+Like Maps, Sets have a `forEach` method. The callback takes the value, key, and the set itself (the latter 2 are optional). Since Sets don't actually have keys, the key is the same as the value:
+
+```js
+const s = new Set([1, 2, 3, 4, 5]);
+
+s.forEach((val) => {
+    console.log(val);
+});
+```
+
+Like `Map.prototype.forEach`, `Set.prototype.forEach` takes an optional second argument to set the value of `this` when `forEach` is executing.
+
+Like Maps, in currently standards-compliant versions of JavaScript the iterator will go in the order in which the elements were added to the set. This behavior is not guaranteed in earlier versions, so if you have to support older browsers or older versions of Node you can't depend on that behavior.
+
+## Iterable Objects
+
+There are several objects in JavaScript that are iterable. You've seen Maps, Sets, MapIterators, SetIterators, MapEntries, and SetEntries objects already in this chapter. Later in this chapter you'll see `arguments`, which is another iterable object.
+
+You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object. You'll see how to do that in chapter 8.
+
+You'll often see people refer to iterable objects as "array-like objects."
+
+Like arrays, you can spread and destructure any iterable object.
 
 ## Variadic Functions
 
@@ -789,7 +845,7 @@ A rest parameter is similar to a rest variable when destructuring. You use the s
 
 ```js
 /**
- * Sum up a variadic number of numbers
+ * Sums up a variadic number of numbers
  * @param {...number} numbers
  * @returns {number}
  */
@@ -799,6 +855,23 @@ function sum(...numbers) {
 
 sum(1, 2, 3, 4, 5); //-> 15
 ```
+
+To make sure the user passes in at least 2 arguments to add, do it this way:
+
+```js
+/**
+ * Sums up at least 2 numbers
+ * @param {number} a
+ * @param {number} b
+ * @param {...number} numbers
+ * @returns {number}
+ */
+function sum(a, b, ...numbers) {
+    return numbers.reduce((sum, num) => sum + num, a + b);
+}
+```
+
+Note that you'll also need to handle the case where there are no variadic arguments passed in, i.e. the length of the rest parameter array is 0. For the above functions, `reduce` will just return the initial accumulator value.
 
 ## Linear Time Algorithms
 
@@ -812,6 +885,7 @@ If a function takes 10 steps to run with an input of 10 elements, and it takes 1
 
 It is often the case that an O(n) algorithm will have one main loop, or one main recursive call. Here is an example of an O(n) algorithm that gets an arbitrary amount of inputs and then processes them:
 
+{title: "File: linear_time.js`"}
 ```js
 /**
  * Print the list of names in uppercase
@@ -827,8 +901,8 @@ function yellNames(names) {
 let names = [];
 let inputName;
 
-while (inputName !== "") {
-    inputName = input("Give me a name: ");
+while (inputName !== "quit") {
+    inputName = input("Give me a name or enter 'quit' to stop: ");
 
     if (inputName) {
         names.push(inputName);

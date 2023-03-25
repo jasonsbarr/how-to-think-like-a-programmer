@@ -273,7 +273,9 @@ for (let key of Object.keys(person)) {
 
 Note that `Object.keys` only works with string keys that are *own properties* on the object. An object's own properties are the ones defined directly on the object itself, and not inherited from another object as prototype properties.
 
-There is also an `Object.values` method that returns a list of the object's property values and an `Object.entries` method that returns a list of pairs, where each pair has a property's key name and its value.
+I don't recommend using for...in loops because they have some quirks that can cause bugs that are difficult to catch.
+
+There is also an `Object.values` method that returns an array of the object's property values and an `Object.entries` method that returns an array of pairs, where each pair has a property's key name and its value.
 
 ## Configuring Object Properties
 
