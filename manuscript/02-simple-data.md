@@ -946,13 +946,13 @@ Note that any topic from a previous chapter is always fair game for review quest
 5. Write a function called `areStringsEqual` that tells you if two strings are equal.
 6. Write a function called `difference` that tells you the difference between a number and a bigint.
 7. Write a function called `integer` that takes a string of a number. If the number is not an integer, return `null`. If the integer is larger than `Number.MAX_SAFE_INTEGER` or smaller than `Number.MIN_SAFE_INTEGER`, convert the string to a bigint and return it. If it's not too large or small to be represented safely as a number, convert it to a number and return it. You'll probably have to look at the MDN entries for [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), and possibly [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) to figure out what you need to know to do it. When you get a developer job you'll probably spend at least 50% of your time on the job reading documentation, so you might as well start getting the hang of it now.
-8. Look up the MDN entry for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Write down summaries of what the `getTime`, `getFullYear`, `setHour`, and `toISOString` methods do. Also write a summary of the difference between the `get*` and `set` methods and the `getUTC*` and `setUTC*` methods. Hint: there's really only one thing that's different between the regular methods and their UTC counterparts, so don't make it too complicated.
+8. Look up the MDN entry for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Write down summaries of what the `getTime`, `getFullYear`, `setHour`, and `toISOString` methods do. Also write a summary of the difference between the `get*` and `set*` methods and the `getUTC*` and `setUTC*` methods. Hint: there's really only one thing that's different between the regular methods and their UTC counterparts, so don't make it too complicated.
 9. Write a function called `isZero` that returns whether or not the sum of 2 given numbers is 0 (should return a boolean).
 10. Write a recursive function called `isPalindrome` that returns whether or not a given string is a palindrome (a string that is the same both forwards and backwards, should return a boolean). Use the following helper function that normalizes the cases of all the characters in the string and removes any characters that are not alphanumeric (including spaces):
 
 ```js
 /**
- * Normalizes a string to check if it's a palindrome
+ * Normalizes a string to all lowercase, alphanumeric characters
  * @param {string} str
  * @returns {string}
  */
