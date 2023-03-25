@@ -8,7 +8,7 @@ A JavaScript Map is an object made up of key/value pairs. It's conceptually simi
 
 You can mix and match the types of your keys and values, but don't. Maps are most effective when you have the same type for all keys and the same type for all values. Obviously the key and value types don't have to be the same. If you **absolutely** need different types for values and you need keys with a type other than string or symbol, you have to use a Map. You should avoid getting into situations where this is necessary. If you need entry values with different types, an object is more appropriate than a Map.
 
-## Constructing Maps
+### Constructing Maps
 
 Unlike with objects, there is no literal syntax for a Map. You have to use the Map constructor:
 
@@ -32,7 +32,7 @@ const obj = { a: "hi", b: "bye" };
 const m = new Map(Object.entries(obj));
 ```
 
-## Working with Maps
+### Working with Maps
 
 To add entries to a Map, use the `Map.prototype.set` method with the key and value:
 
@@ -104,7 +104,7 @@ Finally, to see how many entries are in a Map, use the `size` property:
 m.size; // currently 0 after clearing
 ```
 
-## Iterating over A Map
+### Iterating over Maps
 
 Similar to objects, a Map has methods to get its keys, values, and entries.
 
@@ -164,7 +164,7 @@ In current standards-compliant JavaScript interpreters (as of April, 2023), the 
 
 JavaScript Sets are similar to arrays, except that they are guaranteed to not contain duplicate values. Note that when dealing with a Set of objects the values are only considered to be duplicate if they are the exact same object or aliases of the same object.
 
-## Constructing Sets
+### Constructing Sets
 
 Just like with Maps, there is no literal syntax to create Sets. You have to use the Set constructor:
 
@@ -180,7 +180,7 @@ let s = new Set([ 1, 2, 3, 2, 1, 4, 3 ]); //-> Set { 1, 2, 3, 4 }
 
 Like with Map keys or values, you should try to always have all the elements of your Set be the same type.
 
-## Working with Sets
+### Working with Sets
 
 To get the number of elements in a Set, use the `size` property:
 
@@ -217,7 +217,7 @@ s.clear();
 s.size; //-> 0
 ```
 
-## Iterating over A Set
+### Iterating over Sets
 
 Interestingly, a Set has `keys`, `values`, and `entries` methods just like a Map. `Set.prototype.keys` returns a SetIterator of the values in the Set. `Set.prototype.values` returns a SetIterator of the values in the Set. `Set.prototype.entries` returns a SetIterator that contains pairs that hold each value twice, as if it were created from a Map that had all its keys the same as their values.
 
@@ -247,7 +247,7 @@ Like Maps, in currently standards-compliant versions of JavaScript the iterator 
 
 Arrays are an ordered collection of elements. The elements of an array can be any type, including other arrays. Like with Maps and Sets, you should try to have all the elements of your array be the same type except for under certain circumstances. If you're using an array to represent a tuple of elements, and you know ahead of time which element of the array will be which type, then it's ok to mix types. A tuple is a collection of mixed-type elements, similar to an object's values, but without keys. It's just a collection of values.
 
-## Constructing Arrays
+### Constructing Arrays
 
 The simplest way to construct an array is with the literal syntax:
 
@@ -298,7 +298,7 @@ Finally, you can create an array from an arbitrary-length list of arguments usin
 const ofArray = Array.of(1, 2, 3, 4); //-> [ 1, 2, 3, 4 ]
 ```
 
-## Accessing Array Elements
+### Accessing Array Elements
 
 You access an array element by its numeric index in brackets (i.e. a member expression with bracket syntax). The first element of the array has the index 0.
 
@@ -331,7 +331,7 @@ Note that you can also use bracket notation to access a character in a string, s
 
 Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
 
-## Iterating over Arrays
+### Iterating over Arrays
 
 You can iterate over an array in 2 ways: with a regular for loop or a for...of loop.
 
@@ -357,11 +357,11 @@ I suppose you could also use a while loop with a counter if you **really** wante
 
 Arrays have many useful methods that allow you to perform many different operations on their elements. I've divided them into 2 categories: "simple" methods that do not take a function as one of their arguments (except for `sort`, which **can** take a function but doesn't have to), and "higher-order methods" that **do** take a function as one of their arguments.
 
-## Simple Array Methods
+### Simple Array Methods
 
 Here are some simple array methods.
 
-### `Array.isArray`
+#### `Array.isArray`
 
 To check if an object is an array:
 
@@ -370,7 +370,7 @@ const s = new Set([1, 2, 3, 4]);
 Array.isArray(s); //-> false
 ```
 
-### `Array.prototype.at`
+#### `Array.prototype.at`
 
 Gets the element at a given array index. If you give it a negative number, it will count back from the end (so -1 gets the last element of the array and so on):
 
@@ -378,7 +378,7 @@ Gets the element at a given array index. If you give it a negative number, it wi
 squares.at(-1); //-> 64
 ```
 
-### `Array.prototype.concat`
+#### `Array.prototype.concat`
 
 Concatenates two or more arrays together:
 
@@ -390,7 +390,7 @@ a1.concat(a2); //-> [ 1, 2, 3, 4 ]
 
 The `concat` method returns a new array and does not modify any of the original arrays.
 
-### `Array.prototype.flat`
+#### `Array.prototype.flat`
 
 "Flattens" nested arrays into a single array:
 
@@ -406,7 +406,7 @@ const arr = [ [ 1, 2, [ 3 ] ], 4, 5];
 arr.flat(1); //-> [ 1, 2, [ 3 ], 4, 5 ]
 ```
 
-### `Array.prototype.includes`
+#### `Array.prototype.includes`
 
 Checks to see if an array has an element with a certain value. Remember that with reference types it has to be the exact same object or an alias.
 
@@ -415,7 +415,7 @@ const nums = [ 1, 2, 3, 4, 5 ];
 nums.includes(15); //-> false
 ```
 
-### `Array.prototype.indexOf`
+#### `Array.prototype.indexOf`
 
 Returns the index of the element if the argument matches an element in the array; otherwise it returns -1:
 
@@ -424,7 +424,7 @@ nums.indexOf(3); //-> 2
 nums.indexOf(100); //-> -1
 ```
 
-### `Array.prototype.join`
+#### `Array.prototype.join`
 
 Joins together all the elements in an array as a single string. Takes an optional argument of a string that will be inserted between elements.
 
@@ -433,7 +433,7 @@ const words = [ "Every", "good", "boy", "does", "fine" ];
 words.join(" "); //-> "Every good boy does fine"
 ```
 
-### `Array.prototype.lastIndexOf`
+#### `Array.prototype.lastIndexOf`
 
 Like `indexOf`, only it returns the index of the last time an element is found in an array. Returns -1 if not found.
 
@@ -442,7 +442,7 @@ const nums = [ 1, 2, 3, 1, 3, 1];
 nums.lastIndexOf(1); //-> 5
 ```
 
-### `Array.prototype.pop`
+#### `Array.prototype.pop`
 
 Removes and returns the last element of an array. If the array is empty, returns `undefined`.
 
@@ -452,7 +452,7 @@ nums.pop(); //-> 5
 // array is now [ 1, 2, 3, 4 ]
 ```
 
-### `Array.prototype.push`
+#### `Array.prototype.push`
 
 Pushes its argument onto the end of the array, then returns the argument:
 
@@ -461,7 +461,7 @@ Pushes its argument onto the end of the array, then returns the argument:
 // array is now [ 1, 2, 3, 4 ]
 ```
 
-### `Array.prototype.reverse`
+#### `Array.prototype.reverse`
 
 Reverses an array. Mutates the original array **and** returns the reversed array:
 
@@ -469,7 +469,7 @@ Reverses an array. Mutates the original array **and** returns the reversed array
 [ 1, 2, 3, 4 ].reverse(); //-> [ 4, 3, 2, 1 ]
 ```
 
-### `Array.prototype.shift`
+#### `Array.prototype.shift`
 
 Like `pop`, but for the first element in the array. Returns `undefined` if the array is empty.
 
@@ -479,7 +479,7 @@ nums.shift(); //-> 1
 // array is now [ 2, 3, 4 ]
 ```
 
-### `Array.prototype.slice`
+#### `Array.prototype.slice`
 
 Creates a copy of the elements of an array from the first index argument to an optional second index argument (not inclusive of the last index). If you only give it 1 argument, it copies to the end of the array. If you use negative numbers, it counts that index from the end of the array.
 
@@ -487,7 +487,7 @@ Creates a copy of the elements of an array from the first index argument to an o
 [ 1, 2, 3, 4, 5 ].slice(1, 4); //-> [ 2, 3, 4 ]
 ```
 
-### `Array.prototype.sort`
+#### `Array.prototype.sort`
 
 Sorts the elements in an array. Takes an optional function to determine how to sort the elements. Note that if you call `sort` on an array that contains any type other than strings, and if you don't pass a sorting function as an argument, it will coerce the elements to strings and then sort them. This is most noticeable with numbers, because you get something very different from what you'd expect when sorting numbers:
 
@@ -516,7 +516,7 @@ people.sort((a, b) => a > b ? 1 : a < b ? -1 : 0);
 
 Like `reverse`, sort both mutates the original array **and** returns the sorted array.
 
-### `Array.prototype.unshift`
+#### `Array.prototype.unshift`
 
 Like `push`, but at the beginning of the array.
 
@@ -526,9 +526,9 @@ nums.unshift(1); //-> returns 1
 // array is now [ 1, 2, 3, 4 ]
 ```
 
-## Higher Order Array Methods
+### Higher Order Array Methods
 
-### `Array.prototype.every`
+#### `Array.prototype.every`
 
 Returns `true` if every element in the array satisfies a *predicate* (function that checks to see if something is true or false):
 
@@ -536,7 +536,7 @@ Returns `true` if every element in the array satisfies a *predicate* (function t
 [ 2, 4, 6, 8 ].every((el) => el % 2 === 0); //-> true
 ```
 
-### `Array.prototype.filter`
+#### `Array.prototype.filter`
 
 Removes elements from an array that do not satisfy the predicate. The predicate takes the array element as an argument, plus optional arguments for the current index and the array itself.
 
@@ -544,7 +544,7 @@ Removes elements from an array that do not satisfy the predicate. The predicate 
 [1, 2, 3, 4, 5, 6].filter((el) => el % 2 === 0); //-> [ 2, 4, 6 ]
 ```
 
-### `Array.prototype.find`
+#### `Array.prototype.find`
 
 Finds and returns the first array element that satisfies a predicate. Returns `undefined` if there is no matching value.
 
@@ -558,7 +558,7 @@ const people = [
 people.find((person) => person.name === "Jason");
 ```
 
-### `Array.prototype.findIndex`
+#### `Array.prototype.findIndex`
 
 Like `find`, but returns the numeric index of the first matching element. Returns -1 if none is found.
 
@@ -566,11 +566,11 @@ Like `find`, but returns the numeric index of the first matching element. Return
 people.findIndex((person) => person.age > 50); //-> -1
 ```
 
-### `Array.prototype.findLast` and `Array.prototype.findLastIndex`
+#### `Array.prototype.findLast` and `Array.prototype.findLastIndex`
 
 Like `find` and `findIndex`, except that they work on the **last** matching element. Obviously if there's only 1 matching element they return a value for it. Return `undefined` and -1 respectively if there is no matching element.
 
-### `Array.prototype.flatMap`
+#### `Array.prototype.flatMap`
 
 Applies a mapping function to every element of the array and then flattens it. Like using `map` followed by `flat(1)`, but somewhat more efficient.
 
@@ -581,7 +581,7 @@ words.flatMap((el) => el.split(" "));
 //-> [ "It's", "always", "sunny", "in", "Philadelphia" ]
 ```
 
-### `Array.prototype.forEach`
+#### `Array.prototype.forEach`
 
 Similiar to the `forEach` methods for Maps and Sets. The callback takes the current array element then optional arguments for the current index and the array itself.
 
@@ -601,7 +601,7 @@ Similiar to the `forEach` methods for Maps and Sets. The callback takes the curr
 });
 ```
 
-### `Array.prototype.map`
+#### `Array.prototype.map`
 
 Applies a callback that maps each element of the array to a new value, then returns an array of the transformed values. Does not modify the original array. Callback can take the same arguments as `forEach`.
 
@@ -615,7 +615,7 @@ const people = [
 people.map((person) => person.name); //-> [ "Jason", "Gretchen", "Daniel" ]
 ```
 
-### `Array.prototype.reduce`
+#### `Array.prototype.reduce`
 
 Applies a reducer function and accumulates a value that is returned after the last iteration. The callback takes 2 required parameters: the accumulator value and the current value. Then it can take 2 optional arguments for the current index and the array itself. `reduce` takes an optional second argument that sets the initial value of the accumulator. If no initial value is given, it will use the 1st element's value. I recommend always passing in an initializer argument to avoid confusion and hard-to-diagnose bugs.
 
@@ -647,7 +647,7 @@ people.reduce((names, person) => {
 
 There is also a `reduceRight` method that is exactly the same except that it iterates backwards, start from the last element of the array and going to the first.
 
-### `Array.prototype.some`
+#### `Array.prototype.some`
 
 Checks to see if **any** element in the array satisfies a predicate:
 
@@ -655,11 +655,11 @@ Checks to see if **any** element in the array satisfies a predicate:
 people.some((person) => person.age > 40); //-> true
 ```
 
-## More Array Methods
+### More Array Methods
 
 For complete documentation of how to use arrays and all array methods, including a few not covered here, see [the MDN Array entry](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
-## Working with Array Methods
+## Working with Arrays
 
 Here's an example that puts together several array methods to perform a task similar to something you might need to do at some point:
 
@@ -688,7 +688,7 @@ You can also create your own iterable objects by adding a special `[Symbol.itera
 
 You'll often see people refer to iterable objects as "array-like objects."
 
-## Spreading Iterables
+### Spreading Iterables
 
 Similar to how you can spread objects, you can spread arrays. You can spread an array into another array:
 
@@ -734,7 +734,7 @@ add3(...nums); //-> 6
 
 One neat thing about spreading is that it actually works with any iterable, not just arrays. That's because the interpreter uses the `[Symbol.iterator]` method to figure out how to spread out the elements.
 
-## Iterable Destructuring
+### Iterable Destructuring
 
 Like with objects, you can destructure array values:
 
@@ -767,7 +767,7 @@ const { name, games: [ golf, ...games ] } = { name: "Jason", games: [ "Golf", "C
 
 Now that you know how iterables work, you can see how to write *variadic functions*. A variadic function is one that can take any number of optional arguments after whatever required arguments are given.
 
-## The `arguments` Object
+### The `arguments` Object
 
 One way to create variadic functions is by using the `arguments` object. This object is an iterable object that collects all the arguments passed into a function. You can use bracket syntax member expressions with integer indexes to access the items in `arguments`.
 
@@ -781,7 +781,7 @@ The `arguments` object will include all arguments passed into a function even if
 
 Note that only `function` functions, both function declarations and function expressions, have an `arguments` object. Arrow functions do not have `arguments`, so if you try to use it inside the body of an arrow function you'll get an error.
 
-## Using a Rest Parameter
+### Using a Rest Parameter
 
 The other way to define a variadic function, which is the one I recommend you use because it works with any function and it's more flexible, is with a rest parameter.
 
@@ -849,5 +849,11 @@ As a general rule with Big O, if you count the steps and come up with a constant
 Big O notation is an **approximation** of the running time, not a calculation of every little thing that affects how long it actually takes for the computation to run.
 
 ## Recap
+
+In this chapter we covered the built-in collection types in JavaScript: Maps, Sets, and Arrays. We also introduced iterable objects, explained variadic functions, and learned about linear time algorithms.
+
+The next chapter is our first project! We're going to build an old school text-based adventure game you can play in your console.
+
+I hope you're as excited as I am!
 
 ## Exercises
