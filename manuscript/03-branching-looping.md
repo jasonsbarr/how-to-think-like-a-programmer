@@ -328,8 +328,9 @@ If you're checking for a specific value, a `switch` statement might be a better 
 
 ### Checking for Numeric Input
 
-Remember our problem from earlier? If you want to make sure get a number from your user with the `input` function, now you can use a conditional statement. Create a new file, `get_number1.js`:
+Remember our problem from earlier? If you want to make sure get a number from your user with the `input` function, now you can use a conditional statement. Create a new file, `get_number.js`:
 
+{title: "File: `get_number.js`"}
 ```js
 import { input } from "@jasonsbarr/simple-io";
 
@@ -357,6 +358,7 @@ Each possible value gets a `case` clause, with an optional `default` clause to h
 
 Create a new file `directions.js`, import the `input` function into it, and enter this:
 
+{title: "File: `directions.js`"}
 ```js
 const name = input("Which direction would you like to go? ");
 
@@ -469,6 +471,7 @@ Plus there's no way to be sure you'll have enough `if` checks for them to finall
 
 If you're thinking to yourself, "Didn't we already introduce a way to repeat code when we looked at recursive functions in the last chapter?" then you're absolutely right and kudos to you. Recursion is definitely one way we could tackle this problem. Create a new file `get_number2.js`:
 
+{title: "File: `get_number_rec.js`}
 ```js
 import { input } from "@jasonsbarr/simple-io";
 /**
@@ -563,6 +566,32 @@ while (true) {
 
 Obviously you don't want to do this without a way to break out of the loop, which is where `break` statements come in.
 
+#### Getting A Number with Iteration
+
+Here's the iterative solution to making sure the user enters a valid number:
+
+{title: "File: `get_number_iter.js`"}
+```js
+import { input } from "@jasonsbarr/simple-io";
+/**
+ * Gets a number from user input
+ * @param {string} userInput
+ * @returns {number}
+ */
+function getAge(userInput) {
+    const value = NaN;
+
+    while (Number.isNaN(value)) {
+        value = Number(input("How old are you? "));
+    }
+
+    return value;
+}
+
+const age = getAge(input("How old are you? "));
+console.log("You are " + age + " years old!");
+```
+
 #### `break` and `continue` Statements
 
 If you want to stop a loop regardless of whether its condition has become falsy, use a `break` statement:
@@ -580,8 +609,9 @@ while (true) {
 
 Note that since the `++` is in postfix position (after `i`) the number will be printed first and **then** incremented. If the operator was in prefix position (before `i`), the number would be incremented first and then printed.
 
-If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement. Create a new file `add_evens_while.js`:
+If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement:
 
+{title: "File: `add_evens_while.js`"}
 ```js
 /**
  * Add the even numbers in a range (non-inclusive of end)
@@ -686,7 +716,7 @@ console.log(addEvens(1, 11)); //-> prints 30
 
 ### For...Of Loops
 
-There's a variation of the for loop that was added to JavaScript in 2015, commonly known as the `for...of` loop.
+There's a variation of the for loop that was added to JavaScript in 2015, commonly known as the for...of loop.
 
 You can use a for...of loop with any iterable object, and it will simply iterate over the object's values.
 
@@ -694,9 +724,9 @@ The only iterable we've encountered thus far is the string type, and a for...of 
 
 #### Wait, What?
 
-Strings seem like a simple type, right? After all, it's just text. But it turns out that encoding text in binary code is incredibly complex and fraught with all kinds of difficulties. For example, think of how many different alphabets there are in all the world's languages. We have to be able to represent all of them in a way that makes sense to the computer. Since the beginning of the computer age, programmers have come up with numerous ways to represent text... most of them incompatible with each other.
+Strings seem like a simple type, right? After all, it's just text. But it turns out that encoding text in binary code is incredibly complex and fraught with all kinds of difficulties. Think of how many different alphabets there are in all the world's languages. We have to be able to represent all of them in a way that makes sense to the computer. Since the beginning of the computer age, programmers have come up with numerous ways to represent text, most of them incompatible with each other.
 
-We could write an entire book about text encoding, but I'll just say the way software makers have agreed to encode text is via the Unicode standard.
+We could write an entire book about text encoding, but I'll just say the way modern software makers have agreed to encode text is via the Unicode standard.
 
 Unicode maps text to numbers according to various different encoding schemes, the most common of which is UTF-8. When text is encoded as UTF-8, all "characters," which means a Unicode scalar value that represents some bit of text in some alphabet, are mapped to a sequence of 1, 2, 3, or 4 bytes (8 bits each).
 
@@ -708,13 +738,15 @@ In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each
 
 It's important to note that a Unicode scalar may not correspond exactly to what we think of as a "character" in text. It's a character for the computer's purposes, but some user-perceived characters may actually be made up of multiple Unicode scalars.
 
-One example of this is emoji. When you see the 😀 emoji you see a single character, but it's actually made up of 2 Unicode scalars.
+Emoji is an example of this. When you see the an emoji you see a single character, but it's actually made up of at least 2 Unicode scalars. Some emoji are even bigger.
 
-That means if you iterate over that emoji with a for...of loop there will actually be 2 iterations of the loop.
+That means if you iterate over that emoji with a for...of loop there will actually be at least 2 iterations of the loop.
 
 If you write in English or another language that uses an alphabet derived from Latin then the vast majority of characters you use will be made up of a single Unicode scalar, but it's important to be aware of the fact that things can get more complicated with more complex characters.
 
 Unicode scalars map to numeric values called *code points*, and you can find the code point value of a character using the `String.prototype.codePointAt` method. You can see more methods on strings themselves and the String constructor at [the MDN String page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+
+Note that in JavaScript documentation instance methods on objects are often referred to as `[Type].prototype.[method]`. That's because JavaScript uses prototypes for its objects, which you'll learn about in the next chapter. If the method is on the constructor it's just called `[Type].[method]`.
 
 #### Strings and For...Of Loops
 
@@ -799,7 +831,7 @@ The module execution context is the execution context for all the code in a give
 
 The function execution context is the same, but for an individual function.
 
-An execution context is an object created behind the scenes by the JavaScript interpreter that keeps track of everything needed to execute the code currently being executed. There are 3 main things that happen when an execution context is constructed:
+An execution context is an object created behind the scenes by the JavaScript interpreter that keeps track of everything needed to execute a program, module, or function. There are 3 main things that happen when an execution context is constructed:
 
 1. Creation of the context's variable object (namespace)
 2. Constructing the scope chain (environments)
@@ -809,7 +841,7 @@ JavaScript code is executed in 2 passes made by the interpreter: the compilation
 
 The execution context is constructed during the compilation pass.
 
-All you need to know right now about step 1 is that it's exactly what it sounds like: the interpreter creates a namespace object that contains the names of all the variables defined in the code unit being executed. This includes the names of function declarations. I'll go into more detail about this later in the book, but this is enough information for now.
+All you need to know right now about step 1 is that it's exactly what it sounds like: the interpreter creates a namespace object that contains the names of all the variables defined in the code unit being executed. This includes the names of function declarations. This is when function declarations and variables are hoisted, as discussed in chapter 2.
 
 I'll explain what step 3 means in the next chapter, because it's important for understanding how objects work, but it's not especially crucial to know right now.
 
@@ -819,14 +851,15 @@ Every time a function is created, whether it's a function declaration or a funct
 
 This scope includes all the function's parameters, variables, and any functions declared inside the function itself.
 
-As I briefly mentioned in the last chapter, the scope of a function also includes references to any variables defined in the function's outer (or containing) scope. This allows you to use any external variables in a containing scope within the function itself and even update external variables from the function itself.
+As I briefly mentioned in the last chapter, the scope of a function also includes references to any variables defined in the function's outer scope. This allows you to use any external variables in a containing scope within the function itself and even update external variables from the function itself.
 
 If you nest functions inside of functions, each successive internal function's scope has a reference to its outer function's scope.
 
-Maintaining a reference to a function's outer scope variables is called *closure*. You may see particular functions that use their outer reference referred to themselves as closures, because the function "closes over" the variables in its outer scope(s).
+Maintaining a reference to a function's outer scope variables is called *closure*. You may see particular functions that use their outer reference referred to as *closures*, because the function "closes over" the variables in its outer scope(s).
 
 This allows you to do something like this:
 
+{title: "File: `make_adder.js`}
 ```js
 /**
  * @callback adder
@@ -853,29 +886,7 @@ The `add5` function maintains a reference to the argument value given for the `n
 
 You can nest any number of functions and the scope chain will be constructed from the innermost to outermost function, with each scope having a reference to all variables defined in any outer scope.
 
-### The Call Stack
-
-When you call a function, the JavaScript interpreter takes the execution context for that function along with the arguments provided in the function call and uses them to create a *call stack frame*. This happens during the interpreter's execution pass.
-
-You saw above how calling a function causes its argument expressions to be evaluated one at a time, from left to right. In order to do the step of substituting the argument values for the parameter names in the function body, the interpreter makes a copy of the function's local environment that's part of its execution context. Then it assigns the argument values to the parameter names in the new copy of the environment. This new object is a call stack frame, which is then placed on top of the call stack.
-
-The call stack is a stack data structure the interpreter maintains internally that keeps track of which function is currently being executed and what functions have yet to be executed.
-
-A stack is a data structure modeled after a stack of items where you place new items on top of the stack of items, then when you need to use an item you take it off the top of the stack. You'll see how to create your own stacks in chapter 20.
-
-The global stack frame, which is constructed from the global execution context, is always at the bottom of the stack.
-
-When the interpreter comes to a function call, it constructs the call stack frame for this execution of the function and places it on top of the stack, a.k.a. on top of the global stack frame. Then it traverses the body of the function to see if any additional function calls are present in the execution of this function.
-
-If it finds an additional function call, it constructs a stack frame for that function call and places it on top of the call stack. So now we have the global stack frame at the bottom, the containing function's stack frame next, and the internal function's stack frame on top.
-
-This process continues until there are no additional function calls nested within the other function calls.
-
-Then the interpreter executes the function whose stack frame is on top and returns its value, removes and discards that stack frame, and continues executing functions, returning their values, and removing frames until every function call has been executed. The process of removing and discarding a stack frame is called *popping* off the stack.
-
-Eventually the interpreter gets back to the global stack frame, and then it continues executing code in the global execution context. When it encounters another function call, it begins the process again.
-
-<!-- TODO: get examples from PythonTutor.com or another visualizer and create diagrams illustrating the execution context -->
+TODO: Make illustrations from Python Tutor or another visualizer
 
 ## Recap
 
