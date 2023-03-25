@@ -15,7 +15,7 @@ For this book, we'll define data as information that can be divided into categor
 
 Open the `chapter01` folder from the course files in your text editor and create a new file called `examples.js`. The `.js` extension lets your editor and Node.js know the file contains JavaScript code. Then code along with the examples below.
 
-Unfortunately, you won't be able to use Node.js to execute the code in this file because it contains code that will throw errors. This is intentional, because the error-producing code is necessary for examples. At the end of the chapter I'll give you some code you can run and show you how to run it.
+Unfortunately, you won't be able to use Node.js to execute the code in this file because it contains code that will throw errors. This is intentional, because the error-producing code is necessary for some of the examples. At the end of the chapter I'll give you some code you can write and run yourself, and show you how to run it.
 
 ## Atomic Expressions
 
@@ -912,6 +912,59 @@ To define a Turing-complete programming language you must have a set of primitiv
 
 In chapter 2 we'll look at control flow constructs that direct what code is executed when, as well as how to handle errors that could arise in our programs. We'll also start to build the evaluation model for our hypothetical JavaScript interpreter.
 
+## Questions for Review
+
+1. What is data?
+2. What is a type?
+3. What is an expression?
+4. What is a statement?
+5. What are the 4 fundamental aspects of any programming language?
+6. What 2 things does every programming language provide?
+7. What is the most important means of abstraction in JavaScript?
+8. What is it called when a function can call itself?
+9. Explain how short-circuit evaluation works for the `&&` and `||` operators.
+10. What kind of program executes programs you write in JavaScript?
+11. How does comparing strings as equal, greater than, or less than work?
+12. Can you mix numbers and bigints in a mathematical expression?
+13. How does a conditional expression work?
+14. What is the difference between `==` and `===`?
+15. What happens if you try to add 5 and "5"? Try it in your Node REPL if you're not sure.
+16. True or false: you can add booleans like numbers.
+17. If true, is that ever a good idea?
+18. How do you create a symbol? Note that there are two ways.
+19. What's the difference between the two ways of creating symbols?
+20. What does "Turing-complete" mean?
+
 ## Exercises
 
-TODO: Exercises
+1. Write a function called `max` that compares 2 bigints and returns the larger of the two.
+2. Write a function called `min` that compares 2 bigints and returns the smaller of the two.
+3. Write a function called `capitalize` that takes any string, capitalizes the first letter, and then lowercases the rest of it. Hint: look at the `String.prototype.slice` method [at the MDN entry for String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+4. Write a recursive function called `pow` that takes two numbers and raises the first to the power of the second. Remember: for a recursive function you need a base case that will terminate, in addition to a recursive case.
+5. Write a function called `areStringsEqual` that tells you if two strings are equal.
+6. Write a function called `difference` that tells you the difference between a number and a bigint.
+7. Write a function called `integer` that takes a string of a number. If the number is not an integer, return `null`. If the integer is larger than `Number.MAX_SAFE_INTEGER` or smaller than `Number.MIN_SAFE_INTEGER`, convert the string to a bigint and return it. If it's not too large or small to be represented safely as a number, convert it to a number and return it. You'll probably have to look at the MDN entries for [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), and possibly [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) to figure out what you need to know to do it. When you get a developer job you'll probably spend at least 50% of your time on the job reading documentation, so you might as well start getting the hang of it now.
+8. Look up the MDN entry for [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Write down summaries of what the `getTime`, `getFullYear`, `setHour`, and `toISOString` methods do. Also write a summary of the difference between the `get*` and `set` methods and the `getUTC*` and `setUTC*` methods. Hint: there's really only one thing that's different between the regular methods and their UTC counterparts, so don't make it too complicated.
+9. Write a function called `isZero` that returns whether or not the sum of 2 given numbers is 0 (should return a boolean).
+10. Write a recursive function called `isPalindrome` that returns whether or not a given string is a palindrome (a string that is the same both forwards and backwards, should return a boolean). Use the following helper function that normalizes the cases of all the characters in the string and removes any characters that are not alphanumeric (including spaces):
+
+```js
+/**
+ * Normalizes a string to check if it's a palindrome
+ * @param {string} str
+ * @returns {string}
+ */
+function normalizeString(str) {
+    let normalized = "";
+
+    for (let c of str) {
+        if (/[a-zA-Z0-9]/.test(c)) {
+            normalized += c;
+        }
+    }
+
+    return normalized;
+}
+```
+
+You'll learn what the `for` and `/[a-zA-Z0-9]/` syntaxes mean in chapters 3 and 7, respectively.

@@ -115,7 +115,7 @@ export { input };
 
 In your own code, if you want to use named exports just put the variable names you wish to export between curly braces.
 
-You can also do what we did for the functions in the exercises from the previous chapters, and use the `export` keyword when defining the variable or function:
+You can also use the `export` keyword when defining the variable or function:
 
 ```js
 /**
