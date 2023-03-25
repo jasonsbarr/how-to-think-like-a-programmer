@@ -1,12 +1,8 @@
 # Data Structures
 
-## Stacks and Queues
-
 ## Linked Lists
 
-## Singly Linked Lists
-
-## Doubly Linked Lists
+## Stacks and Queues
 
 ## Trees
 
