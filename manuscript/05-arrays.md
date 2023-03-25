@@ -325,6 +325,12 @@ To know how many elements are in an array, including empty elements, use the `le
 squares.length; //-> 8
 ```
 
+### Bracket Access and Strings
+
+Note that you can also use bracket notation to access a character in a string, starting with 0 as the index of the first character. In programming we start counting from 0 instead of 1, which can be confusing for beginners.
+
+Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
+
 ## Iterating over Arrays
 
 You can iterate over an array in 2 ways: with a regular for loop or a for...of loop.
@@ -750,6 +756,12 @@ const [ jason, ...rest ] = names;  //-> rest is [ "Gretchen", "Daniel" ]
 ```
 
 You can also destructure any other iterable object. Do note that if you use a rest variable it will gather the remaining elements into an array, because destructuring doesn't know about the constructor for whatever kind of object you're destructuring from.
+
+You can also combine destructuring arrays and objects:
+
+```js
+const { name, games: [ golf, ...games ] } = { name: "Jason", games: [ "Golf", "Chess", "D&D" ] };
+```
 
 ## Variadic Functions
 

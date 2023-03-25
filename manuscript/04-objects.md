@@ -8,13 +8,13 @@ That's because according to the JavaScript type system we have 2 different kinds
 
 You'll also remember that the special value `null` has type `object` as well, because it represents an empty value that **could** be an object. One that **would** be an object if it wasn't empty.
 
-In this chapter we'll look at Objects (obviously) and Dates. We'll also expand our JavaScript evaluation model to include some things that are very important for evaluating objects and executing code that works on objects.
+In this chapter we'll look at objects and how to construct them. We'll also expand our JavaScript evaluation model to include some things that are very important for evaluating objects and executing code that works with objects.
 
 ## Objects
 
 The simplest kind of JavaScript object is simply `Object`.
 
-Object is a constructor, just like String and Number. We'll explore constructors later in the chapter, but for now it's enough to know that all objects get properties from Object.
+`Object` is a constructor, just like `String` and `Number`. We'll explore constructors later in the chapter, but for now it's enough to know that all objects get properties from `Object`.
 
 Some languages make you define object types with classes before you can construct actual instances of objects. JavaScript does not. We **do** have classes in JavaScript, but they work differently from classes you may have used in other programming languages.
 
@@ -126,6 +126,8 @@ person; //-> { name: "Jason" }
 ```
 
 Since objects are mutable by default, if I know I could possibly mutate an object of any kind I will declare it with `let` instead of `const` to avoid confusion and signal that the value of the object may change. This includes objects of the collection types we'll look at in the next chapter.
+
+In cases where immutable data is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
 
 ## Object Equality
 
@@ -248,6 +250,7 @@ It seems simple, but `this` can actually get surprisingly complex in JavaScript.
 
 You can iterate over all an object's properties. This can be done in 2 ways:
 
+{title: "File: iter_object.js`"}
 ```js
 const person = {
     name: "Jason",
@@ -328,10 +331,6 @@ person.firstName; //-> Robert
 ```
 
 You can also use `Object.defineProperty` for setters just like you can with getters.
-
-Note that you can also use bracket notation to access a character in a string, starting with 0 as the index of the first character. In programming we start counting from 0 instead of 1, which can be confusing for beginners.
-
-Even more confusingly, the index isn't based on Unicode scalars like it is when you iterate over a string. The index stands for the UTF-16 code unit found at the index. You'll remember from the last chapter that a UTF-16 character is made up of at least 1 16 bit (2 byte) numeric value mapped to text. In JavaScript these values are called char codes. For people who write in English or another language with letters derived from the Latin alphabet, there will be no difference between most char code and code point numeric values in most cases.
 
 ## Constructor Functions and The `new` Keyword
 
@@ -486,9 +485,15 @@ Note that `Object.assign` mutates its target directly, adding properties right o
 Programmer.prototype = Object.assign({}, programmerProto, programmerMethods);
 ```
 
-There is one problem with setting up inheritance this way with `Object.create`: it obfuscates the "constructor" property on the subtype's constructor.
+There is one problem with setting up inheritance this way with `Object.create`: it obfuscates the "constructor" property on the subtype's instances.
 
-You can use `Object.setPrototypeOf` to solve this problem:
+You can solve this problem by assigning directly to the prototype:
+
+```js
+Programmer.prototype.constructor = Programmer;
+```
+
+Or you can use `Object.setPrototypeOf`:
 
 ```js
 /**
@@ -529,8 +534,9 @@ Using `Object.setPrototypeOf` like this properly sets up the inheritance chain b
 
 ## Classes
 
-Prototypal inheritance is extremely powerful and flexible, but sometimes you don't need all that. There's a simpler way to do all this prototypal inheritance if all you want to do is set up a simple inheritance chain, and that's using classes. Classes were introduced to JavaScript in ES2015, and abstract away the messy details of setting prototypes an inheritance. To create a Person class, just use the `class` keyword:
+Prototypal inheritance is extremely powerful and flexible, but sometimes you don't need all that. There's a simpler way to do inheritance if all you want to do is set up a simple prototype chain, and that's using classes. Classes were introduced to JavaScript in ES2015, and abstract away the messy details of setting prototypes and inheritance. To create a Person class, just use the `class` keyword:
 
+{title: "File: `person_class.js`"}
 ```js
 /**
  * @class Person
@@ -592,14 +598,18 @@ class Person {
 }
 
 // create a new Person
-const jason = new Person("Jason", 42);
+const gretchen = new Person("Gretchen", 39);
 
 // or use the static method
 const daniel = Person.new("Daniel", 9);
+
+console.log(gretchen);
+console.log(daniel);
 ```
 
 Now if you want to create a Programmer class that inherits from the Person class, you need to use the `extends` and `super` keywords:
 
+{title: "Continuing in `person_class.js`:"}
 ```js
 /**
  * @class Programmer
@@ -633,7 +643,8 @@ class Programmer extends Person {
 
 // construct an instance
 const jason = new Programmer("Jason", 42, ["JavaScript", "Python", "F#", "Rust"]);
-jason.constructor.name; //-> "Programmer"
+console.log(jason);
+console.log(jason.constructor.name);
 ```
 
 `extends` tells the interpreter you want to set up prototypal inheritance between the Programmer and Person classes, and `super` means you're accessing either the constructor (when called as if it were a function) or a property (when used as if it were an object) on the class you're inheriting from.
@@ -642,7 +653,7 @@ Note that classes don't actually introduce new functionality into JavaScript. Th
 
 ## Native Constructors
 
-Now you know what I mean when I say String, Number, etc. are constructors. There's a small difference between these native constructors and ones you'll define, though.
+Now you know what I mean when I say `String`, `Number`, etc. are constructors. There's a small difference between these native constructors and ones you'll define, though.
 
 You should avoid doing things like this:
 
@@ -650,7 +661,7 @@ You should avoid doing things like this:
 const five = new Number(5);
 ```
 
-It's technically legal, and you can use the resulting value in much the same way as you could use a primitive number, but then there's this:
+It's technically valid, and you can use the resulting value in much the same way as you could use a primitive number, but then there's this:
 
 ```js
 typeof five; //-> "object"
@@ -658,7 +669,7 @@ typeof five; //-> "object"
 
 Were you expecting "number"? Whoops!
 
-On top of that, it will throw an error if you try to use `new` with the constructors of the 2 newer primitive types, BigInt and Symbol.
+On top of that, it will throw an error if you try to use `new` with the constructors of the 2 newer primitive types, `BigInt` and `Symbol`.
 
 As a general rule, using the constructors of primitive types to create objects is a bad idea; however, you **can** use the constructors as simple functions to cast values from one type to another:
 
@@ -698,10 +709,10 @@ You can use `instanceof` to check built-in object types as well.
 
 You can pass objects to any function just like you can with any other value, however there are a couple of important things to take note of:
 
-1. Objects are passed by reference, which means when you pass an object into a function you're not passing a copy of the data, but a reference to the actual object itself which means anything you change in the function will change on the object itself both in and outside of the function
-2. Objects are mutable by default, which means you can easily change anything about the object and JavaScript won't stop or warn you
+1. Objects are passed by reference, which means when you pass an object into a function you're not passing a copy of the data, but a reference to the actual object itself which means anything you change in the function will change on the object itself both in and outside of the function.
+2. Objects are mutable by default, which means you can easily change anything about the object and JavaScript won't stop or warn you.
 
-So if you do something like this:
+If you do something like this:
 
 ```js
 let person = new Person("Jason", 42);
@@ -732,8 +743,6 @@ function changeName(person, name) {
 
 You can also do it with the spread operator, which we'll cover in the next section.
 
-In cases where immutable data is a must, consider using a library like [Immutable.js](https://immutable-js.com/).
-
 ## The Spread Operator
 
 The spread operator allows you to "spread" an object into a new object, which lets you copy, merge, and update objects without mutating the originals.
@@ -742,8 +751,8 @@ To spread an object, use the `...` operator:
 
 ```js
 const person = { name: "Jason", age: 42 };
-const programming = { languages: ["JavaScript", "Python", "F#", "Rust"] };
-const hobbies = { games: ["chess", "golf"], others: ["musical instruments", "RPGs"] }
+const programming = { language: "JavaScript" };
+const hobbies = { music: "Saxophone", favoriteGame: "Golf" }
 
 // let's make a copy of person
 const personCopy = { ...person };
@@ -754,7 +763,7 @@ const person2 = { ...person, age: 43 };
 
 // Jason is also a programmer and has hobbies,
 // so let's merge all those properties
-const jason = { ...person, ...programming, ...hobbies };
+const jason = { ...person2, ...programming, ...hobbies };
 ```
 
 Now we can rewrite the `changeName` function above like this:
@@ -822,15 +831,14 @@ To execute the function, you need to pass in an object that has these properties
 const query = "select * from users where activation_date not null";
 const binds = {};
 const dbName = "DataWarehouse1";
-
 const data = executeQuery({ query, binds, dbName });
 ```
 
 ## Dates
 
-The built-in `Date` constructor creates special objects that represent points in time. Date objects represent the number of milliseconds since 12:00 AM UTC on January 1, 1970.
+The built-in `Date` constructor creates special objects that represent points in time. `Date` objects represent the number of milliseconds since 12:00 AM UTC on January 1, 1970.
 
-Dates can represent any date and time between approximately 272,000 years ago and 273,000 years in the future. This book is being written in 2023, so if you're reading it in the year 275760 I'm sure your computer scientists have already figured out a way to make it work past September 13 of this year, which is the last day that can be represented according to the current ECMAScript standard.
+Dates can represent any date and time between approximately 272,000 years ago and 273,000 years in the future. This book is being written in 2023, so if you're reading it in the year 275760 I'm sure your computer scientists have already figured out a way to make it work past September 13 of that year, which is the last day that can be represented according to the current ECMAScript standard.
 
 One thing to note is that month indexes start at 0, not 1 (remember, programmers count from 0).
 
@@ -843,8 +851,7 @@ const d2 = new Date(2023, 3); // 4/1/2023 at 12:00 AM UTC
 const d3 = new Date(2023, 3, 22); // 4/22/2023 at 12:00 AM UTC
 const d4 = new Date(2023, 3, 22, 17); // 4/22/2023 at 5:00 PM UTC
 const d5 = new Date(2023, 3, 22, 17, 23); // 4/22/2023 at 5:23 PM UTC
-// you can also add seconds and milliseconds
-// as additional parameters
+// you can also add seconds and milliseconds as additional parameters, but we won't
 
 // using the date constructor with a timestamp
 const d6 = new Date(Date.now());
@@ -872,7 +879,7 @@ now.getTime(); //-> 1679524320000
 
 Confusingly, there is also a `Date.prototype.getYear` method that you should never use because it only returns the last 2 digits of the year and is basically worthless.
 
-There are also equivalent setter methods like `Date.prototype.setHours` that let you set the relevant properties.
+There are also equivalent setter methods like `Date.prototype.setHours` that let you set the relevant properties. Like other objects, Dates are mutable.
 
 For complete documentation of all the Date object's properties and methods, see [the MDN Date page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 
@@ -893,6 +900,7 @@ JavaScript has 2 methods on the built-in `JSON` object for working with JSON dat
 
 When you have data in some combination of the above types that you want to serialize into JSON, you call the `JSON.stringify` method on it:
 
+{title: "File: `json.js`"}
 ```js
 const data = {
     people: [ // [] is array literal syntax, which you'll learn in the next chapter
@@ -911,15 +919,20 @@ const data = {
     ]
 };
 
+console.log(data);
+
 const jsonData = JSON.stringify(data); // typeof jsonData === "string"
+console.log(jsonData);
 ```
 
 Now you can do something with the `jsonData` value that you couldn't have done with the original data, like send it over the network to be stored on a server.
 
 When it's time to retrieve and use the data, `JSON.parse` will turn the string of JSON back into data in your program:
 
+{title: "Continuing in `json.js`:"}
 ```js
 const peopleData = JSON.parse(jsonData); // typeof peopleData === "object"
+console.log(peopleData); // same as the original data object
 ```
 
 ## JavaScript Evaluation Model
@@ -932,7 +945,7 @@ You'll remember from our discussion of execution contexts that the 3rd part of c
 
 You've seen above that we use `this` as a means of referencing the object itself within its own constructor and methods. For most languages with objects, that's everything there is to know about `this`. JavaScript is a bit more complicated. You can actually access `this` in any execution context, not just in object method calls.
 
-There is actually a value for `this` in every execution context created during the execution of a JavaScript program, including global, module, and function contexts.
+There is actually a value for `this` in every execution context created for a JavaScript program. You'll recall from the last chapter that setting the value of `this` is the 3rd step in creating an execution context.
 
 In the global execution context, the value of `this` depends on whether or not the code is running in *strict mode*.
 
@@ -949,8 +962,10 @@ When executing a function, `this` can be either the same value as it has in the 
 It's set to another object when:
 
 - Calling a constructor with the `new` keyword
-- A function is called with its `call`, `apply`, or `bind` methods
+- A function is executed with its `call`, `apply`, or `bind` methods
 - A method is being called via a member expression
+
+The exception is that sometimes when working with HTML documents you'll have cases where `this` is set to the target of an event. We'll cover that in chapter 11 when we cover programming in the browser.
 
 When calling a constructor with `new`, `this` is set to the object being constructed. That's why you can set properties using `this` in a constructor (or class constructor).
 
@@ -971,8 +986,8 @@ const person1 = new Person("Jason", 42);
 const person2 = Person("Daniel", 9);
 
 // if in sloppy mode:
-window.name; //-> "Daniel"
-window.age; //-> 9
+globalThis.name; //-> "Daniel"
+globalThis.age; //-> 9
 ```
 
 If you try to call the constructor without `new` in strict mode, the interpreter will try to set "age" and "name" properties on `undefined`, which throws an error.
@@ -1016,6 +1031,6 @@ person.introduce(); //-> "My name is undefined."
 
 Now you know how to use objects, as well as different ways to construct them. This will allow you to model data in more realistic and useful ways in your programs.
 
-In the next chapter, we'll look at the built-in collection types: Map, Set, and Array.
+In the next chapter, we'll look at the built-in collection types: `Map`, `Set`, and `Array`.
 
 ## Exercises
