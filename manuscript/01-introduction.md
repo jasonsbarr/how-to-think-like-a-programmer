@@ -69,7 +69,7 @@ Finally, there's a massive final project that will make a worthy addition to any
 
 This is not a book for cramming. It is a book to be digested in pieces, preferably no larger than 1 chapter at a time.
 
-Our brains learn best by breaking large, complex units of information into small "chunks." I've divided each chapter into topics and subtopics to try to help you with your chunking. Once you have an understanding of the concepts, you need to reinforce them through review and deliberate practice. That's where the exercises and projects come in.
+Our brains learn best by breaking large, complex units of information into small "chunks." I've divided each chapter into topics and subtopics to try to help you with your chunking. Once you have an understanding of the concepts, you need to reinforce them through repetition, recall, and deliberate practice. That's where the exercises and projects come in.
 
 You can help your brain learn the material more completely and permanently if you set aside time each day to work on it.
 
@@ -109,7 +109,9 @@ A program is simply a combination of data and logic that computes a result.
 
 To compute means to calculate. It's usually associated with numbers, although modern computers can map numbers onto text, images, and many other kinds of data. It's all numbers at the most basic level, though.
 
-Computers only process numbers in their CPU (Central Processing Unit). They both store numeric data in hardware registers and read them directly from memory. We abstract away those bare metal-level processes by using programming languages that are broken down into code in a machine language the CPU can understand, which consists only of binary numbers (0s and 1s). Breaking higher-level code down into binary machine code is known as compiling. Everything we do with computers depends on these binary numbers and how the CPU handles them.
+Computers only process numbers in their CPU (Central Processing Unit).
+
+We abstract away those bare metal-level processes by writing programs that are broken down into code in a machine language the CPU can understand. Machine code consists only of binary numbers (0s and 1s). Breaking higher-level code down into binary machine code is known as compiling.
 
 The machine code contains instructions that tell the CPU what to do, what data to use, and how to produce the result of the program.
 
@@ -134,11 +136,13 @@ Every programming language has 4 fundamental elements:
 3. Static semantics
 4. Semantics
 
-The primitive constructs are things like basic data types and built-in functions. They are defined in the interpreter itself.
+The primitive constructs are things like basic data types and built-in *functions*. Functions are like miniature programs that perform some action on some data. Sometimes you'll see them called "subroutines" or "procedures." Primitives are defined in the interpreter itself.
+
+5 is a primitive in JavaScript. So is `+`, which is an operator. An operator is a kind of function that can be applied to its operands.
 
 Syntax is simply the symbols used to write programs in a language, and the rules that define well-formed statements in it.
 
-For example, in JavaScript 5 is a number. `+` is an operator, which is like a built-in function that can be applied to its operands. Both are primitives. A construct called a *binary expression* has the syntactic form *operand operator operand*, so you can see that `5 + 5` is a syntactically valid statement in JavaScript; however, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
+A construct called a *binary expression* has the syntactic form `operand operator operand`, so you can see that `5 + 5` is a syntactically valid statement in JavaScript; however, `5 5 +` is invalid. Entering invalid syntax into a program always causes an error that halts the program, and it is the most common type of error for beginning programmers.
 
 Producing an error that halts the program is known as "throwing an error."
 
@@ -148,21 +152,19 @@ Static semantics also includes things like the type system of a language, and an
 
 There are languages that do a great deal of pre-execution static semantic checking, like Java and Haskell. For better or worse, JavaScript does very little in that regard.
 
-Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly. A semantic error would be something like `5 + "5"`, where you have the number 5 and try to add it to the text "5." JavaScript will let you do this; the result is the text "55." If you intended to add 2 numbers together, this is a semantic error and you'll have to find the source of the bug.
+Finally, semantics is simply the actual meaning produced by a valid statement. That `5 + 5` produces 10 is a fact of semantics. You get semantic errors when a program produces a valid meaning, but it's not the one you intended. This includes things like logic errors in the code and implementing an algorithm incorrectly. For example, let's say you have the code `5 + "5"`, where you have the number 5 and try to add it to the text "5." JavaScript will let you do this; the result is the text "55." If you intended to add 2 numbers together, this is a semantic error and you'll have to find the source of the bug.
 
-Semantic errors are the worst kind of error in a program because they can be very difficult to find. You don't even know they exist until you run the program with input that produces the wrong value.
+Semantic errors are the worst kind of error in a program because they can be very difficult to find. Sometimes they will cause the interpreter to throw an error, but often they don't. You don't even know they exist until you run the program that produces the wrong value.
 
-The interpreter can't catch semantic errors ahead of time, so you have to actually run the program to discover them.
-
-Writing tests to catch potential semantic errors is a good practice, and we will write tests for many of our programs in this book.
+You can reduce the number of semantic errors in your programs by writing tests, which we will do for some of the programs in this book.
 
 ## Abstraction and Combination
 
-Programming languages don't just give you primitives like 5 and `+` to work with; they also give you means of *abstraction* and *combination*.
+In addition to primitives like 5 and `+`, they also give you means of *abstraction* and *combination*.
 
 Abstraction means hiding the details so the person using a thing doesn't need to know exactly how it works.
 
-It's like driving a car. You don't need to know all the details of how the accelerator pedal connects to the various mechanisms that make the car go faster. You just need to know how to push the pedal down to get to the speed at which you want to drive. The actual process of how the car goes faster is abstracted away.
+It's like driving a car. You don't need to know exactly how the accelerator pedal connects to the various mechanisms that make the car go faster. You just need to know how to push the pedal down to get to the speed you want. The actual process of how the car goes faster is abstracted away.
 
 In a programming language, abstractions are bits of logic that allow you to treat them like primitives. They are often combinations of language primitives, as well as other abstractions defined by programmers.
 
@@ -186,7 +188,7 @@ JavaScript most often runs in interpreters. The code is executed as the interpre
 
 JavaScript has been influenced by several other programming languages, most notably Scheme and Self. From Scheme, we get first-class functions, closures, and other functional programming features. From Self, we get objects with prototypes. If you've programmed in another object oriented language, prototypes may be confusing at first but I'll demystify them for you in the relevant chapter. If you have no programming experience and have no idea what anything I've just said means, don't worry about it! I'll explain everything you need to know when we get there.
 
-One last thing about JavaScript: you may see the term "ECMAScript" on occasion. That's because shortly after JavaScript was released people quickly realized there needed to be a standard for it, to keep differences in browsers from making things too difficult for programmers. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the *official* specification for what is and is not valid JavaScript.
+One last thing about JavaScript: you may see the term "ECMAScript" on occasion. Shortly after JavaScript was released people realized there needed to be a standard for it. The standards group that oversees JavaScript is ECMA, or the European Computer Manufacturers Association. ECMAScript is the **official** specification for what is and is not valid JavaScript.
 
 The [Wikipedia article about JavaScript](https://en.wikipedia.org/wiki/JavaScript) covers the history of the language in more detail, if you're curious.
 
@@ -196,7 +198,7 @@ I have chosen JavaScript as the language to use in this book because it is proba
 
 Plus it's a relatively easy language to learn, which makes it suitable for beginners.
 
-Note that, while we will use some packages from NPM (a repository for JavaScript libraries) in this book, we will not use any major frameworks or libraries (like React or Angular). Our focus is on learning how to program, not how to use the popular framework of the week. Once you understand how to write substantial programs, you'll be able to quickly learn how to use any framework.
+Note that, while we will use some packages from NPM (a repository for JavaScript libraries) in this book, we will not use any major frameworks or libraries (like React or Angular). Our focus is on learning how to program, not how to use the popular framework of the week. Once you understand how to write substantial programs, you'll be able to quickly learn how to use any framework. Likewise, once you are proficient with JavaScript you'll be able to learn additional programming languages relatively easily.
 
 ## Installing Node.js
 
@@ -251,6 +253,30 @@ The NPM package registry has over 1 million packages published that you can inst
 To install a package from NPM, just type this into your terminal (or command prompt if you're on Windows): `npm install [package name]`.
 
 You can also install packages globally, which you may want to do if there's a utility you want to use from the command line or in many projects. To do that, simply add the `-g` flag to your install command: `npm install -g [package name]`.
+
+## Choosing The Right Code Editor
+
+You need a good text editor for writing code.
+
+You can't write code in a word processor like Microsoft Word, because it applies formatting to the text that will prevent an interpreter from reading it in the way you intend.
+
+If you're on Windows, the first text editor you think of might be Notepad.
+
+Don't use Notepad.
+
+Download an editor specifically designed for programming.
+
+A good code editor will include, at a minimum, things like syntax highlighting and error notifications.
+
+There are several good, free editors available.
+
+Some popular ones are [Visual Studio Code](https://code.visualstudio.com/) (a.k.a. VS Code) and [Brackets](https://brackets.io/). [Sublime Text](https://www.sublimetext.com/) is another good one. It's not free, but it does have a free trial that has no defined end time. That means you can try it out as long as you want before you decide to pay for it.
+
+There are plugins available for each of these 3 editors, which extend their functionality in some way.
+
+Each has a vibrant developer ecosystem and new features are being added regularly.
+
+I personally use VS Code the most, but you can't go wrong with any of these 3 choices. Feel free to try them all out and see which one suits you the best.
 
 ## Your First Program
 

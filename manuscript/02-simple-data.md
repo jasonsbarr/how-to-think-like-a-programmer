@@ -13,6 +13,10 @@ It seems like a simple question, but the answer can be surprisingly difficult to
 
 For this book, we'll define data as information that can be divided into categories according to the operations you can perform with it and process with your program logic.
 
+Open the `chapter01` folder from the course files in your text editor and create a new file called `examples.js`. The `.js` extension lets your editor and Node.js know the file contains JavaScript code. Then code along with the examples below.
+
+Unfortunately, you won't be able to use Node.js to execute the code in this file because it contains code that will throw errors. This is intentional, because the error-producing code is necessary for examples. At the end of the chapter I'll give you some code you can run and show you how to run it.
+
 ## Atomic Expressions
 
 The simplest data is just a number, bit of text, or another value by itself.
@@ -38,7 +42,7 @@ They're not very useful by themselves, though. Let's look at some of the operati
 
 We'll start with simple binary expressions. They're called "binary" because they have 2 operands.
 
-A binary expression has the form of operand, operator, operand. In JavaScript you can do all the simple mathematical expressions you'd expect with numbers:
+A binary expression has the form of `operand operator operand`. In JavaScript you can do all the simple mathematical expressions you'd expect with numbers:
 
 ```js
 3 + 2 //-> 5
@@ -50,7 +54,7 @@ A binary expression has the form of operand, operator, operand. In JavaScript yo
 You can also "add" strings of text together:
 
 ```js
-"Hello" + "World" //-> "HelloWorld" - note there is no space. Spaces have to be added explicitly.
+"Hello" + "World" //-> "HelloWorld" - note there is no space
 ```
 
 Mathematical operations have the precedence you would expect following the order of operations:
@@ -152,7 +156,7 @@ The `**` operator handles exponentiation. It raises the 1st number to the power 
 
 ### Numeric Unary Operations
 
-You can also increment and decrement numbers using the `++` and `--` operators. If the operation is performed on a variable, it assigns the result of the operation to that variable.
+You can also increment or decrement numbers by 1 using the `++` or `--` operator, respectively. If the operation is performed on a variable, it assigns the result of the operation to that variable.
 
 ```js
 10++ //-> 11
@@ -189,7 +193,7 @@ You probably noticed earlier that I used operators with multiple equals signs, `
 
 The single equals sign has a different meaning that we'll cover shortly.
 
-There are also comparison operators with fewer equals signs, `==` and `!=`. They only check the values, which can be coerced to different types in certain situations. You're going to want to use strict equality nearly every time you do an equals or not-equals check.
+JavaScript also has another set of comparison operators: `==` and `!=`. They only check the values, which can be coerced to different types in certain situations. You're going to want to use strict equality nearly every time you do an equals or not-equals check.
 
 #### Dividing By Zero
 
@@ -243,7 +247,7 @@ You can also compare strings:
 "hello" === "hello" //-> true
 ```
 
-You can also do greater than and less than comparisons on strings. This comparison checks one character at a time to see which character's numeric value is greater or less than the other. All characters have numeric values under the hood, but you seldom need to worry about that.
+You can also do greater than and less than comparisons on strings. This comparison checks one character at a time to see which character's numeric value is greater or less than the other. When the check reaches characters on both sides of the operator that are different, it produces a value based on which one is greater or less than the other. All characters have numeric values under the hood, but you seldom need to worry about that.
 
 ```js
 "a" < "b" //-> true
@@ -293,8 +297,9 @@ These two operators do what's called short circuit evaluation. That means if the
 With `&&`, if the left hand value is false, the right side will not be evaluated. Otherwise, the expression evaluates to the value of the right hand expression.
 
 ```js
-10 > 50 && functionThatThrowsAnError() //-> false - it doesn't matter what's on the right, it will never be evaluated
+10 > 50 && functionThatThrowsAnError() //-> false
 100 > 10 && "hello" //-> "hello"
+100 < 10 //-> true
 ```
 
 With `||`, if the left hand value is true then the right side will not be evaluated. In this case, the expression evaluates to the value of the left hand expression. If the left side is false, the expression evaluates to the value of the right hand expression.
@@ -326,7 +331,7 @@ A symbol created this way is always unique. You can create 2 symbols from the sa
 Symbol("hi") === Symbol("hi") //-> false
 ```
 
-You can also use the `for` method (which is a function):
+You can also use the `for` method:
 
 ```js
 Symbol.for("hi") === Symbol.for("hi") //-> true
@@ -343,6 +348,30 @@ You probably won't use symbols too often, but they're useful sometimes because y
 `undefined` represents a value that has not been defined. It is also returned by functions that do not have a return value, as you learned in the previous chapter.
 
 `null` is used to intentionally set a value to be empty. Confusingly, `null` in JavaScript is of type "object." The reason is because `null` is supposed to be a value used in places where there **could** be an object value. Personally, I think this was a mistake and they should have just used 1 empty type, but that's how the language was defined in the beginning so now we're stuck with it.
+
+You can compare `null` to `undefined` using the `==` operator. Checking to see if a value is `null`, `undefined`, or some other value is the only time I use the `==` and `!=` comparison operators.
+
+```js
+null == undefined //-> true
+null === undefined //-> false
+null != undefined //-> false
+null !== undefined //-> true
+```
+
+I often use a function that does this check:
+
+```js
+/**
+ * Checks if a value is null or undefined
+ * @param {any} value
+ * @returns {boolean}
+ */
+function isNullish(value) {
+    return value == null;
+}
+```
+
+I'll show you how to define functions later in the chapter.
 
 #### The Nullish Coalescing Operator
 
@@ -371,7 +400,7 @@ null == undefined //-> true
 
 This is why I said before that you should almost always prefer using the strict equality operators `===` and `!==`. The regular equality operators `==` and `!=` will coerce types to try to make the operation work.
 
-The strict equality operators compare values **and** types, and so will work the way you probably expect it to work.
+The strict equality operators compare values **and** types, and so will work the way you probably expect.
 
 Type coercion is another one of those features that was added to the language in the beginning that many programmers wish we could get rid of. It's a common source of bugs (mistakes) in code, and they can be pretty hard to track down and fix sometimes.
 
@@ -383,7 +412,7 @@ JavaScript has "truthy" and "falsy" values. That means in a context where you wo
 
 The only falsy values are 0, "" (an empty string), `null`, `undefined`, and `false`. Everything else is truthy.
 
-Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems, such as when you're checking for a numeric value and get 0, and forget to handle the case where 0 is falsy.
+Sometimes having truthy and falsy values is convenient and allows you to write more succinct code. Other times it can cause unexpected problems.
 
 Short circuit evaluation with the `&&` and `||` operators works with truthy and falsy values. That enables some useful programming tricks I'll demonstrate later in the chapter.
 
@@ -391,8 +420,10 @@ Since JavaScript has truthy and falsy values, you can use the unary `!` operator
 
 ```js
 !5 //-> false
-!!5 //-> true - note that you can cast any value to its equivalent boolean with !!<value>
+!!5 //-> true
 ```
+
+Note that you can cast any truthy value to `true` and any falsy value to `false` if you apply `!` twice. This can be useful.
 
 ### The `typeof` operator
 
@@ -426,7 +457,7 @@ If the first operand is truthy, the expression after `?` is evaluated. If it's f
 
 ```js
 true ? "hello" : "goodbye" //-> "hello"
-x > 5 ? "it is greater than five" : "it is not greater than five" //-> depends on the value of x
+x > 5 ? "it is greater than five" : "it is not greater than five"
 ```
 
 ## Statements
@@ -442,6 +473,8 @@ When you're just getting started, you should always use semicolons where you're 
 The simplest statement is the expression statement. An expression statement is the statement containing a "top level" expression where the statement consists entirely of a single expression (which can be a compound expression like `1 + 2 * 3`).
 
 All the expressions we've used as examples so far have also been expression statements.
+
+Note that if you use an expression statement in Node.js or the browser console it will show the value the expression evaluates to in the output, even though technically statements don't evaluate to values.
 
 ### Variables
 
@@ -496,7 +529,7 @@ A variable is visible throughout its entire scope, no matter where in the scope 
 ```js
 let x = 10;
 {
-    x + 1; // ERROR, because x is defined in this scope, but it hasn't been declared yet
+    x + 1;
     let x = 5;
 }
 ```
@@ -505,7 +538,7 @@ JavaScript has 3 kinds of scope: global scope, function scope, and block scope. 
 
 #### Valid Variable Names
 
-Valid characters for variable names include $, _, and any Unicode letter or number. However, variable names cannot begin with a number.
+Valid characters for variable names include $, _, and any Unicode letter or number. However, variable names cannot begin with a number. Unicode is the standard used to encode characters in JavaScript, and Unicode letters and numbers could be any valid letter or number from almost any language.
 
 #### Variable Declarations
 
@@ -520,7 +553,7 @@ let x = 10;
 let y; //-> declares y, but does not initialize it
 const z = "hi there";
 
-y = false; //-> this is an expression statement containing an assignment expression
+y = false; //-> this is an assignment expression
 
 const a; //-> ERROR
 ```
@@ -579,7 +612,6 @@ Finally, for a variable binding JavaScript will not prevent you from assigning a
 ```js
 let greeting = "hello";
 greeting = 5;
-greeting; //-> 5
 ```
 
 I can't think of a single time in my entire career when doing this has been a good idea, but JavaScript will let you do it.
@@ -618,8 +650,8 @@ Functions are the most important means of abstraction in JavaScript.
 
 You can create functions in 2 ways:
 
-- With a function declaration
-- With a function expression
+- Function declarations
+- Function expressions
 
 ### Function Declaration
 
@@ -653,6 +685,10 @@ A function can take any number of arguments. JavaScript won't stop you from usin
 The expression for evaluating a function is called a *call expression*.
 
 Trying to use `null` or `undefined` in a call expression as if it were a function will throw an error.
+
+JavaScript has *first-class functions*. That means if you just use the name of a function without parentheses after it, JavaScript will treat it like an object. Functions are values in their own right, not just sequences of logic.
+
+I guarantee that at least once you'll forget the parentheses when you mean to call a function and sit there staring at your code for a half hour trying to figure out why it won't work like you think it should.
 
 ### Function Expression
 
@@ -690,6 +726,14 @@ const absoluteValue = function _absoluteValue(num) {
 
 You **can** use the same name as the variable, but you don't have to.
 
+#### The Difference Between Function Declarations and Expressions
+
+The biggest difference between creating a function with a function declaration and creating a variable you assign as a function expression is *hoisting*. Hoisting  means JavaScript makes it available before its declaration. Function declarations are hoisted to the top of their scope, so you can use them before they're actually defined. I don't recommend doing that, but nothing is stopping you if that's what you want to do.
+
+Variables are actually hoisted too, but when you use `let` to define a variable it doesn't actually have a value until it's declared. That's why there's a Temporal Dead Zone. The variable is hoisted, but since there's no value trying to use it throws an error.
+
+This is actually the most important difference between declaring variables with the new `let` keyword and the old `var` keyword. `var` variables are hoisted **and assigned the value `undefined` if they're not initialized**. That means you can reference them before they're assigned a value, which rarely works out well for anyone. Just use `let` instead so you get an error if you try to do that.
+
 #### Arrow Function Expressions
 
 An arrow function expression is so named because it has a "fat arrow" in it. It has the form `(parameters) => body`.
@@ -725,7 +769,7 @@ Arrow functions and `function` functions are almost exactly equivalent. The diff
 
 #### Functions with Default Arguments
 
-You can give a function's parameter default arguments that will be used if the caller doesn't pass in arguments for those parameters. Here's an example using a function that returns a Range object. A Range is a list of numbers that goes from `start` to `end` (non-inclusive of the end number) with an optional `step` parameter that defaults to 1 and defines the step size between numbers in the list.
+You can give a function's parameter default arguments that will be used if the caller doesn't pass in arguments for those parameters. Here's an example using a function that returns a Range object. A Range is a list of numbers that goes from `start` to `end` (non-inclusive of the end number) with an optional `step` parameter that defaults to 1 and defines the step size between numbers in the list. You'll define a Range type in chapter 8.
 
 ```js
 /**
@@ -774,7 +818,7 @@ function incrementX() {
 }
 ```
 
-This function increments the value of `x` in the outer scope, even though the operation takes place in the inner scope. If `incrementX` is called anywhere in the program, in any scope where it's valid, the value of `x` in *this* scope will be increased by 1.
+This function increments the value of `x` in the outer scope, even though the operation takes place in the inner scope. If `incrementX` is called anywhere in the program, in any scope where it's valid, the value of `x` in **this** scope will be increased by 1.
 
 This property of functions is called *closure*, and we'll explore it in greater depth later in the book because it's a very important part of JavaScript.
 
@@ -805,12 +849,12 @@ The most common form of member expression is `object.property` with both `object
 
 You can also write a member expression with bracket notation, which is `object[expression]` where `expression` must evaluate to the name of the object's property. If an object property's name is not a valid variable name, you have to use bracket notation. An object's property keys can be strings or symbols.
 
-A method is simply an object property that is a function. Functions are also objects in JavaScript, so you can use them anywhere you can use an object value.
+A method is simply an object property that is a function. As you saw earlier, functions are first-class in JavaScript so you can use them just like any other value.
 
 You call a method just like you would a regular function, only with a member expression before the parentheses. This code calls the "now" method on the `Date` constructor. `Date` is a built-in JavaScript function that creates objects that represent time and date values. Functions are also objects, so a constructor function can have its own properties and methods. `Date.now()` returns the number of milliseconds since 12:00 AM on January 1, 1970 (the beginning of the UNIX epoch).
 
 ```js
-const timestamp = Date.now(); // 1679085365794 as of a few seconds before I wrote this
+const timestamp = Date.now(); // 1679085365794 at the time of writing
 ```
 
 Trying to access a nonexistent object property evaluates to `undefined`.
@@ -841,7 +885,7 @@ obj.property1 // ERROR
 Before we had the optional member access operator, we had to use a hacky solution involving `&&` if there was a chance the object could be `null` or `undefined`:
 
 ```js
-obj && obj.property1 // null & undefined are falsy, so if obj is one of them the right side is never evaluated due to short circuit evaluation
+obj && obj.property1 // works because null and undefined are falsy
 ```
 
 ### The `Math` Object
@@ -866,8 +910,8 @@ It may surprise you to learn that with just the information we've covered in thi
 
 To define a Turing-complete programming language you must have a set of primitive instructions, a means of branching (like conditional expressions) and a means of repetition (like recursion). Our current understanding of JavaScript includes all these things.
 
-In chapter 2 we'll look at control flow constructs that expand upon our ability to direct the flow of a program to execute different branches of code or repeat instructions, as well as how to handle errors that could arise in our programs. We'll also start to build the evaluation model for our hypothetical JavaScript interpreter.
+In chapter 2 we'll look at control flow constructs that direct what code is executed when, as well as how to handle errors that could arise in our programs. We'll also start to build the evaluation model for our hypothetical JavaScript interpreter.
 
 ## Exercises
 
-<!-- TODO: exercises -->
+TODO: Exercises

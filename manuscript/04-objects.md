@@ -28,7 +28,15 @@ const obj = {};
 
 The above snipped creates an object with no additional properties besides the default ones that come on every object (almost, we'll see exceptions later in the book).
 
-You can define properties as key/value pairs on an object literal:
+You may have noticed that defining an object literal and creating a block expression both use curly braces. The interpreter can usually figure out which one you mean to use, but there are situations where you need to wrap an object literal in parentheses so the interpreter knows to evaluate it as an expression instead of executing it as a block statement.
+
+The most common case of this I've encountered is when you return an object literal from an arrow function with a single-expression body:
+
+```js
+const makeEmptyObject = () => ({});
+```
+
+Define an object literal's properties as key/value pairs on an object literal:
 
 ```js
 const person = {
@@ -667,6 +675,25 @@ You can also extend a native constructor as a class, though that's not something
 class MyArray extends Array {}
 ```
 
+## The `instanceof` Operator
+
+The `instanceof` operator checks to see if an object either was constructed by a particular constructor (or class) or has that constructor (or class) in its prototype chain.
+
+```js
+class MyClass {}
+class Subclass extends MyClass {}
+
+const obj1 = new MyClass();
+const obj2 = new Subclass();
+
+obj1 instanceof MyClass; //-> true
+obj2 instanceof Subclass; //-> true
+obj2 instanceof MyClass; //-> true
+obj1 instanceof Subclass; //-> false
+```
+
+You can use `instanceof` to check built-in object types as well.
+
 ## Objects as Function Parameters
 
 You can pass objects to any function just like you can with any other value, however there are a couple of important things to take note of:
@@ -827,19 +854,20 @@ const d7 = new Date("December 17, 1995 03:24:00");
 const d8 = new Date("1995-12-17T03:24:00");
 
 // create a timestamp (number type, not Date)
-const now = Date.now(); // milliseconds since 1/1/1970 12:00 AM UTC
+const ts = Date.now(); // milliseconds since 1/1/1970 12:00 AM UTC
 ```
 
 Here are some Date instance methods:
 
 ```js
-const now = Date(2023, 2, 22, 17, 32);
+const now = new Date(2023, 2, 22, 17, 32);
 
 now.getHours(); //-> 17
 now.getMinutes(); //-> 32
 now.getSeconds(); //-> 0
 now.getMonth(); //-> 2
 now.getFullYear(); //-> 2023
+now.getTime(); //-> 1679524320000
 ```
 
 Confusingly, there is also a `Date.prototype.getYear` method that you should never use because it only returns the last 2 digits of the year and is basically worthless.
