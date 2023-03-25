@@ -1,6 +1,10 @@
 # Control Flow
 
-Now that you have a solid understanding of the basic statements and expressions in JavaScript, it's time to look at some of the more complex statements. These statements allow you to implement *control flow* in your programs. You've already seen one way to do code branching (conditional expressions) and one way to repeat code (recursion), but these statements will give you the ability to have greater control over the flow of your programs.
+Now that you have a solid understanding of the basic statements and expressions in JavaScript, it's time to look at some of the more complex statements.
+
+These statements allow you to implement *control flow* in your programs.
+
+You've already seen one way to do code branching (conditional expressions) and one way to repeat code (recursion), but these statements will give you the ability to have greater control over the flow of your programs. They're also more intuitive than conditional expressions and recursion for many programmers.
 
 ## Getting User Input
 
@@ -8,7 +12,7 @@ Before getting into that, though, let's make it possible to write some more inte
 
 We'll do this using the `input` function, which is not built into JavaScript but is part of an NPM package.
 
-First, you'll need to install the package. Make sure you're in the directory for chapter 3 in the course files. When you're in the chapter03 directory, enter:
+First, you'll need to install the package. Make sure you're in the directory for chapter 3 in the course files. When you're in the `chapter03` directory, enter:
 
 ```bash
 npm install @jasonsbarr/simple-io
@@ -22,11 +26,13 @@ Now you'll need to include the `input` function in your code. First, we need to 
 
 #### Wait, What?
 
-To make a long story very, *very* short, JavaScript went decades without a standardized solution for modules. Developers were left largely to their own devices in this regard, so some common patterns emerged. When Node.js came onto the scene in 2009, they needed a solution for modules and importing code. The result was the CommonJS module system, which is based on the `require` function. To include library code in the current file, you would declare a variable as the result of calling `require` with the module as its argument.
+To make a long story very, *very* short, JavaScript went decades without a standardized solution for modules. Developers were left largely to their own devices in this regard, so some common patterns emerged.
 
-In the massive 2015 update to the JavaScript language, which is sometimes called *ES6* (or ECMAScript 6), we finally got a standardized system for modules, importing, and exporting.
+When Node.js came onto the scene in 2009, they needed a solution for modules and importing code. The result was the CommonJS module system, which is based on the `require` function. To include library code in the current file, you would declare a variable as the result of calling `require` with the module as its argument.
 
-Unfortunately, the standard modules are not compatible with CommonJS modules, so you have to let Node.js know you intend for your code to use ES2015 modules.
+In the massive 2015 update to the JavaScript language, which is sometimes called *ES6* (or *ECMAScript 6*), we finally got a standardized system for modules, importing, and exporting.
+
+Unfortunately the standard modules are not compatible with CommonJS modules, so you have to let Node.js know you intend for your code to use ES2015 modules.
 
 ### Editing `package.json`
 
@@ -113,7 +119,7 @@ You can also do what we did for the functions in the exercises from the previous
 
 ```js
 /**
- * Get input from a user
+ * Gets input from a user
  * @param {string} prompt
  * @returns {string}
  */
@@ -195,13 +201,17 @@ One more thing to note about ES2015 `import` statements: they must be at the top
 
 Finally, it's important to remember that when you import a module all the code in that module will be executed. This includes both the declaration of any functions or variables exported from the module as well as any other code not contained in a definition.
 
-The JavaScript interpreter keeps track of which modules have been executed, so you can import the same module into multiple different files (each of which is also a module) without executing the code multiple times. This is important because if the module contained code that did something like writing to a database you can be sure the code will only execute once, so there won't be multiple writes to the database.
+The JavaScript interpreter keeps track of which modules have been executed, so you can import the same module into multiple different files without executing the code multiple times. This is important because if the module contained code that did something like writing to a database you can be sure the code will only execute once, so there won't be multiple writes to the database.
+
+### Defining A Module
+
+Any file that contains at least 1 `import` or `export` statement is a module.
 
 A file that is not an ES2015 module is treated as a script by the JavaScript interpreter, and its code executes in the global execution context. I'll explain execution contexts at the end of this chapter.
 
 ### The Input Function
 
-We've imported our `input` function as a named export from an ES2015 module:
+Create a new file in the `chapter03` folder and name it `input.js`. Then import the `input` function:
 
 ```js
 import { input } from "@jasonsbarr/simple-io";
@@ -211,7 +221,7 @@ To use the function, simply call it with a textual prompt as an argument. When y
 
 The function receives its input from the command line as a string, which means you'll have to cast it to any other type you need.
 
-Here's a sample program to try it out. Note the extra space at the end of the argument, so the user's input isn't right up against the end of the prompt:
+Put this code in `input.js`. Note the extra space at the end of the argument, so the user's input isn't right up against the end of the prompt:
 
 ```js
 const name = input("What is your name? ");
@@ -224,11 +234,15 @@ const velocity = input("What is the airspeed velocity of an unladen swallow? ");
 console.log(Number(velocity));
 ```
 
+Open your terminal (or Command Prompt on Windows), go to the `chapter03` directory, and enter `node input.js` to run the program.
+
 The output might look something like this:
 
+```
 > What is your name? I am Arthur, King of the Britons
 > What is your quest? I seek the Holy Grail!
 > What is the airspeed velocity of an unladen swallow? NaN
+```
 
 The answer to the 3rd question is, of course, `NaN` because JavaScript can't convert "Is that an African or a European swallow?" to a number.
 
@@ -282,7 +296,7 @@ statementTwo;
 statementThree;
 ```
 
-So the 2nd and 3rd statements will be executed every time regardless of whether the condition is met, which probably isn't what you want. Remember that white space (e.g. spaces and tabs) means nothing to the interpreter. Unlike in Python, indenting your code nicely only helps other developers who look at your code later (which includes you 6 months from now). It doesn't actually tell the interpreter anything about your intent.
+So the 2nd and 3rd statements will be executed every time regardless of whether the condition is met, which probably isn't what you want. Remember that white space (e.g. spaces and tabs) means nothing to the interpreter. Unlike in Python, indenting your code nicely only helps other developers who look at your code. It doesn't tell the interpreter anything about your intent.
 
 #### Chaining Conditionals
 
@@ -314,7 +328,7 @@ If you're checking for a specific value, a `switch` statement might be a better 
 
 ### Checking for Numeric Input
 
-Remember our problem from earlier? If you want to make sure get a number from your user with the `input` function, now you can use a conditional statement.
+Remember our problem from earlier? If you want to make sure get a number from your user with the `input` function, now you can use a conditional statement. Create a new file, `get_number1.js`:
 
 ```js
 import { input } from "@jasonsbarr/simple-io";
@@ -341,7 +355,7 @@ A `switch` statement is similar to a conditional statement, except that instead 
 
 Each possible value gets a `case` clause, with an optional `default` clause to handle all values not specified by cases. I strongly recommend that you always use a `default` case, even (perhaps especially) when you don't think you need one.
 
-Here's what that can look like:
+Create a new file `directions.js`, import the `input` function into it, and enter this:
 
 ```js
 const name = input("Which direction would you like to go? ");
@@ -365,13 +379,17 @@ switch (name.toUpperCase()) {
 }
 ```
 
+Run it a few times with Node to make sure it works as expected.
+
 Note the use of a `break` statement in every case. If you don't include either the `break` statement or a `return` statement in your case, the interpreter will fall through and execute the next case, which usually isn't what you want. If you omitted the `break` statements above and the user entered "N," this would be your output:
 
+```
 > You're going north!
 > You're going south!
 > You're going east!
 > You're going west!
 > That is not a valid direction
+```
 
 Obviously that's not the output you were expecting.
 
@@ -399,7 +417,7 @@ const end = Date.now();
 console.log("That took " + end - start + " milliseconds to run.");
 ```
 
-That tells us how long it took to run the computation, but unfortunately it doesn't tell us very much about the algorithm itself. For the above case, if you want to run it more efficiently all you have to do is run it on a machine with a faster processor.
+That tells us how long it took to run the computation, but unfortunately it doesn't tell us very much about the algorithm itself. If you want to run it faster you just run it on a machine with a faster processor.
 
 When talking about time complexity, programmers tend to discuss algorithms in terms of the number of steps it takes to perform a computation relative to the amount of input given to the function that performs it.
 
@@ -407,11 +425,11 @@ The key here is to understand that we want to measure the efficiency of the algo
 
 Analyzing a program to understand its efficiency is called *asymptotic analysis*. The term actually comes from really advanced math, but you don't need to know anything more complex than the math you studied in middle school to actually do it.
 
-Before we introduced conditional statements to our arsenal we could only write very boring programs. Nothing more than a sequence of single instructions. A program simply took as long to run as there were steps to execute. This is known as a *constant time algorithm*. If a computation takes *k* steps to perform, then its running time is constant because the input to the function doesn't matter. Regardless of whether the input is huge or tiny, the computation still takes the same number of steps.
+Before we introduced conditionals to our arsenal we could only write very boring programs. Nothing more than a sequence of single instructions. A program simply took as long to run as there were steps to execute. This is known as a *constant time algorithm*. If a computation takes *k* steps to perform, then its running time is constant because the input to the function doesn't matter. Regardless of whether the input is huge or tiny, the computation still takes the same number of steps.
 
-With the addition of conditional statements, things get a little more interesting. Now the number of steps performed depends on which branch of a conditional is taken.
+With the addition of conditionals, things get a little more interesting. Now the number of steps performed depends on which branch of a conditional is taken.
 
-However, our algorithms are still constant time even taking this into account. That's because the upper bound of the algorithm's running time is still defined by the number of steps it executes, and not by the input to the program.
+However, our algorithms are still constant time even taking this into account. That's because the upper bound of the algorithm's running time is still defined by the number of steps it executes, not by the input to the program.
 
 To describe time complexity we use *Big O notation*. O is short for "order of approximation," and it characterizes a function according to its growth rate based on input.
 
@@ -419,7 +437,7 @@ Since a constant time function doesn't change based on input, we say a constant 
 
 It doesn't matter how many steps are in the function; we still approximate the time complexity as 1.
 
-We need to add the ability to repeat code in order to create algorithms that are other than constant time. We've already seen one way to introduce repetition into our code, with recursion. Now we'll look at another way to do it, one you'll probably see much more often in actual code.
+We need to be able to repeat code in order to create algorithms that are other than constant time. We've already seen one way to introduce repetition into our code, with recursion. Now we'll look at another way to do it, one you'll probably see much more often in actual programs.
 
 ## Iteration
 
@@ -449,9 +467,10 @@ if (Number.isNaN(age)) {
 
 Plus there's no way to be sure you'll have enough `if` checks for them to finally get it right! Even if you nest 1,000 conditional statements with the exact same prompt, they could always try the wrong input 1,001 times and then you're back to square one.
 
-If you're thinking to yourself, "Didn't we already introduce a way to repeat code when we looked at recursive functions in the last chapter?" then you're absolutely right and kudos to you. Recursion is definitely one way we could tackle this problem:
+If you're thinking to yourself, "Didn't we already introduce a way to repeat code when we looked at recursive functions in the last chapter?" then you're absolutely right and kudos to you. Recursion is definitely one way we could tackle this problem. Create a new file `get_number2.js`:
 
 ```js
+import { input } from "@jasonsbarr/simple-io";
 /**
  * Gets a number from user input
  * @param {string} userInput
@@ -471,17 +490,23 @@ const age = getAge(input("How old are you? "));
 console.log("You are " + age + " years old!");
 ```
 
+Run the file with Node and see how it works.
+
 Note that we don't need an `else` clause above because the `return` statement in the `if` block ensures that the rest of the function won't be executed.
 
 There's absolutely nothing wrong with this solution, and good for you if you thought of it yourself.
 
 There's another way to handle the problem though. That's by using *iteration*.
 
-Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa. But in my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again. It's rarely an issue in practice, but there are occasional cases where it makes a difference (mostly when processing absolutely huge amounts of data or performing a massive number of repetitions).
+Iteration and recursion are very similar. Both give you ways to repeat bits of code until a condition is met. In fact, I've even heard computer scientists call iteration a special case of recursion, and vice versa.
+
+In my experience programmers are more likely to use iteration to solve most problems, especially when performance is an issue. With recursion, you have a little bit of extra processing overhead that results from calling a function again.
+
+It's rarely an issue in practice, but there are occasional cases where it makes a difference (mostly when processing absolutely huge amounts of data or performing a massive number of repetitions).
 
 Plus for beginning programmers iteration often seems more intuitive than recursion because thinking recursively can be more complex than thinking in terms of iteration.
 
-Iteration means putting your code into a loop that runs repeatedly until a condition is met. There are two kinds of loops in JavaScript: `while` loops and `for` loops.
+Iteration means putting your code into a loop that runs repeatedly until a condition is met. There are two kinds of loops in JavaScript: while loops and for loops.
 
 ### While Loops
 
@@ -555,7 +580,7 @@ while (true) {
 
 Note that since the `++` is in postfix position (after `i`) the number will be printed first and **then** incremented. If the operator was in prefix position (before `i`), the number would be incremented first and then printed.
 
-If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement:
+If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement. Create a new file `add_evens_while.js`:
 
 ```js
 /**
@@ -583,7 +608,7 @@ console.log(addEvens(1, 11)); //-> prints 30
 
 Note that if you have a loop nested inside another loop the `break` or `continue` statement will only affect the loop it's executed in. So if you're breaking out of the innermost loop, it will continue on with the remaining code for any outer loops that contain the inner loop.
 
-The pattern of using a counter to determine when to break out of a loop is so common that JavaScript has a special loop just for that: the `for` loop.
+The pattern of using a counter to determine when to break out of a loop is so common that JavaScript has a special loop just for that: the for loop.
 
 ### For Loops
 
@@ -598,7 +623,7 @@ Forgetting the 2nd is especially bad because if you leave that step out you'll e
 
 The for loop makes this pattern much easier.
 
-You start with the `for` keyword, then in parenthesis you have 3 clauses: an initializer, a condition, and an incrementor (or decrementor). Then you follow the parentheses with the loop body (I recommend using a block statement with curly braces for the same reasons as above).
+You start with the `for` keyword, then in parenthesis you have 3 clauses: an initializer, a condition, and an incrementor (or decrementor). Separate the clauses with semicolons. Then you follow the parentheses with the loop body (I recommend using a block statement with curly braces for the same reasons as above).
 
 ```js
 // logs the numbers 0 through 9
@@ -636,6 +661,7 @@ for (let i = 10; i > 0; i--) {
 
 You can also use `break` and `continue` statements inside a for loop:
 
+{title: "File: `add_evens_for.js`"}
 ```js
 /**
  * Sums even numbers between start and end

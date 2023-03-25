@@ -942,7 +942,7 @@ You initiate strict mode by adding the string `"strict mode"` at the top of your
 
 When you're writing a script (i.e. not a module), if strict mode is off then the value of `this` is set to the global object. This is `window` in the browser and `global` in Node.js. In either runtime you can access the global object with the keyword `globalThis`.
 
-In a module, `this` is set to undefined since modules are in strict mode.
+In a module, `this` is set to `undefined` since modules are in strict mode.
 
 When executing a function, `this` can be either the same value as it has in the global context or it can be set to another object.
 
