@@ -914,6 +914,8 @@ In chapter 2 we'll look at control flow constructs that direct what code is exec
 
 ## Questions for Review
 
+Note that any topic from a previous chapter is always fair game for review questions and exercises. Mental recall of previously-learned concepts helps solidify learning them and putting the information into your long term memory.
+
 1. What is data?
 2. What is a type?
 3. What is an expression?
@@ -959,7 +961,7 @@ function normalizeString(str) {
 
     for (let c of str) {
         if (/[a-zA-Z0-9]/.test(c)) {
-            normalized += c;
+            normalized += c.toLowerCase();
         }
     }
 

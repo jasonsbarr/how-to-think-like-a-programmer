@@ -734,7 +734,7 @@ A bit is the smallest size value you can represent in a computer, which in binar
 
 JavaScript doesn't use UTF-8. For all practical purposes, we can say JavaScript uses UTF-16.
 
-In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each) sequences. JavaScript's string type is actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
+In UTF-16, Unicode scalars are represented by either 1 or 2 2-byte (16 bits each) sequences. The 2-byte sequences are called *code units*. JavaScript's string type is actually more complicated than that, but it's unlikely you'll ever need to worry about the difference unless you end up writing a library of string functions (which I have done).
 
 It's important to note that a Unicode scalar may not correspond exactly to what we think of as a "character" in text. It's a character for the computer's purposes, but some user-perceived characters may actually be made up of multiple Unicode scalars.
 
@@ -894,4 +894,42 @@ Now you have a solid understanding of almost everything you need to know about J
 
 In the next chapter we'll look at objects, which are a kind of *compound type*. All the data we've seen so far has been comprised of primitive types. Compound types allow you to combine data of different types into more complex data types and structures, which allows you to represent data in more flexible and useful ways.
 
+## Questions for Review
+
+1. What is the difference between a conditional statement and conditional expression?
+2. What's the difference between iteration and recursion?
+3. Which do programmers tend to use more often, iteration or recursion?
+4. Is an alternate (`else`) branch necessary when writing an if statement?
+5. How many different kinds of loops are there?
+6. Explain how short-circuit evaluation works with the `&&` and `||` operators
+7. What are the parts of a conditional statement?
+8. Why is it best to always use a block statement for the body of an if, while, for, or for...of statement even if you only have one statement in the body?
+9. How does comparing if strings are equal, greater than, or less than work?
+10. Explain why you can't ensure a user will give the correct input without using either recursion or iteration.
+11. What 2 statements define whether or not your file is an ES2015 module?
+12. Explain how closure works.
+13. What does it mean to say functions are first-class values?
+14. What's the difference between a function declaration and a function expression? What's different about a declared function versus a function expression assigned to a variable?
+15. Explain what hoisting means, and how it works differently between function declarations and variable declarations (exclude variable declarations with `var`).
+16. Explain how a function call is evaluated via substitution.
+17. What are the 3 parts of an execution context?
+18. What does it mean to construct the scope chain?
+19. What happens if you set up a while loop using a counter but forget to increment the counter in the loop body?
+20. Explain the difference between a for loop and a for...of loop.
+
 ## Exercises
+
+1. Write a function called `sumOddsWhile` that sums up any number of odd numbers between `start` and `end` (non-inclusive) using a while loop and returns the sum.
+2. Write a function called `sumOddsFor` that does the same thing, but with a for loop.
+3. Write a function called `printRange` that takes `start`, `end`, and `step` parameters, all numbers. The function should print every number between `start` and `end` (non-inclusive) going by the value of `step`. For example, if you call the function with 1 as `start`, 11 as `end`, and 2 as `step`, it should print 0, 2, 4, 6, 8, and 10.
+    - Why is a for loop better for this task than a while loop?
+4. As you'll see in the next chapter, you can access the characters of a string by a bracket notation member expression using numeric indexes starting at 0. That means for the word "hello" index 0 is "h", index 1 is "e", and so on. Write a function that reverses a string using this information.
+    - Note that strings have a `length` property that tells you how many characters (i.e. UTF-16 code units, which are 2-byte values) are in the string. Assume all strings have alphanumeric characters only, since those can all be represented by a single UTF-16 code unit and you don't have to worry about other complications.
+    - One gotcha with using a string's `length` property: the value of `length` will always be 1 greater than the last index of the string using bracket access.
+5. Write a function that "encrypts" a string by converting each character to a number, shifting that number forward by a certain amount, and then converting it back to a character. Take the number to shift the character's value by as a parameter. Hint: take a look at the `String.fromCodePoint` and `String.prototype.codePointAt` methods at the MDN entry for String.
+6. Write a function that decrypts strings encrypted by the previous function, so long as you know what number the characters have been shifted by.
+7. Write a recursive function called `fibonacci` that takes a number `n` as a parameter and calculates the nth number in the Fibonacci sequence. Note that you will need base cases for both 0 and 1. Note how slow it can be with larger inputs. Test it with small inputs first to make sure it works so you don't have to wonder whether it's taking so long because the input is large or if you're stuck in infinite recursion.
+8. Write an iterative function that does the same thing. Note how much faster it is, especially with larger inputs. See how big your numbers can get until you start getting `Infinity` as a result
+    - When number type values in JavaScript get too far above or below 0 to be represented in memory as 64 bit floating point numbers, they evaluate to `Infinity` or `-Infinity`.
+9. Write a function that "hashes" a string by converting its characters to numbers and adding them together.
+10. Write a function that takes a randomly generated string ([here](https://www.gigacalculator.com/randomizers/random-string-generator.php) is a random string generator) and returns the longest substring of characters in alphabetical order (case insensitive) that's in that string. This is a hard one, but I promise you can do it with only what you've learned so far.
