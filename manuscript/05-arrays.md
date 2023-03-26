@@ -928,7 +928,7 @@ Big O notation is an **approximation** of the running time, not a calculation of
 
 In this chapter we covered the built-in collection types in JavaScript: Maps, Sets, and Arrays. We also introduced iterable objects, explained variadic functions, and learned about linear time algorithms.
 
-The next chapter is our first project! We're going to build an old school text-based adventure game you can play in your console.
+The next chapter is our first project! We're going to build a game you can play in your console.
 
 I hope you're as excited as I am!
 
