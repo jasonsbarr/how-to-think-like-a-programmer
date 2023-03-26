@@ -944,7 +944,7 @@ I hope you're as excited as I am!
 10. What is a callback?
 11. What's the difference between an O(1) algorithm and an O(n) algorithm?
 12. Explain how a variadic function works.
-13. Explain how closure works.
+13. What are the differences between arrow functions and `function` functions?
 14. How does comparing strings as equal, less than, or greater than work?
 15. What is Unicode, and what's the difference between UTF-8 and UTF-16?
 16. How is the value of `this` set?
