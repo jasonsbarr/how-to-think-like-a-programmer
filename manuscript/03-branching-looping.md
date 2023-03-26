@@ -746,6 +746,8 @@ If you write in English or another language that uses an alphabet derived from L
 
 Unicode scalars map to numeric values called *code points*, and you can find the code point value of a character using the `String.prototype.codePointAt` method. You can see more methods on strings themselves and the String constructor at [the MDN String page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
+#### What's That `prototype` Thing?
+
 Note that in JavaScript documentation instance methods on objects are often referred to as `[Type].prototype.[method]`. That's because JavaScript uses prototypes for its objects, which you'll learn about in the next chapter. If the method is on the constructor it's just called `[Type].[method]`.
 
 #### Strings and For...Of Loops
