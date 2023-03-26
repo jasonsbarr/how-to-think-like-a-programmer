@@ -1,5 +1,7 @@
 # Built-In Collection Types
 
+## Working with Arrays, Maps, and Sets
+
 JavaScript has 3 built-in *collection* types that we will look at in this chapter. A collection type allows you to group data together in a structured manner. The 3 built-in collection types are Arrays, Maps, and Sets.
 
 ## Arrays
