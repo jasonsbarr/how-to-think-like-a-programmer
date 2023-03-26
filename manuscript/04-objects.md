@@ -1042,7 +1042,7 @@ In the next chapter, we'll look at the built-in collection types: `Map`, `Set`, 
 3. True or false: `{ a: "hi" } === { a: "hi" }`
 4. What do you do if you want to create an object literal with string keys that are not valid identifier names?
 5. What are the 4 fundamental aspects of any programming language?
-6. What 2 statements define if a file is an ES2015 module?
+6. What do a function's `call`, `apply`, and `bind` methods do?
 7. What is a prototype?
 8. True or false: you must define object types with classes before creating objects in JavaScript.
 9. What is JSON?
