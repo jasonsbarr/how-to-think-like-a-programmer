@@ -930,4 +930,39 @@ The next chapter is our first project! We're going to build an old school text-b
 
 I hope you're as excited as I am!
 
+## Questions for Review
+
+1. Why is the `typeof` operator not helpful when used with arrays, Maps, and Sets?
+2. Explain how short-circuit operation works with the `&&` and `||` operators.
+3. True or false: iterable spreading and destructuring only works with arrays.
+4. What is a collection?
+5. Recall the process of evaluating a function call via substitution from chapter 2. Try to write a function `ifElse` that implements the same functionality as a conditional expression. You won't be able to make it work quite the same way. Why is that?
+6. Why is it impossible to ensure for certain you'll be able to get a number as input from your user if you only have conditional statements with no loops or recursion?
+7. What is a tuple?
+8. What is a higher-order method?
+9. What is a predicate?
+10. What is a callback?
+11. What's the difference between an O(1) algorithm and an O(n) algorithm?
+12. Explain how a variadic function works.
+13. Explain how closure works.
+14. How does comparing strings as equal, less than, or greater than work?
+15. What is Unicode, and what's the difference between UTF-8 and UTF-16?
+16. How is the value of `this` set?
+17. What are the 3 parts of creating an execution context?
+18. What's the difference between prototypal inheritance and class inheritance in JavaScript?
+19. What are some differences between Maps and objects?
+20. Why do you think it's a bad idea to have different types as values within the same Map, Set, or array (excluding tuples)?
+
+
 ## Exercises
+
+1. Implement each of the higher-order array methods covered in this chapter as functions. Don't use any of the methods themselves to do it.
+2. Implement each of the higher-order array methods covered in this chapter using `Array.prototype.reduce`.
+3. Write a function `unique` that removes any duplicate values from an array. Don't use a Set to do it.
+4. Extend your `deepEqual` function from chapter 4 to cover arrays, Maps, and Sets.
+5. Create a class called `Table` that, like a Map, can use any type as both keys and values. Unlike Maps, make sure your class's `get` and `has` methods work if given an object that passes a *structural equality* (i.e. your `deepEqual` function) check. In other words, if a key is `{ a: "hi" }`, any object that is exactly `{ a: "hi" }` should work to retrieve the value associated with that key. You can use a Map as the underlying storage of your class if you like, but you don't have to.
+6. Redo Exercise 4 from chapter 4, but this time use an array instead of an object to contain all the name/age objects.
+7. A stack is a data structure that adds new items to the end and then, when you want to retrieve an item, always takes the last item at the end. In other words, it's like putting plates onto a stack of plates, then taking them off the top when you want to use them. Define a class `Stack` that has `push`, `pop`, and `peek` methods as well as a `size` property. `size` keeps track of the number of items on the stack. `push` inserts an item onto the top of the stack. `pop` removes an item from the top of the stack. `peek` returns the item on top of the stack so you can see what it is, but does not remove it from the stack.
+8. Write a function `uniqueEqual` that removes duplicate values from an array using structural equality, like you used to create the `Table` class in exercise 5.
+9. Sets have several classic operations that are not implemented in JavaScript: union, intersection, difference, and symmetric difference. Research each of these operations to learn what they are and how they are supposed to work, then write `union`, `intersection`, `difference`, and `symmetricDifference` functions that each take 2 Sets as parameters and implement their respective operations.
+10. Write a `sorted` function that takes 2 parameters: an array and an optional boolean to indicate whether the array should be sorted in reverse. The function should correctly sort numbers without requiring a comparator function from the user. The function should not mutate the original array, but should return a new array. If the reverse parameter is `true`, the array should be sorted in reverse.
