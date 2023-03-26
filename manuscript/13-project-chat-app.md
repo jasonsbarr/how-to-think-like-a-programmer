@@ -1,1 +1,1 @@
-# Project: A Chat Application with WebSockets
+# Project: A Chat Application
