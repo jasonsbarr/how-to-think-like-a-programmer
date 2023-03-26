@@ -233,7 +233,33 @@ Getting the remainder of any number and zero evaluates to `NaN`.
 
 The string type holds textual data. Some languages have separate types for individual characters and strings, but JavaScript only has the string type. A single character in JavaScript is just a string with a single character in it.
 
-A string can be enclosed by either single or double quotes, as long as you use the same quote for both the beginning and end. Strings created with quotes can't span more than one line. In chapter 11, you'll see a kind of string that can be multiline.
+A string can be enclosed by either single or double quotes, as long as you use the same quote for both the beginning and end. Strings created with quotes can't span more than one line. If you want to create a multiline string, use backticks:
+
+```js
+const multilineString = `This
+is a multiline
+string.
+If you indent from the left edge
+    it will indent
+        the text when it prints.
+That means if you want
+your text to be all flush
+against the left edge
+you can't indent even if
+the place you started the string from
+in your code was indented.`
+console.log(multilineString);
+```
+
+You can interpolate values in a multiline string like this:
+
+```js
+const notice = "This is text in a variable";
+const interpolatedString = `Interpolating means inserting a value that's not part of the containing string: ${notice}.`;
+console.log(interpolatedString);
+```
+
+You can interpolate a value of any type, though you should stick to primitives because object types don't convert to strings nicely.
 
 As shown earlier, you can "add" strings. More correctly, you can concatenate them using the `+` operator.
 
