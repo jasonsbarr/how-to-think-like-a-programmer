@@ -259,7 +259,7 @@ const interpolatedString = `Interpolating means inserting a value that's not par
 console.log(interpolatedString);
 ```
 
-You can interpolate a value of any type, though you should stick to primitives because object types don't convert to strings nicely.
+You can interpolate a value of any type, though you should stick to primitives because object types don't convert to strings nicely. Sometimes you'll see these backtick strings called "template literals," because you can use them to create text templates and insert values into them based on conditions or input.
 
 As shown earlier, you can "add" strings. More correctly, you can concatenate them using the `+` operator.
 
