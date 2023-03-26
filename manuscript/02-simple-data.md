@@ -1,5 +1,5 @@
 {class: part}
-# Part I: Basic JavaScript Programming
+# Basic JavaScript Programming
 
 Your coding journey proper begins in this section! We'll start with the basic building blocks of a program: the data and logic. Every program consists of those 2 things. We'll start building up simple programs right from the beginning so you can start exercising your programmer brain right away.
 
