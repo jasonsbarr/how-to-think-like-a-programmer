@@ -1,3 +1,3 @@
 # Project: A Game
 
-## Building A Text-Based Adventure Game
+## Building A Hangman Game
