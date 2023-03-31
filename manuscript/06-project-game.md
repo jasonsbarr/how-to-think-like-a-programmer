@@ -1,8 +1,6 @@
 # Project: A Game
 
-It's time for your first project chapter!
-
-Project chapters are where we build something a little more involved together so you have a chance both to put the skills you've been learning to use and also see an example of how professional programmers design and build projects.
+It's time for your first project chapter! Project chapters are where we build something a little more involved together so you have a chance both to put the skills you've been learning to use and also see an example of how professional programmers design and build projects.
 
 ## Building A Hangman Game
 
@@ -192,17 +190,7 @@ import { start } from "./src/start.js";
 start();
 ```
 
-I've done it like this so you have an interface to interact with that calls the game program and runs it. If you open your terminal (or Command Prompt on Windows), navigate to the `start` directory, and enter `node hangman.js`, you'll see that the main loop is executing:
-
-```
- __        __   _                            _          _   _                                         _
- \ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | | | | __ _ _ __   __ _ _ __ ___   __ _ _ __ | |
-  \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | __/ _ \  | |_| |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \| |
-   \ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) | |  _  | (_| | | | | (_| | | | | | | (_| | | | |_|
-    \_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/  |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_(_)
-                                                                          |___/
-P for play, H for help, or Q for quit:
-```
+I've done it like this so you have an interface to interact with that calls the game program and runs it. If you open your terminal (or Command Prompt on Windows), navigate to the `start` directory, and enter `node hangman.js`, you'll see that the main loop is executing.
 
 Of course, if you choose "P" right now it's not going to do anything yet. Let's fix that!
 
