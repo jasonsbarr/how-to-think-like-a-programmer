@@ -12,7 +12,6 @@
 11-dom-events.md
 12-programming-browser.md
 13-project-chat-app.md
-14-recursion.md
 15-algorithms.md
 16-data-structures.md
 17-testing.md
