@@ -1,8 +1,14 @@
 # Data Structures
 
+## Stacks and Queues
+
 ## Linked Lists
 
-## Stacks and Queues
+### Linked List Stacks
+
+### Linked List Queues
+
+### Linked Lists vs. Arrays?
 
 ## Trees
 
