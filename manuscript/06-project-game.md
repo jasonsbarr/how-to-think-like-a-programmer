@@ -718,7 +718,10 @@ function guessLetter(guess, gameState) {
     return gameState;
   }
 
-  let newState = { ...gameState, lettersGuessed: [ ...gameState.lettersGuessed, guess ] };
+  let newState = {
+    ...gameState,
+    lettersGuessed: [ ...gameState.lettersGuessed, guess ]
+  };
   if (gameState.word.includes(guess)) {
     return newState;
   } else {
