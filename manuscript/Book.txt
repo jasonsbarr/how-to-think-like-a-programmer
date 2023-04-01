@@ -7,10 +7,10 @@
 06-project-game.md
 07-strings-regexp.md
 08-iterators-generators.md
-09-asynchronous-programming.md
-10-promises-async.md
-11-dom-events.md
-12-programming-browser.md
+09-error-handling.md
+10-asynchronous-programming.md
+11-promises-async.md
+12-dom-events.md
 13-project-chat-app.md
 15-algorithms.md
 16-data-structures.md
