@@ -18,6 +18,8 @@
 
 ## Functions
 
+## Desugaring
+
 ## Iteration
 
 ### For Loops
@@ -29,6 +31,8 @@
 ## Quoting
 
 ## Macros
+
+### Macros Are Just Desugaring Taken To The Max
 
 ## Exceptions
 
