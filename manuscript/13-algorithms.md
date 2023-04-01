@@ -24,6 +24,8 @@
 
 ## Merge Sort
 
+## Linked Lists
+
 ## Asymptotic Analysis of Algorithms
 
 ## Quadratic and Exponential Time Algorithms
