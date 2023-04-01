@@ -2,8 +2,6 @@
 
 ## Declarative vs. Imperative Knowledge
 
-## Definition of Algorithm
-
 ## Calculating a Square Root
 
 ## Linear Search of an Array
@@ -20,11 +18,19 @@
 
 ## Sorting Algorithms
 
-## Bubble Sort
+### Bubble Sort
 
-## Merge Sort
+### Merge Sort
+
+## Stacks and Queues
 
 ## Linked Lists
+
+## Trees
+
+### Tree Traversal
+
+### Binary Search Trees
 
 ## Asymptotic Analysis of Algorithms
 
