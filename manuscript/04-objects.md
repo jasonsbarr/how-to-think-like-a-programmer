@@ -844,6 +844,14 @@ const dbName = "DataWarehouse1";
 const data = executeQuery({ query, binds, dbName });
 ```
 
+If you define a function with destructured parameters, you can set defaults. You'll need to make sure you set a default for the entire object as well, or you could get errors.
+
+```js
+function makeProgrammer({ name, language = "JavaScript" } = {}) {
+    return { name, language };
+}
+```
+
 ## Dates
 
 The built-in `Date` constructor creates special objects that represent points in time. `Date` objects represent the number of milliseconds since 12:00 AM UTC on January 1, 1970.
