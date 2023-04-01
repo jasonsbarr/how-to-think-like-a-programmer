@@ -659,7 +659,7 @@ for (let entry of m.entries()) {
 }
 ```
 
-The `keys` and `values` methods both return a MapIterator, which is an iterable object similar to an array. It doesn't have the same properties and methods as an array, though, so if you want to use it like an array you'll need to convert it first. The `entries` method returns a MapEntries object, which is an iterable object that contains array key/value pairs for all the entries. Again, if you want to use it with array methods you'll have to convert it. I'll cover how to convert iterable objects to arrays later in this chapter.
+The `keys` and `values` methods both return a MapIterator, which is an iterable object similar to an array. It doesn't have the same properties and methods as an array, though, so if you want to use it like an array you'll need to convert it first. The `entries` method returns a MapEntries object, which is an iterable object that contains array key/value pairs for all the entries. Again, if you want to use it with array methods you'll have to convert it.
 
 If all you want to do is iterate over a Map's entries, Maps are themselves iterable so you can simply use a for...of loop with the Map itself:
 
