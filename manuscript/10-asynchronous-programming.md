@@ -18,4 +18,4 @@
 
 ## Classic Node.js Callbacks
 
-## Example: A Basic HTTP Server with A JSON File
+## Example: A Basic HTTP Server
