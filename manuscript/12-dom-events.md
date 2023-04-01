@@ -2,4 +2,4 @@
 
 ## Example: A Browser-Based Todo App
 
-<!-- Use JSON Server for the API -->
+<!-- Use LocalStorage for data -->
