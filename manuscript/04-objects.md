@@ -657,7 +657,7 @@ console.log(jason);
 console.log(jason.constructor.name);
 ```
 
-`extends` tells the interpreter you want to set up prototypal inheritance between the Programmer and Person classes, and `super` means you're accessing either the constructor (when called as if it were a function) or a property (when used as if it were an object) on the class you're inheriting from.
+`extends` tells the interpreter you want to set up prototypal inheritance between the Programmer and Person classes, and `super` means you're accessing either the constructor (when called as if it were a function) or a property (when used as if it were an object) on the class you're inheriting from. Note that calling `super` with any necessary arguments should be the first thing your constructor for a class that inherits from another class should do, before any other logic or assignments. If you have class inheritance and don't use `super` in the constructor, weird (usually bad) things can happen.
 
 Note that classes don't actually introduce new functionality into JavaScript. They're just a convenient shorthand for prototypes and prototypal inheritance.
 
