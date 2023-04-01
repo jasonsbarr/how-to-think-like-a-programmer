@@ -381,7 +381,7 @@ function guessLetter(guess, gameState) {
 }
 ```
 
-It's ok in this case to directly update the `guessesUsed` property on the new game state object, because we're not mutating the original state. Once you've copied the original state, any operations you need to perform in order to update the state should be fine.
+It's ok in this case to directly update the `guessesUsed` property on the new game state object because we're not mutating the original state. Once you've copied the original state, any operations you need to perform in order to update the state should be fine.
 
 ## Checking To See if The Game Is Over
 
