@@ -431,6 +431,14 @@ Person.prototype = personProto;
 
 Either way works just as well.
 
+You can also use the `Object.create` method to create a new object using any other object as its prototype:
+
+```js
+const person = Object.create(personProto);
+person.name = "Jason";
+person.age = 42;
+```
+
 ### Creating a Static Constructor
 
 I personally am not a huge fan of the `new [Constructor]` syntax. I prefer a more functional interface for object creation, so I like to add a *static* constructor method to my constructors.
