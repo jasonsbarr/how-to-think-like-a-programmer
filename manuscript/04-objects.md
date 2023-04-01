@@ -470,7 +470,7 @@ jason.constructor.name; //-> "Person"
 
 ## Extending and Inheriting Objects
 
-If you have any experience with object oriented programming, you know that inheritance is an important way of extending an object's functionality. In JavaScript, inheritance works through prototypes. You can create an object with another object as its prototype using the `Object.create` method, and thus create a subtype of the first object:
+If you have any experience with object oriented programming, you know that inheritance is an important way of extending an object's functionality. In JavaScript, inheritance works through prototypes. As I showed above, you can create an object with another object as its prototype using the `Object.create` method, and thus create a subtype of the first object:
 
 ```js
 const programmerProto = Object.create(Person.prototype);
