@@ -28,7 +28,7 @@ You can create an array of empty elements by passing an integer to the `Array` c
 const empties = Array(5); //-> an array of 5 undefined elements
 ```
 
-If you have an iterable object, you can convert it to an array using `Array.from`:
+If you have an iterable object (which we'll cover below), you can convert it to an array using `Array.from`:
 
 ```js
 const arr = Array.from(new Set([1, 2, 3, 3, 5, 4, 3, 2])); //-> [ 1, 2, 3, 4, 5 ]
@@ -818,7 +818,7 @@ Like Maps, in currently standards-compliant versions of JavaScript the iterator 
 
 There are several objects in JavaScript that are iterable. You've seen Maps, Sets, MapIterators, SetIterators, MapEntries, and SetEntries objects already in this chapter. Later in this chapter you'll see `arguments`, which is another iterable object.
 
-You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object. You'll see how to do that in chapter 8.
+You can also create your own iterable objects by adding a special `[Symbol.iterator]` method to your object. You'll see how to do that in chapter 9.
 
 You'll often see people refer to iterable objects as "array-like objects."
 

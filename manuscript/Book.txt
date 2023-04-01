@@ -6,8 +6,8 @@
 05-arrays.md
 06-project-game.md
 07-strings-regexp.md
-08-iterators-generators.md
-09-error-handling.md
+08-error-handling.md
+09-iterators-generators.md
 10-asynchronous-programming.md
 11-promises-async.md
 12-dom-events.md
