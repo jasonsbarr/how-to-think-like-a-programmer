@@ -503,7 +503,7 @@ You can solve this problem by assigning directly to the prototype:
 Programmer.prototype.constructor = Programmer;
 ```
 
-Or you can use `Object.setPrototypeOf`:
+Or you can use `Object.setPrototypeOf` to avoid the issue altogether:
 
 ```js
 /**
