@@ -901,7 +901,7 @@ now.getFullYear(); //-> 2023
 now.getTime(); //-> 1679524320000
 ```
 
-Confusingly, there is also a `Date.prototype.getYear` method that you should never use because it only returns the last 2 digits of the year and is basically worthless.
+Confusingly, there is also a `Date.prototype.getYear` method that you should never use because it returns the year minus 1900. It's basically worthless.
 
 There are also equivalent setter methods like `Date.prototype.setHours` that let you set the relevant properties. Like other objects, Dates are mutable.
 
