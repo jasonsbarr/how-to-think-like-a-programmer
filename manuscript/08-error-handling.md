@@ -10,4 +10,6 @@
 
 ## Evaluation Model: The Call Stack
 
+### Recursion and The Stack
+
 ## Example: A Small Testing Library
