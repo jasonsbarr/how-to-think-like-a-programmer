@@ -48,12 +48,11 @@ Also, if you work through this whole book you'll cover about as much as you woul
 
 ## About The Book
 
-The book is divided into 4 sections:
+The book is divided into 3 sections:
 
 1. Basic JavaScript Programming
-2. Intermediate JavaScript Programming
-3. Algorithms and Program Design
-4. Final Project
+2. Intermediate Programming
+3. Final Project
 
 The sections are divided into 6 or 7 chapters each.
 
@@ -63,7 +62,7 @@ There are exercises at the end of each chapter, and there's a project at the end
 
 These project chapters don't just walk you through the code for the project. They show you the steps of breaking down the problem and thinking through the solution. Just like what you'll need to do in real life once you get your first programming job.
 
-Finally, there's a massive final project that will make a worthy addition to any portfolio.
+Finally, there's a massive final project that will make a worthy addition to any portfolio and give you the experience of taking a major project from design to deployment.
 
 ## How To Get The Most out of This Book
 
