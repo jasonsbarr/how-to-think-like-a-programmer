@@ -527,6 +527,34 @@ while (condition) {
 
 As long as `condition` is truthy, the loop will continue to execute.
 
+#### Getting A Number with Iteration
+
+Here's the iterative solution to making sure the user enters a valid number:
+
+{title: "File: `get_number_iter.js`"}
+```js
+import { input } from "@jasonsbarr/simple-io";
+/**
+ * Gets a number from user input
+ * @param {string} userInput
+ * @returns {number}
+ */
+function getAge(userInput) {
+    let value = NaN;
+
+    while (Number.isNaN(value)) {
+        value = Number(input("How old are you? "));
+    }
+
+    return value;
+}
+
+const age = getAge(input("How old are you? "));
+console.log("You are " + age + " years old!");
+```
+
+#### While Loops with Counters
+
 One way to set up a loop is to use a counter and break out of the loop once the counter hits a certain value:
 
 ```js
@@ -565,32 +593,6 @@ while (true) {
 ```
 
 Obviously you don't want to do this without a way to break out of the loop, which is where `break` statements come in.
-
-#### Getting A Number with Iteration
-
-Here's the iterative solution to making sure the user enters a valid number:
-
-{title: "File: `get_number_iter.js`"}
-```js
-import { input } from "@jasonsbarr/simple-io";
-/**
- * Gets a number from user input
- * @param {string} userInput
- * @returns {number}
- */
-function getAge(userInput) {
-    let value = NaN;
-
-    while (Number.isNaN(value)) {
-        value = Number(input("How old are you? "));
-    }
-
-    return value;
-}
-
-const age = getAge(input("How old are you? "));
-console.log("You are " + age + " years old!");
-```
 
 #### `break` and `continue` Statements
 
@@ -639,6 +641,18 @@ console.log(addEvens(1, 11)); //-> prints 30
 Note that if you have a loop nested inside another loop the `break` or `continue` statement will only affect the loop it's executed in. So if you're breaking out of the innermost loop, it will continue on with the remaining code for any outer loops that contain the inner loop.
 
 The pattern of using a counter to determine when to break out of a loop is so common that JavaScript has a special loop just for that: the for loop.
+
+### Do While Loops
+
+There's also a slight variation on the while loop called the do while loop. It's exactly the same as a while loop, except that the loop body will always be executed at least once.
+
+```js
+do {
+    console.log("Hi");
+} while (false);
+```
+
+Even though the condition for the loop is `false`, it will still log "Hi" once because it's a do while loop. Note that you put a semicolon at the end because the last part of the do while statement is the condition as an expression.
 
 ### For Loops
 
