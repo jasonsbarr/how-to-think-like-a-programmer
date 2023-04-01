@@ -579,7 +579,7 @@ import { input } from "@jasonsbarr/simple-io";
  * @returns {number}
  */
 function getAge(userInput) {
-    const value = NaN;
+    let value = NaN;
 
     while (Number.isNaN(value)) {
         value = Number(input("How old are you? "));
