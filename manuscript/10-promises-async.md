@@ -18,6 +18,8 @@
 
 ### An Async Try/Catch Wrapper
 
+## Promisifying
+
 ## Asynchronous Iteration
 
 ## Evaluation Model: The Microtask Queue
