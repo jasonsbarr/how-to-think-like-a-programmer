@@ -13,7 +13,7 @@ It seems like a simple question, but the answer can be surprisingly difficult to
 
 For this book, we'll define data as information that can be divided into categories according to the operations you can perform with it and process with your program logic.
 
-Create a folder for the code from this book, and in that folder create another folder called `chapter01`. Then create and open the file `examples.js` in that folder.
+Create a folder for the code from this book, and in that folder create another folder called `chapter02`. Then create and open the file `examples.js` in that folder.
 
 Unfortunately, you won't be able to use Node.js to execute the code in this file because it contains code that will throw errors. This is intentional, because the error-producing code is necessary for some of the examples. In the chapter exercises I'll give you prompts for some code you can write and run yourself. All you have to do to run a JavaScript file with Node is enter `node name_of_file.js` in your terminal (or Command Prompt for Windows) and hit ENTER.
 

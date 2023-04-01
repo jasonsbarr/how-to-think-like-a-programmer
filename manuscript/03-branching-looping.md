@@ -12,7 +12,7 @@ Before getting into that, though, let's make it possible to write some more inte
 
 We'll do this using the `input` function, which is not built into JavaScript but is part of an NPM package.
 
-First, you'll need to install the package. Make sure you're in the directory for chapter 3 in the course files. When you're in the `chapter03` directory, enter:
+First, you'll need to install the package. Make a folder inside your folder for files for this book called `chapter03`. Navigate to that folder in your terminal (or Command Prompt for Windows), and enter this command:
 
 ```bash
 npm install @jasonsbarr/simple-io
