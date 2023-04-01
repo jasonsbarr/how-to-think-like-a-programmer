@@ -1036,7 +1036,7 @@ Bind is useful if you want to create a single function and use it as a method fo
 
 Remember in the 2nd chapter when I said arrow functions and `function` functions were different? This is the most important difference. Literally `this`, I mean.
 
-`function` functions bind `this` when they are executed. Arrow functions do not.
+`function` functions bind `this` when they are executed. Arrow functions do not. The value of `this` inside an arrow function will be the same as its value in the surrounding scope.
 
 That means if you use an arrow function as an object method you can't reference `this` in its body:
 
