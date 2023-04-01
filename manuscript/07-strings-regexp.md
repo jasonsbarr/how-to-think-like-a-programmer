@@ -8,13 +8,7 @@ In this section we'll cover more JavaScript topics that are important for you to
 
 ## Escape Sequences
 
-## Regular Expression Basics
-
-## Repetition Operators
-
-## Word Boundaries and Beginning and Ending Strings
-
-## The Or Pattern
+## Regular Expression Syntax
 
 ## The `RegExp.prototype.exec` Method
 
