@@ -18,6 +18,8 @@
 
 ### An Async Try/Catch Wrapper
 
+## Asynchronous Iteration
+
 ## Evaluation Model: The Microtask Queue
 
 ## Example: A JSON Database
