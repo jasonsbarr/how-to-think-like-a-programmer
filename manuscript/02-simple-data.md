@@ -793,6 +793,18 @@ If the body is just a single expression, you don't have to use a block statement
 
 Arrow functions and `function` functions are almost exactly equivalent. The differences between them don't matter for now, but we'll discuss them later in the book.
 
+#### Immediately-Invoked Function Expressions
+
+You can create a function expression that is executed immediately if you wrap it in parentheses (to show the JavaScript interpreter you mean to write a function expression, not a function declaration), then put the parentheses to call the function right after:
+
+```js
+(function () {
+    console.log("Immediately-invoked function expression!");
+})();
+```
+
+This isn't something you're likely to need to do often, but it used to be a very important pattern in JavaScript development so you may see it in older code.
+
 #### Functions with Default Arguments
 
 You can give a function's parameter default arguments that will be used if the caller doesn't pass in arguments for those parameters. Here's an example using a function that returns a Range object. A Range is a list of numbers that goes from `start` to `end` (non-inclusive of the end number) with an optional `step` parameter that defaults to 1 and defines the step size between numbers in the list. You'll define a Range type in chapter 8.
