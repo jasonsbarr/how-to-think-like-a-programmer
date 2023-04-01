@@ -426,7 +426,7 @@ people.reduce((names, person) => {
 }, []);
 ```
 
-There is also a `reduceRight` method that is exactly the same except that it iterates backwards, start from the last element of the array and going to the first.
+There is also a `reduceRight` method that is exactly the same except that it iterates backwards, starting from the last element of the array and going to the first.
 
 #### `Array.prototype.some`
 
