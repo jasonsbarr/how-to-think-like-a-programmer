@@ -20,7 +20,7 @@ Some languages make you define object types with classes before you can construc
 
 Instead of constructing objects from classes, JavaScript has *prototype* based objects. We'll get deep into prototypes and how they work later in the chapter, but for now it's enough to know that any object can be the prototype for any other object.
 
-You can also create object literals using curly braces:
+You can object literals using curly braces:
 
 ```js
 const obj = {};
