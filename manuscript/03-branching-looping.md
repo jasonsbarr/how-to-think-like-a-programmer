@@ -611,7 +611,7 @@ while (true) {
 
 Note that since the `++` is in postfix position (after `i`) the number will be printed first and **then** incremented. If the operator was in prefix position (before `i`), the number would be incremented first and then printed.
 
-If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement:
+If you want to stop processing the current iteration of a loop but you don't want to terminate the loop entirely, use a `continue` statement. Note that in the below example it uses `i % 2 !== 0` to check if a number is odd. If any number `%` another number equals 0, then the first number can be divided evenly by the second number.
 
 {title: "File: `add_evens_while.js`"}
 ```js
@@ -625,7 +625,7 @@ function addEvens(start, end) {
     let i = start;
     let sum = 0;
     while (i < end) {
-        if (i % 0 !== 2) {
+        if (i % 2 !== 0) {
             continue;
         }
 
