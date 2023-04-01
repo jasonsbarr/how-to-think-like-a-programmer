@@ -555,7 +555,7 @@ A variable is visible throughout its entire scope, no matter where in the scope 
 ```js
 let x = 10;
 {
-    x + 1;
+    x + 1; // ERROR
     let x = 5;
 }
 ```
