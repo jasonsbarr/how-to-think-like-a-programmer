@@ -164,7 +164,7 @@ You can also increment or decrement numbers by 1 using the `++` or `--` operator
 ++x // x is now equal to its previous value + 1
 ```
 
-The increment and decrement operators can be used in either prefix (before the value) or postfix (after the value) position.
+The increment and decrement operators can be used in either prefix (before the value) or postfix (after the value) position. If used in prefix position, the value is incremented/decremented **before** it is used. If used in postfix position, the value is incremented/decremented **after** it is used.
 
 #### Comparison
 
