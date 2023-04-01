@@ -758,7 +758,7 @@ The biggest difference between creating a function with a function declaration a
 
 Variables are actually hoisted too, but when you use `let` to define a variable it doesn't actually have a value until it's declared. That's why there's a Temporal Dead Zone. The variable is hoisted, but since there's no value trying to use it throws an error.
 
-This is actually the most important difference between declaring variables with the new `let` keyword and the old `var` keyword. `var` variables are hoisted **and assigned the value `undefined` if they're not initialized**. That means you can reference them before they're assigned a value, which rarely works out well for anyone. Just use `let` instead so you get an error if you try to do that.
+This is actually the most important difference between declaring variables with the new `let` keyword and the old `var` keyword. `var` variables are hoisted **and assigned the value `undefined` if they're not initialized**. That means you can reference them before they're assigned a value, which rarely works out well for anyone. Just use `let` instead so you get an error if you try to do that, because it's unlikely to be something you do intentionally.
 
 #### Arrow Function Expressions
 
