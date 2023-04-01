@@ -6,6 +6,8 @@
 
 ## Creating Your Own Errors
 
-## A Functional Error Handling Wrapper
+## Handling Errors with A Result Type
+
+## Evaluation Model: The Call Stack
 
 ## Example: A Small Testing Library
