@@ -34,8 +34,8 @@
 
 ### Other Events
 
+## The Fetch API
+
 ## Custom Events
 
 ## Example: A Browser-Based Todo App
-
-<!-- Use LocalStorage for data -->
