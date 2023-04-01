@@ -4,13 +4,13 @@
 
 ## Program Decomposition
 
-## Creating a "Wish List" of Functions
+### Creating a "Wish List" of Functions
 
-## Designing Data
+### Designing Data
 
-## Documenting Your Functions
+### Documenting Your Functions
 
-## Testing and Developing Your Functions
+### Testing and Developing Your Functions
 
 ## How To Design Classes
 
@@ -26,7 +26,7 @@
 
 ## The Router
 
-## Creating, Editing, and Deleting Posts
+## Post CRUD (Create, Update, Read, Delete)
 
 ### Creating and Dispatching Custom Post Events
 
