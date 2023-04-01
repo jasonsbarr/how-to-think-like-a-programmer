@@ -347,7 +347,7 @@ export function play() {
 
 This is where the real action in the game happens. We're going to write the function for guessing a letter to update and return a new game state that tells the main play function everything it needs to know about how to proceed.
 
-Since this function is so important, you might think it needs to be complicated. Turns out, it's surprisingly simple!
+Since this function is so important, you might think it needs to be complicated. It's actually surprisingly simple!
 
 The function takes the letter guessed and the current game state as inputs, and it returns a new derived game state.
 
