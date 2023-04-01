@@ -789,7 +789,7 @@ const max = (n1, n2) => {
 };
 ```
 
-If the body is just a single expression, you don't have to use a block statement as the arrow function body. If you have one or more statements, you have to use a block statement.
+If the body is just a single expression, you don't have to use a block statement as the arrow function body. The function will automatically return the body expression. If you have one or more statements, you have to use a block statement.
 
 Arrow functions and `function` functions are almost exactly equivalent. The differences between them don't matter for now, but we'll discuss them later in the book.
 
