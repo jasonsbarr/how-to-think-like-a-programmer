@@ -273,7 +273,7 @@ for (let key of Object.keys(person)) {
 
 Note that `Object.keys` only works with string keys that are *own properties* on the object. An object's own properties are the ones defined directly on the object itself, and not inherited from another object as prototype properties.
 
-I don't recommend using for...in loops because they have some quirks that can cause bugs that are difficult to catch.
+I don't recommend using for...in loops because they have some quirks that can cause bugs that are difficult to catch. They're also very easy to confuse with for...of loops. I guarantee you'll use for...in at some point when you mean to use for...of, especially if you also program in Python.
 
 There is also an `Object.values` method that returns an array of the object's property values and an `Object.entries` method that returns an array of pairs, where each pair has a property's key name and its value.
 
