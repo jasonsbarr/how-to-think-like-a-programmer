@@ -24,7 +24,7 @@ In this section we'll cover more JavaScript topics that are important for you to
 
 ## Greedy and Non-Greedy Operators
 
-## Groups and Named Groups
+## Capturing Groups and Named Groups
 
 ## Unicode
 
