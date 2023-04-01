@@ -26,7 +26,7 @@ You can object literals using curly braces:
 const obj = {};
 ```
 
-The above snipped creates an object with no additional properties besides the default ones that come on every object (almost, we'll see exceptions later in the book).
+The above snippet creates an object with no additional properties besides the default ones that come on every object (almost, we'll see exceptions later in the book).
 
 You may have noticed that defining an object literal and creating a block expression both use curly braces. The interpreter can usually figure out which one you mean to use, but there are situations where you need to wrap an object literal in parentheses so the interpreter knows to evaluate it as an expression instead of executing it as a block statement.
 
