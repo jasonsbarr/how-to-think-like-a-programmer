@@ -526,7 +526,8 @@ const [ jason, ...rest ] = names;  //-> rest is [ "Gretchen", "Daniel" ]
 You can also combine destructuring arrays and objects:
 
 ```js
-const { name, games: [ golf, ...games ] } = { name: "Jason", games: [ "Golf", "Chess", "D&D" ] };
+const { name, games: [ golf, ...games ] } =
+    { name: "Jason", games: [ "Golf", "Chess", "D&D" ] };
 ```
 
 ## Maps
