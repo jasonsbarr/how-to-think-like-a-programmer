@@ -858,7 +858,7 @@ function incrementX() {
 
 This function increments the value of `x` in the outer scope, even though the operation takes place in the inner scope. If `incrementX` is called anywhere in the program, in any scope where it's valid, the value of `x` in **this** scope will be increased by 1.
 
-This property of functions is called *closure*, and we'll explore it in greater depth later in the book because it's a very important part of JavaScript.
+This property of functions is called *closure*, and it's a very important part of JavaScript.
 
 ### Recursive Functions
 
