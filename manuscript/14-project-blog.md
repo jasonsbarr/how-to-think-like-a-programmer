@@ -24,7 +24,7 @@
 
 ## The Application Skeleton
 
-## The Router
+## Routing URLs
 
 ## Post CRUD (Create, Update, Read, Delete)
 
