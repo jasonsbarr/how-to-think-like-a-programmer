@@ -32,11 +32,11 @@
 
 ### Binary Search Trees
 
-## How To Solve Any Code Problem
-
 ## Asymptotic Analysis of Algorithms
 
 ## Quadratic and Exponential Time Algorithms
+
+## How To Solve Any Code Problem
 
 ## Recap
 
