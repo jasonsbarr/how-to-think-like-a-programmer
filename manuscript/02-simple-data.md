@@ -142,7 +142,7 @@ As you've seen, you can do mathematical operations on numeric values, but you ca
 
 Mathematical operations include addition, subtraction, multiplication, and division, just like you'd expect. There are also 2 additional mathematical operators: remainder and exponentiation.
 
-`%` is the remainder operator. Sometimes you'll see it called "modulo" (although that isn't *technically* correct). It evaluates to the remainder left when dividing 2 numbers, and always evaluates to an integer.
+`%` is the remainder operator. Sometimes you'll see it called "modulo" (although that isn't **technically** correct). It evaluates to the remainder left when dividing 2 numbers, and always evaluates to an integer.
 
 ```js
 10 % 3 //-> 1
