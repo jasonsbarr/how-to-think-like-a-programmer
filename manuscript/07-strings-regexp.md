@@ -24,4 +24,6 @@ In this section we'll cover more JavaScript topics that are important for you to
 
 ## String Methods That Use Regular Expressions
 
+## `RegExp.prototype.exec` vs `String.prototype.match` vs `String.prototype.matchAll`
+
 ## Example: A Lexical Analyzer (Lexer)
