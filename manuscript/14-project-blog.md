@@ -2,7 +2,7 @@
 
 ## How To Design Programs
 
-## Program Decomposition
+### Program Decomposition
 
 ### Creating a "Wish List" of Functions
 
@@ -11,8 +11,6 @@
 ### Documenting Your Functions
 
 ### Testing and Developing Your Functions
-
-## How To Design Classes
 
 ## Composing Your Solution
 
