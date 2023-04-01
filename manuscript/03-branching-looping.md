@@ -401,7 +401,7 @@ Note that the interpreter will not require you to use a block statement with cur
 
 Let's take a break from new syntax for a minute and talk about algorithms.
 
-You'll remember from the introduction to this book than an algorithm is the specific set of steps used to compute a result from input.
+You'll remember from the introduction to this book that an algorithm is the specific set of steps used to compute a result from input.
 
 Algorithms can be categorized in a number of ways. In this book we'll mostly talk about *time complexity*, which is a fancy way of saying how long it takes for an algorithm to run.
 
