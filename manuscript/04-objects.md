@@ -841,6 +841,12 @@ To execute the function, you need to pass in an object that has these properties
 const query = "select * from users where activation_date not null";
 const binds = {};
 const dbName = "DataWarehouse1";
+
+// whole object
+const args = { query, binds, dbName };
+const data = executeQuery(args);
+
+// destructured
 const data = executeQuery({ query, binds, dbName });
 ```
 
