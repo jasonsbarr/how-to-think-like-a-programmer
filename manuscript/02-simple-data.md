@@ -664,7 +664,7 @@ let scope = "global";
 }
 ```
 
-You can use a block statement anywhere, but they are most often used in function bodies and the bodies of `if` statements, loops, and `try`/`catch` statements. You'll learn about those later in the book.
+You can use a block statement anyplace where you can use a statement, but they are most often used in function bodies and the bodies of `if` statements, loops, and `try`/`catch` statements. You'll learn about those later in the book.
 
 A block statement usually does not require a semicolon after the closing brace. The exception is when using a function expression, in which case if the expression is the last part of the statement it's in you'll need to put a semicolon after it.
 
