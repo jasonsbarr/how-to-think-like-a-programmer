@@ -303,6 +303,8 @@ nums.unshift(1); //-> returns 1
 // array is now [ 1, 2, 3, 4 ]
 ```
 
+Mutates the original array.
+
 ### Higher Order Array Methods
 
 These methods each take a *callback* that is applied to every entry in the array one at a time. A callback is a function you pass to another function as an argument that is then executed while the main function is itself executing.
